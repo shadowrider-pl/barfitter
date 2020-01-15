@@ -1,0 +1,72 @@
+{
+    "name": "OrderClosed",
+    "fields": [
+        {
+            "fieldName": "openingTime",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "closingTime",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "total",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "comment",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "orderId",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "cashupDay",
+            "otherEntityName": "cashup",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "desk",
+            "otherEntityName": "desk",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "payment",
+            "otherEntityName": "payment",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "barman",
+            "otherEntityName": "user",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "restaurant",
+            "otherEntityName": "restaurant",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180730071314",
+    "entityTableName": "order_closed",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

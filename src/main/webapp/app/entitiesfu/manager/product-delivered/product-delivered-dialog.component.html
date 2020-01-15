@@ -1,0 +1,140 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myProductDeliveredLabel" jhiTranslate="barfitterApp.productDelivered.home.createOrEditLabel">Create or edit a Product Delivered</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!productDelivered.id" *ngIf="updateProductTypeIfExists()">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="productDelivered.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barfitterApp.productDelivered.product" for="field_product">Product</label>
+            <select class="form-control" id="field_product" name="product" [(ngModel)]="productDelivered.product" 
+            (change)="updateDetails(); updateProductType()">
+                <option [ngValue]="productOption.id === productDelivered.product?.id ? productDelivered.product : productOption" 
+                *ngFor="let productOption of products; trackBy: trackProductById">{{productOption.name}}</option>
+            </select> 
+        </div>
+        <div class="form-group" *ngIf="showProductType">
+            <label class="form-control-label" jhiTranslate="barfitterApp.productDelivered.productType" for="field_productType">Product Type</label>
+            <select class="form-control" id="field_productType" name="productType" [(ngModel)]="productDelivered.productType" 
+            (change)="updateProductType()" required>
+                <option [ngValue]="productTypeOption.id === productDelivered.productType?.id ? productDelivered.productType : productTypeOption" 
+                *ngFor="let productTypeOption of producttypes; trackBy: trackProductTypeById">{{productTypeOption.description}}</option>
+            </select>
+            <div [hidden]="!(editForm.controls.productType?.dirty && editForm.controls.productType?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.productType?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group" *ngIf="productFound == null"> 
+            <label class="form-control-label" jhiTranslate="barfitterApp.productDelivered.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="productDelivered.name"  (change)="checkDescription()" />
+		<div *ngIf="foundExistingProduct" class="badge badge-danger">
+			<span jhiTranslate="barfitterApp.productDelivered.productAlreadyExists">Product already exists</span> 
+		</div>
+        </div>
+        <div class="form-group" *ngIf="!choosenNotReadyProduct">
+            <label class="form-control-label" jhiTranslate="barfitterApp.productDelivered.deliveryDate" for="field_deliveryDate">Delivery Date</label>
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" (click)="deliveryDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                    <button type="button" class="btn btn-primary" (click)="selectToday()"><span jhiTranslate="barfitterApp.productDelivered.selectToday">Select Today</span></button>
+                </span> &nbsp;
+                <input id="field_deliveryDate" type="text" class="form-control" name="deliveryDate" required
+                ngbDatepicker  #deliveryDateDp="ngbDatepicker" [(ngModel)]="productDelivered.deliveryDate"/>
+            <div [hidden]="!(editForm.controls.deliveryDate?.dirty && editForm.controls.deliveryDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.deliveryDate?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+            </div>
+        </div>
+        <div class="form-group" *ngIf="!choosenNotReadyProduct">
+            <label class="form-control-label" jhiTranslate="barfitterApp.productDelivered.quantity" for="field_quantity">Quantity</label>
+            <input type="number" class="form-control" name="quantity" id="field_quantity"
+                [(ngModel)]="productDelivered.quantity"  required/>
+            <div [hidden]="!(editForm.controls.quantity?.dirty && editForm.controls.quantity?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.quantity?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.quantity?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group" *ngIf="!choosenNotReadyProduct">
+            <label class="form-control-label" jhiTranslate="barfitterApp.productDelivered.purchPriceNet" for="field_purchPriceNet">Purch Price Net</label>
+            <input type="number" class="form-control" name="purchPriceNet" id="field_purchPriceNet"
+                [(ngModel)]="productDelivered.purchPriceNet" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barfitterApp.productDelivered.sellPriceGross" for="field_sellPriceGross">Sell Price Gross</label>
+            <input type="number" class="form-control" name="sellPriceGross" id="field_sellPriceGross"
+                [(ngModel)]="productDelivered.sellPriceGross" required/>
+            <div [hidden]="!(editForm.controls.sellPriceGross?.dirty && editForm.controls.sellPriceGross?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.sellPriceGross?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.sellPriceGross?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barfitterApp.productDelivered.category" for="field_category">Category</label>
+            <select class="form-control" id="field_category" name="category" [(ngModel)]="productDelivered.category" required >
+                <option [ngValue]="categoryOption.id === productDelivered.category?.id ? productDelivered.category : categoryOption" 
+                *ngFor="let categoryOption of categories; trackBy: trackCategoryById">{{categoryOption.name}}</option>
+            </select>
+            <div [hidden]="!(editForm.controls.category?.dirty && editForm.controls.category?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.category?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group" *ngIf="!choosenNotReadyProduct">
+            <label class="form-control-label" jhiTranslate="barfitterApp.productDelivered.productDeliveredPurchPriceRate" for="field_productDeliveredPurchPriceRate">Product Delivered Purch Price Rate</label>
+            <select class="form-control" id="field_productDeliveredPurchPriceRate" name="productDeliveredPurchPriceRate" [(ngModel)]="productDelivered.productDeliveredPurchPriceRate" >
+                <option [ngValue]="vatOption.id === productDelivered.productDeliveredPurchPriceRate?.id ? productDelivered.productDeliveredPurchPriceRate : vatOption" 
+                *ngFor="let vatOption of vats; trackBy: trackVatById">{{vatOption.description}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barfitterApp.productDelivered.productDeliveredSellPriceRate" for="field_productDeliveredSellPriceRate">Product Delivered Sell Price Rate</label>
+            <select class="form-control" id="field_productDeliveredSellPriceRate" name="productDeliveredSellPriceRate" 
+            [(ngModel)]="productDelivered.productDeliveredSellPriceRate" required >
+                <option [ngValue]="vatOption.id === productDelivered.productDeliveredSellPriceRate?.id ? productDelivered.productDeliveredSellPriceRate : vatOption" 
+                *ngFor="let vatOption of vats; trackBy: trackVatById">{{vatOption.description}}</option>
+            </select>
+            <div [hidden]="!(editForm.controls.productDeliveredSellPriceRate?.dirty && editForm.controls.productDeliveredSellPriceRate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.productDeliveredSellPriceRate?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving || foundExistingProduct" class="btn btn-primary">
+            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,132 @@
+<button type="submit" (click)="scrollUp()" class="btn btn-info"
+	id="upButton">
+	<fa-icon [icon]="'arrow-up'" [fixedWidth]="true"></fa-icon>
+</button>
+<button type="submit" (click)="scrollDown()" class="btn btn-info"
+	id="downButton">
+	<fa-icon [icon]="'arrow-down'" [fixedWidth]="true"></fa-icon>
+</button>
+<div>
+	<h2>
+		<span jhiTranslate="barfitterApp.productOrdered.home.title">Products
+			For Chefs</span>
+	</h2>
+	<jhi-alert></jhi-alert>
+	<br />
+	<div class="table-responsive" *ngIf="productsForChefs">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th><span jhiTranslate="global.field.index">#</span></th>
+					<th><span jhiTranslate="barfitterApp.productOrdered.product">Product
+							Ordered</span></th>
+					<th><span jhiTranslate="barfitterApp.productOrdered.quantity">Quantity</span></th>
+					<th><span jhiTranslate="barfitterApp.productOrdered.comment">Comment</span></th>
+					<th><span jhiTranslate="barfitterApp.productOrdered.order">Order
+							Opened</span></th>
+					<th><span
+						jhiTranslate="barfitterApp.productOrdered.orderedProductStatus">Ordered
+							Product Status</span></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					*ngFor="let productsForChef of productsForChefs ;trackBy: trackId; 
+											let i = index"
+					[attr.data-index]="i">
+					<td>{{i+1}}.</td>
+					<td>
+						<div *ngIf="productsForChef.product">
+							{{productsForChef.product?.name}}</div>
+					</td>
+					<td>{{productsForChef.quantity}}</td>
+					<td>{{productsForChef.comment}}</td>
+					<td>
+						<div *ngIf="productsForChef.order">
+							{{productsForChef.order?.orderId}}</div>
+					</td>
+
+					<td
+						*ngIf="productsForChef.orderedProductStatus.id==2 
+						&& productsForChef.product.productType.id==2">
+						<span jhiTranslate="barfitterApp.orderedProductStatus.status.sent">sent</span>
+						[{{productsForChef.sendTime | localizedDate:'shortTime'}}]<br>
+					<hr>
+						<button type="button" [disabled]="isSaving"
+							(click)="accept(productsForChef.id)"
+							class="btn btn-success btn-sm">
+							<fa-icon [icon]="'check-circle'" [fixedWidth]="true"></fa-icon> <span
+								class="hidden-xs hidden-sm"
+								jhiTranslate="barfitterApp.productOrdered.accept"></span>
+						</button>
+						<button type="button" [disabled]="isSaving"
+							(click)="reject(productsForChef.id)"
+							class="btn btn-danger btn-sm">
+							<span class="fa fa-remove"></span> <span
+								class="hidden-xs hidden-sm"
+								jhiTranslate="barfitterApp.productOrdered.reject"></span>
+						</button>
+					</td>
+					<td
+						*ngIf="productsForChef.orderedProductStatus.id==3 && productsForChef.product.productType.id==2">
+									<span jhiTranslate="barfitterApp.orderedProductStatus.status.accepted">accepted</span>
+						[{{productsForChef.acceptedTime | localizedDate:'shortTime'}}]<br>
+					<hr>
+						<button type="button" [disabled]="isSaving"
+							(click)="ready(productsForChef.id)"
+							class="btn btn-primary btn-sm">
+							<fa-icon [icon]="'thumbs-up'" [fixedWidth]="true"></fa-icon> <span
+								class="hidden-xs hidden-sm"
+								jhiTranslate="barfitterApp.productOrdered.ready"></span>
+						</button>
+					</td>
+					<td *ngIf="productsForChef.orderedProductStatus.id==4">
+						<span jhiTranslate="barfitterApp.orderedProductStatus.status.ready">ready</span>
+						[{{productsForChef.finishedTime | localizedDate:'shortTime'}}]</td>
+					<td *ngIf="productsForChef.orderedProductStatus.id==5">
+						<span jhiTranslate="barfitterApp.orderedProductStatus.status.rejected">rejected</span>
+						[{{productsForChef.acceptedTime | localizedDate:'shortTime'}}]</td>
+					<td *ngIf="productsForChef.orderedProductStatus.id==6">
+						<span jhiTranslate="barfitterApp.orderedProductStatus.status.delivered">delivered</span>
+						[{{productsForChef.takenTime | localizedDate:'shortTime'}}]</td>
+					<td
+						*ngIf="productsForChef.product.productType.id!=2 || productsForChef.orderedProductStatus.id==null">
+						-</td>
+				</tr>
+				<tr>
+					<td colspan="7"><span *ngIf="showButtonAcceptAll">
+							<button type="button" [disabled]="isSaving"
+								(click)="acceptAll()" class="btn btn-success">
+								<fa-icon [icon]="'check-circle'" [fixedWidth]="true"></fa-icon> <span
+									class="hidden-xs hidden-sm"
+									jhiTranslate="barfitterApp.productOrdered.acceptAll">accept
+									All</span>
+							</button>
+							<button type="button" [disabled]="isSaving" (click)="rejectAll()"
+								class="btn btn-danger">
+								<fa-icon [icon]="'times'" [fixedWidth]="true"></fa-icon> <span
+									class="hidden-xs hidden-sm"
+									jhiTranslate="barfitterApp.productOrdered.rejectAll">Reject
+									All</span>
+							</button>
+					</span> <span *ngIf="showButtonAllReady">
+							<button type="button" [disabled]="isSaving" (click)="allReady()"
+								class="btn btn-primary">
+								<fa-icon [icon]="'thumbs-up'" [fixedWidth]="true"></fa-icon> <span
+									class="hidden-xs hidden-sm"
+									jhiTranslate="barfitterApp.productOrdered.allReady">All
+									Ready</span>
+							</button>
+					</span>
+						<button type="button" [disabled]="isSaving" (click)="loadAll()"
+							class="btn btn-outline-secondary">
+							<span class="glyphicon glyphicon-refresh"></span> <span
+								class="hidden-xs hidden-sm"
+								jhiTranslate="barfitterApp.productOrdered.refresh">Refresh</span>
+						</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

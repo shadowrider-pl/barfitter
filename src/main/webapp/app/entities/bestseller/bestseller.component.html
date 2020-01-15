@@ -1,0 +1,76 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="barfitterApp.bestseller.home.title">Bestsellers</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-bestseller" [routerLink]="['/bestseller/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="barfitterApp.bestseller.home.createLabel">
+            Create a new Bestseller
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="bestsellers?.length === 0">
+        <span jhiTranslate="barfitterApp.bestseller.home.notFound">No bestsellers found</span>
+    </div>
+    <div class="table-responsive" *ngIf="bestsellers?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="product.name"><span jhiTranslate="barfitterApp.bestseller.product">Product</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="restaurant.id"><span jhiTranslate="barfitterApp.bestseller.restaurant">Restaurant</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let bestseller of bestsellers ;trackBy: trackId">
+                <td><a [routerLink]="['/bestseller', bestseller.id, 'view' ]">{{bestseller.id}}</a></td>
+                <td>
+                    <div *ngIf="bestseller.product">
+                        <a [routerLink]="['/product', bestseller.product?.id, 'view' ]" >{{bestseller.product?.name}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="bestseller.restaurant">
+                        <a [routerLink]="['/restaurant', bestseller.restaurant?.id, 'view' ]" >{{bestseller.restaurant?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/bestseller', bestseller.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/bestseller', bestseller.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/bestseller', { outlets: { popup: bestseller.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="bestsellers?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

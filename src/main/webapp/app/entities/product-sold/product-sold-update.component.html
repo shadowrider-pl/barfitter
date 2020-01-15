@@ -1,0 +1,160 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-product-sold-heading" jhiTranslate="barfitterApp.productSold.home.createOrEditLabel">Create or edit a Product Sold</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.productSold.orderedTime" for="field_orderedTime">Ordered Time</label>
+                    <div class="d-flex">
+                        <input id="field_orderedTime" type="datetime-local" class="form-control" name="orderedTime" formControlName="orderedTime" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('orderedTime').invalid && (editForm.get('orderedTime').dirty || editForm.get('orderedTime').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('orderedTime').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('orderedTime').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.productSold.acceptedTime" for="field_acceptedTime">Accepted Time</label>
+                    <div class="d-flex">
+                        <input id="field_acceptedTime" type="datetime-local" class="form-control" name="acceptedTime" formControlName="acceptedTime" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.productSold.finishedTime" for="field_finishedTime">Finished Time</label>
+                    <div class="d-flex">
+                        <input id="field_finishedTime" type="datetime-local" class="form-control" name="finishedTime" formControlName="finishedTime" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.productSold.takenTime" for="field_takenTime">Taken Time</label>
+                    <div class="d-flex">
+                        <input id="field_takenTime" type="datetime-local" class="form-control" name="takenTime" formControlName="takenTime" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.productSold.quantity" for="field_quantity">Quantity</label>
+                    <input type="number" class="form-control" name="quantity" id="field_quantity"
+                           formControlName="quantity"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.productSold.comment" for="field_comment">Comment</label>
+                    <input type="text" class="form-control" name="comment" id="field_comment"
+                           formControlName="comment"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.productSold.purchPriceNet" for="field_purchPriceNet">Purch Price Net</label>
+                    <input type="number" class="form-control" name="purchPriceNet" id="field_purchPriceNet"
+                           formControlName="purchPriceNet"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.productSold.purchPriceGross" for="field_purchPriceGross">Purch Price Gross</label>
+                    <input type="number" class="form-control" name="purchPriceGross" id="field_purchPriceGross"
+                           formControlName="purchPriceGross"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.productSold.purchVatValue" for="field_purchVatValue">Purch Vat Value</label>
+                    <input type="number" class="form-control" name="purchVatValue" id="field_purchVatValue"
+                           formControlName="purchVatValue"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.productSold.sellPriceNet" for="field_sellPriceNet">Sell Price Net</label>
+                    <input type="number" class="form-control" name="sellPriceNet" id="field_sellPriceNet"
+                           formControlName="sellPriceNet"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.productSold.sellPriceGross" for="field_sellPriceGross">Sell Price Gross</label>
+                    <input type="number" class="form-control" name="sellPriceGross" id="field_sellPriceGross"
+                           formControlName="sellPriceGross"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.productSold.sellVatValue" for="field_sellVatValue">Sell Vat Value</label>
+                    <input type="number" class="form-control" name="sellVatValue" id="field_sellVatValue"
+                           formControlName="sellVatValue"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.productSold.difference" for="field_difference">Difference</label>
+                    <input type="number" class="form-control" name="difference" id="field_difference"
+                           formControlName="difference"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.productSold.deliveryDate" for="field_deliveryDate">Delivery Date</label>
+                    <div class="input-group">
+                        <input id="field_deliveryDate" type="text" class="form-control" name="deliveryDate" ngbDatepicker  #deliveryDateDp="ngbDatepicker" formControlName="deliveryDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="deliveryDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.productSold.sendTime" for="field_sendTime">Send Time</label>
+                    <div class="d-flex">
+                        <input id="field_sendTime" type="datetime-local" class="form-control" name="sendTime" formControlName="sendTime" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.productSold.product" for="field_product">Product</label>
+                    <select class="form-control" id="field_product" name="product" formControlName="product">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="productOption.id === editForm.get('product').value?.id ? editForm.get('product').value : productOption" *ngFor="let productOption of products; trackBy: trackProductById">{{productOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.productSold.order" for="field_order">Order</label>
+                    <select class="form-control" id="field_order" name="order" formControlName="order">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="orderClosedOption.id === editForm.get('order').value?.id ? editForm.get('order').value : orderClosedOption" *ngFor="let orderClosedOption of ordercloseds; trackBy: trackOrderClosedById">{{orderClosedOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.productSold.productSoldPurchPriceRate" for="field_productSoldPurchPriceRate">Product Sold Purch Price Rate</label>
+                    <select class="form-control" id="field_productSoldPurchPriceRate" name="productSoldPurchPriceRate" formControlName="productSoldPurchPriceRate">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="vatOption.id === editForm.get('productSoldPurchPriceRate').value?.id ? editForm.get('productSoldPurchPriceRate').value : vatOption" *ngFor="let vatOption of vats; trackBy: trackVatById">{{vatOption.description}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.productSold.productSoldSellPriceRate" for="field_productSoldSellPriceRate">Product Sold Sell Price Rate</label>
+                    <select class="form-control" id="field_productSoldSellPriceRate" name="productSoldSellPriceRate" formControlName="productSoldSellPriceRate">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="vatOption.id === editForm.get('productSoldSellPriceRate').value?.id ? editForm.get('productSoldSellPriceRate').value : vatOption" *ngFor="let vatOption of vats; trackBy: trackVatById">{{vatOption.description}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.productSold.chef" for="field_chef">Chef</label>
+                    <select class="form-control" id="field_chef" name="chef" formControlName="chef">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === editForm.get('chef').value?.id ? editForm.get('chef').value : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.productSold.restaurant" for="field_restaurant">Restaurant</label>
+                    <select class="form-control" id="field_restaurant" name="restaurant" formControlName="restaurant">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="restaurantOption.id === editForm.get('restaurant').value?.id ? editForm.get('restaurant').value : restaurantOption" *ngFor="let restaurantOption of restaurants; trackBy: trackRestaurantById">{{restaurantOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

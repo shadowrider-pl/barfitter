@@ -1,0 +1,87 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="global.menu.admin.restaurants">Restaurants</span>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="restaurants">
+        <table class="table table-striped">
+            <thead>
+            <!-- <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="name"><span jhiTranslate="barfitterApp.restaurant.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="country"><span jhiTranslate="barfitterApp.restaurant.country">Country</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="address"><span jhiTranslate="barfitterApp.restaurant.address">Address</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="zipCode"><span jhiTranslate="barfitterApp.restaurant.zipCode">Zip Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="city"><span jhiTranslate="barfitterApp.restaurant.city">City</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="vatNumber"><span jhiTranslate="barfitterApp.restaurant.vatNumber">Vat Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="licenceDate"><span jhiTranslate="barfitterApp.restaurant.licenceDate">Licence Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="licenceType"><span jhiTranslate="barfitterApp.restaurant.licenceType">Licence Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nextLicenceType"><span jhiTranslate="barfitterApp.restaurant.nextLicenceType">Next Licence Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="adsLevel"><span jhiTranslate="barfitterApp.restaurant.adsLevel">Ads Level</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="currency"><span jhiTranslate="barfitterApp.restaurant.currency">Currency</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="createdDate"><span jhiTranslate="barfitterApp.restaurant.createdDate">Created Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>  -->
+
+             <tr>
+            <!-- <th><span jhiTranslate="global.field.id">ID</span> </th> -->
+            <th><span jhiTranslate="barfitterApp.restaurant.name">Name</span> </th>
+            <th><span jhiTranslate="barfitterApp.restaurant.country">Country</span> </th>
+         <!--   <th><span jhiTranslate="barfitterApp.restaurant.address">Address</span> </th>
+            <th><span jhiTranslate="barfitterApp.restaurant.zipCode">Zip Code</span> </th>-->
+            <th><span jhiTranslate="barfitterApp.restaurant.city">City</span> </th>
+          <!--  <th><span jhiTranslate="barfitterApp.restaurant.vatNumber">Vat Number</span> </th>
+            <th><span jhiTranslate="barfitterApp.restaurant.licenceDate">Licence Date</span> </th>
+            <th><span jhiTranslate="barfitterApp.restaurant.licenceType">Licence Type</span> </th>
+            <th><span jhiTranslate="barfitterApp.restaurant.nextLicenceType">Next Licence Type</span> </th>
+            <th><span jhiTranslate="barfitterApp.restaurant.adsLevel">Ads Level</span> </th>
+            <th><span jhiTranslate="barfitterApp.restaurant.currency">Currency</span> </th>-->
+            <th><span jhiTranslate="barfitterApp.restaurant.createdDate">Created Date</span> </th>
+            <th><span jhiTranslate="global.menu.admin.lastCashup">Last Cashup</span> </th>
+            <th><span jhiTranslate="global.menu.admin.users">No. of users</span> </th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+		      <tr *ngFor="let restaurant of restaurants ;trackBy: trackId">
+               <!-- <td><a [routerLink]="['/restaurant', restaurant.id, 'view' ]">{{restaurant.id}}</a></td>-->
+                <td>{{restaurant.restaurant.name}}</td>
+                <td>{{restaurant.restaurant.country}}</td>
+                <!--<td>{{restaurant.address}}</td>
+                <td>{{restaurant.zipCode}}</td>-->
+                <td>{{restaurant.restaurant.city}}</td>
+                <!--<td>{{restaurant.vatNumber}}</td>
+                <td>{{restaurant.licenceDate | date:'mediumDate'}}</td>
+                <td>{{restaurant.licenceType}}</td>
+                <td>{{restaurant.nextLicenceType}}</td>
+                <td>{{restaurant.adsLevel}}</td>
+                <td>{{restaurant.currency}}</td>-->
+                <td>{{restaurant.restaurant.createdDate | localizedDate:'MM-dd-y'}}</td>
+                <td>{{restaurant.lastCashup | localizedDate:'MM-dd-y'}}</td>
+                <td>{{restaurant.activeUsers}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'admin/restaurants/'+ restaurant.restaurant.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- <div *ngIf="restaurants && restaurants.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+     -->
+</div>

@@ -1,0 +1,40 @@
+{
+  "barfitterApp": {
+    "substitutes": {
+      "home": {
+        "title": "Substitutes",
+        "createLabel": "Dodaj Substitutes",
+        "createOrEditLabel": "Dodaj lub edytuj: Substitutes",
+        "search": "Szukaj Substitutes"
+      },
+      "created": "Utworzono nowy Substitutes z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono Substitutes z identyfikatorem {{ param }}",
+      "deleted": "Usunięto Substitutes z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Substitutes {{ id }}?"
+      },
+      "detail": {
+        "title": "Substitutes"
+      },
+      "orderedTime": "Ordered Time",
+      "acceptedTime": "Accepted Time",
+      "finishedTime": "Finished Time",
+      "takenTime": "Taken Time",
+      "quantity": "Quantity",
+      "comment": "Comment",
+      "purchPriceNet": "Purch Price Net",
+      "purchPriceGross": "Purch Price Gross",
+      "purchVatValue": "Purch Vat Value",
+      "sellPriceNet": "Sell Price Net",
+      "sellPriceGross": "Sell Price Gross",
+      "sellVatValue": "Sell Vat Value",
+      "difference": "Difference",
+      "deliveryDate": "Delivery Date",
+      "sendTime": "Send Time",
+      "product": "Product",
+      "orderClosed": "Order Closed",
+      "user": "User",
+      "restaurant": "Restaurant"
+    }
+  }
+}

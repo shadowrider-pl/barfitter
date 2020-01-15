@@ -1,0 +1,88 @@
+
+<div *ngIf="productDelivered">
+    <h2><span jhiTranslate="barfitterApp.productDelivered.detail.title">Product Delivered</span> {{productDelivered.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="barfitterApp.productDelivered.name">Name</span></dt>
+        <dd>
+            <span>{{productDelivered.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="barfitterApp.productDelivered.deliveryDate">Delivery Date</span></dt>
+        <dd>
+            <span>{{productDelivered.deliveryDate | localizedDate:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="barfitterApp.productDelivered.quantity">Quantity</span></dt>
+        <dd>
+            <span>{{productDelivered.quantity}}</span>
+        </dd>
+        <dt><span jhiTranslate="barfitterApp.productDelivered.purchPriceGross">Purch Price Gross</span></dt>
+        <dd>
+            <span>{{productDelivered.purchPriceGross}}</span>
+        </dd>
+        <dt><span jhiTranslate="barfitterApp.productDelivered.sellPriceGross">Sell Price Gross</span></dt>
+        <dd>
+            <span>{{productDelivered.sellPriceGross}}</span>
+        </dd>
+        <dt><span jhiTranslate="barfitterApp.productDelivered.purchPriceNet">Purch Price Net</span></dt>
+        <dd>
+            <span>{{productDelivered.purchPriceNet}}</span>
+        </dd>
+        <dt><span jhiTranslate="barfitterApp.productDelivered.purchVatValue">Purch Vat Value</span></dt>
+        <dd>
+            <span>{{productDelivered.purchVatValue}}</span>
+        </dd>
+        <dt><span jhiTranslate="barfitterApp.productDelivered.sellPriceNet">Sell Price Net</span></dt>
+        <dd>
+            <span>{{productDelivered.sellPriceNet}}</span>
+        </dd>
+        <dt><span jhiTranslate="barfitterApp.productDelivered.sellVatValue">Sell Vat Value</span></dt>
+        <dd>
+            <span>{{productDelivered.sellVatValue}}</span>
+        </dd>
+        <dt><span jhiTranslate="barfitterApp.productDelivered.product">Product</span></dt>
+        <dd>
+            <div *ngIf="productDelivered.product">
+                <a [routerLink]="['/product', productDelivered.product?.id]">{{productDelivered.product?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="barfitterApp.productDelivered.category">Category</span></dt>
+        <dd>
+            <div *ngIf="productDelivered.category">
+                <a [routerLink]="['/category', productDelivered.category?.id]">{{productDelivered.category?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="barfitterApp.productDelivered.productDeliveredPurchPriceRate">Product Delivered Purch Price Rate</span></dt>
+        <dd>
+            <div *ngIf="productDelivered.productDeliveredPurchPriceRate">
+                <a [routerLink]="['/vat', productDelivered.productDeliveredPurchPriceRate?.id]">{{productDelivered.productDeliveredPurchPriceRate?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="barfitterApp.productDelivered.productDeliveredSellPriceRate">Product Delivered Sell Price Rate</span></dt>
+        <dd>
+            <div *ngIf="productDelivered.productDeliveredSellPriceRate">
+                <a [routerLink]="['/vat', productDelivered.productDeliveredSellPriceRate?.id]">{{productDelivered.productDeliveredSellPriceRate?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="barfitterApp.productDelivered.productType">Product Type</span></dt>
+        <dd>
+            <div *ngIf="productDelivered.productType">
+                <a [routerLink]="['/product-type', productDelivered.productType?.id]">{{productDelivered.productType?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'delivery/'+ productDelivered.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

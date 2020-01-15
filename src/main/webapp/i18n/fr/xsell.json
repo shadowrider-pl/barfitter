@@ -1,0 +1,24 @@
+{
+  "barfitterApp": {
+    "xsell": {
+      "home": {
+        "title": "Xsells",
+        "createLabel": "Créer un nouveau Xsell",
+        "createOrEditLabel": "Créer ou éditer un Xsell",
+        "notFound": "Aucun Xsell trouvé"
+      },
+      "created": "Un nouveau Xsell a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Xsell avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Xsell avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Xsell {{ id }} ?"
+      },
+      "detail": {
+        "title": "Xsell"
+      },
+      "fromCategory": "From Category",
+      "toCategory": "To Category",
+      "restaurant": "Restaurant"
+    }
+  }
+}

@@ -1,0 +1,115 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-product-heading" jhiTranslate="barfitterApp.product.home.createOrEditLabel">Create or edit a Product</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.product.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                    <div *ngIf="editForm.get('name').invalid && (editForm.get('name').dirty || editForm.get('name').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.product.purchPriceNet" for="field_purchPriceNet">Purch Price Net</label>
+                    <input type="number" class="form-control" name="purchPriceNet" id="field_purchPriceNet"
+                           formControlName="purchPriceNet"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.product.sellPriceGross" for="field_sellPriceGross">Sell Price Gross</label>
+                    <input type="number" class="form-control" name="sellPriceGross" id="field_sellPriceGross"
+                           formControlName="sellPriceGross"/>
+                    <div *ngIf="editForm.get('sellPriceGross').invalid && (editForm.get('sellPriceGross').dirty || editForm.get('sellPriceGross').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('sellPriceGross').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('sellPriceGross')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.product.active" for="field_active">Active</label>
+                    <input type="checkbox" class="form-control" name="active" id="field_active"
+                           formControlName="active"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.product.purchPriceGross" for="field_purchPriceGross">Purch Price Gross</label>
+                    <input type="number" class="form-control" name="purchPriceGross" id="field_purchPriceGross"
+                           formControlName="purchPriceGross"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.product.purchVatValue" for="field_purchVatValue">Purch Vat Value</label>
+                    <input type="number" class="form-control" name="purchVatValue" id="field_purchVatValue"
+                           formControlName="purchVatValue"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.product.sellPriceNet" for="field_sellPriceNet">Sell Price Net</label>
+                    <input type="number" class="form-control" name="sellPriceNet" id="field_sellPriceNet"
+                           formControlName="sellPriceNet"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.product.sellVatValue" for="field_sellVatValue">Sell Vat Value</label>
+                    <input type="number" class="form-control" name="sellVatValue" id="field_sellVatValue"
+                           formControlName="sellVatValue"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.product.productSellPriceRate" for="field_productSellPriceRate">Product Sell Price Rate</label>
+                    <select class="form-control" id="field_productSellPriceRate" name="productSellPriceRate" formControlName="productSellPriceRate">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="vatOption.id === editForm.get('productSellPriceRate').value?.id ? editForm.get('productSellPriceRate').value : vatOption" *ngFor="let vatOption of vats; trackBy: trackVatById">{{vatOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.product.productPurchPriceRate" for="field_productPurchPriceRate">Product Purch Price Rate</label>
+                    <select class="form-control" id="field_productPurchPriceRate" name="productPurchPriceRate" formControlName="productPurchPriceRate">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="vatOption.id === editForm.get('productPurchPriceRate').value?.id ? editForm.get('productPurchPriceRate').value : vatOption" *ngFor="let vatOption of vats; trackBy: trackVatById">{{vatOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.product.productType" for="field_productType">Product Type</label>
+                    <select class="form-control" id="field_productType" name="productType" formControlName="productType">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="productTypeOption.id === editForm.get('productType').value?.id ? editForm.get('productType').value : productTypeOption" *ngFor="let productTypeOption of producttypes; trackBy: trackProductTypeById">{{productTypeOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.product.category" for="field_category">Category</label>
+                    <select class="form-control" id="field_category" name="category" formControlName="category">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="categoryOption.id === editForm.get('category').value?.id ? editForm.get('category').value : categoryOption" *ngFor="let categoryOption of categories; trackBy: trackCategoryById">{{categoryOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.product.restaurant" for="field_restaurant">Restaurant</label>
+                    <select class="form-control" id="field_restaurant" name="restaurant" formControlName="restaurant">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="restaurantOption.id === editForm.get('restaurant').value?.id ? editForm.get('restaurant').value : restaurantOption" *ngFor="let restaurantOption of restaurants; trackBy: trackRestaurantById">{{restaurantOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

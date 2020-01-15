@@ -1,0 +1,24 @@
+{
+  "barfitterApp": {
+    "payment": {
+      "home": {
+        "title": "Payments",
+        "createLabel": "Створити новий Payment",
+        "createOrEditLabel": "Створити чи редагувати Payment",
+        "notFound": "No Payments found"
+      },
+      "created": "Новий Payment створений з ідентифікатором {{ param }}",
+      "updated": "Payment оновлений з ідентифікатором {{ param }}",
+      "deleted": "Payment видалений з ідентифікатором {{ param }}",
+      "delete": {
+        "question": "Ви впевнені, що хочете видалити Payment {{ id }}?"
+      },
+      "detail": {
+        "title": "Payment"
+      },
+      "description": "Description",
+      "active": "Active",
+      "restaurant": "Restaurant"
+    }
+  }
+}

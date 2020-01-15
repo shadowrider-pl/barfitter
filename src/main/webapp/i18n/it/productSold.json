@@ -1,0 +1,42 @@
+{
+  "barfitterApp": {
+    "productSold": {
+      "home": {
+        "title": "ProductSolds",
+        "createLabel": "Genera un nuovo Product Sold",
+        "createOrEditLabel": "Genera o modifica un Product Sold",
+        "notFound": "No Product Solds found"
+      },
+      "created": "&Egrave; stato generato un nuovo Product Sold con identificatore {{ param }}",
+      "updated": "&Egrave; stato aggiornato Product Sold identificato da {{ param }}",
+      "deleted": "&Egrave; stato eliminato Product Sold con identificatore {{ param }}",
+      "delete": {
+        "question": "Sei sicuro di volere eliminare Product Sold {{ id }}?"
+      },
+      "detail": {
+        "title": "Product Sold"
+      },
+      "orderedTime": "Ordered Time",
+      "acceptedTime": "Accepted Time",
+      "finishedTime": "Finished Time",
+      "takenTime": "Taken Time",
+      "quantity": "Quantity",
+      "comment": "Comment",
+      "purchPriceNet": "Purch Price Net",
+      "purchPriceGross": "Purch Price Gross",
+      "purchVatValue": "Purch Vat Value",
+      "sellPriceNet": "Sell Price Net",
+      "sellPriceGross": "Sell Price Gross",
+      "sellVatValue": "Sell Vat Value",
+      "difference": "Difference",
+      "deliveryDate": "Delivery Date",
+      "sendTime": "Send Time",
+      "product": "Product",
+      "order": "Order",
+      "productSoldPurchPriceRate": "Product Sold Purch Price Rate",
+      "productSoldSellPriceRate": "Product Sold Sell Price Rate",
+      "chef": "Chef",
+      "restaurant": "Restaurant"
+    }
+  }
+}

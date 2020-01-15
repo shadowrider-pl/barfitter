@@ -1,0 +1,385 @@
+<button type="submit" (click)="scrollUp()" class="btn btn-info"
+	id="upButton">
+	<fa-icon [icon]="'arrow-up'" [fixedWidth]="true"></fa-icon>
+</button>
+<button type="submit" (click)="scrollDown()" class="btn btn-info"
+	id="downButton">
+	<fa-icon [icon]="'arrow-down'" [fixedWidth]="true"></fa-icon>
+</button>
+<form name="editForm" role="form" novalidate (ngSubmit)="save()"
+	#editForm="ngForm">
+
+	<div class="modal-header">
+		<h4 class="modal-title" id="myOrderOpenedLabel"
+			jhiTranslate="home.fastOrder">Fast Order</h4>
+	</div>
+	<div class="modal-body">
+		<jhi-alert-error></jhi-alert-error>
+			<h3 class="text-center"><span jhiTranslate="global.menu.entities.category">Category</span>
+				<span *ngIf="showSubcategoryName">: {{subCategoryName}}</span></h3>
+			<div class="row">
+				<div *ngFor="let subcategory of subcategories"
+					class="col-sm-6 col-md-4 col-lg-2 py-2">
+					<div
+						class="card card-body h-100 d-flex justify-content-center align-items-center text-white bg-info"
+						(click)="findSubcategories({id:subcategory.id}); loadProductsOnCategory({id:subcategory.id})">
+						<h5 class="card-title text-center d-flex">{{subcategory.name}}</h5>
+					</div>
+				</div>
+				<div *ngIf="prtCat==0" class="col-sm-6 col-md-4 col-lg-2 py-2">
+					<div
+						class="card card-body h-100 d-flex justify-content-center align-items-center text-white bg-info"
+						(click)="loadFavoriteProducts()">
+						<h5 class="card-title text-center d-flex">
+							<span jhiTranslate="barfitterApp.productOrdered.favorities">favorite</span>
+						</h5>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="btn-group" *ngIf="prtCat !== 0">
+				<button
+					(click)="findSubcategories({id:back()}); loadProductsOnCategory({id:pid})"
+					class="pull-left btn btn-primary" type="button" title="Back">
+					<fa-icon [icon]="'arrow-left'" [fixedWidth]="true"></fa-icon>&nbsp; <span
+						jhiTranslate="entity.action.back">Back</span>
+				</button>
+				<button
+					(click)="findSubcategories(null);"
+					class="pull-left btn btn-danger" type="button" title="Reset">
+					<fa-icon [icon]="'times'" [fixedWidth]="true"></fa-icon>&nbsp; <span
+						jhiTranslate="entity.action.reset">Reset</span>
+				</button>
+				<br>
+			</div>
+			<hr>
+			<div *ngIf="spinner" class="text-center">
+				<fa-icon [icon]="'sync'" [fixedWidth]="true" [spin]="true"></fa-icon><br>
+			</div>
+
+			<div class="row">
+				<div *ngFor="let product of productsFoundInCategory; let i = index"
+					class="col-sm-6 col-md-4 col-lg-2 py-2">
+					<div
+						class="card card-body h-100 d-flex justify-content-center align-items-center text-white bg-success"
+						(click)="increment(i)" [ngClass]=" activeProduct === productsFoundInCategory[i] ? cardStyle : ''">
+						<h5 class="card-title text-center d-flex">{{product.product.name}}</h5>
+					</div>
+				</div>
+			</div>
+			<div *ngIf="getSubtotal()>0" style="max-height: calc(100vh - 210px); overflow-y: auto;">
+			<br>
+			<table class="table table-bordered table-striped">
+				<thead class="thead-light">
+					<tr *ngIf="showLabels">
+						<th scope="col"><span
+							jhiTranslate="barfitterApp.productOrdered.name"></span></th>
+						<th scope="col"><span
+							jhiTranslate="barfitterApp.productOrdered.quantity"></span></th>
+						<th scope="col"><span
+							jhiTranslate="barfitterApp.productOrdered.simplePrice"></span></th>
+						<th scope="col"><span
+							jhiTranslate="barfitterApp.orderOpened.subtotal"></span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th *ngIf="noFavoritiesFound" colspan="4"><div
+								class="text-center">
+								<span jhiTranslate="barfitterApp.favorite.noFavoritiesFound">No
+									Favorities found</span>
+							</div></th>
+					</tr>
+					<tr>
+						<th *ngIf="noProductsFound && prtCat!=0" colspan="4"><div
+								class="text-center">
+								<span jhiTranslate="barfitterApp.orderOpened.noProductsFound">No
+									Favorities found</span>
+							</div></th>
+					</tr>
+					<tr *ngFor="let product of productsFoundInCategory; let i = index">
+						<th *ngIf="product.orderedQuantity > 0" scope="row">{{product.product.name}}</th>
+						<td *ngIf="product.orderedQuantity > 0" style="padding: 15px">
+									<div class="row">
+										<div class="input-group" style="min-width: 9em">
+											<span class="input-group-btn">
+												<button class="btn btn-info btn-md" type="button"
+													(click)="decrement(i)"
+													[disabled]="product.orderedQuantity<=0">
+													<fa-icon [icon]="'minus'" [fixedWidth]="true"></fa-icon>
+												</button>
+											</span> <input style="min-width: 4em" type="number" min="0"
+												max="{{product.quantity}}" class="form-control"
+												[(ngModel)]="product.orderedQuantity"
+												[ngModelOptions]="{standalone: true}" /> <span
+												class="input-group-btn">
+												<button class="btn btn-info btn-md" type="button"
+													(click)="increment(i)"
+													[disabled]="product.orderedQuantity >= product.quantity 
+														&& product.product.productType.id==1">
+													<fa-icon [icon]="'plus'" [fixedWidth]="true"></fa-icon>
+												</button>
+											</span>
+										</div>
+									</div>
+							<div
+								*ngIf="product.orderedQuantity > product.quantity && product.product.productType.id==1">
+								<span class="badge badge-danger"
+									jhiTranslate="barfitterApp.orderOpened.allowedQuantityExceeded"></span>
+							</div></td>
+						<td *ngIf="product.orderedQuantity > 0"><input type="number" class="form-control"
+							[(ngModel)]="product.sellPriceGross"
+							[ngModelOptions]="{standalone: true}" /></td>
+						<td *ngIf="product.orderedQuantity > 0">
+							<div>{{(product.sellPriceGross*product.orderedQuantity) |
+								localizedCurrency}}</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+			<br>
+			<div *ngIf="getSubtotal()>0">
+				<button type="button"
+					(click)="addProduct(); findSubcategories(null); showSubstitute=false;"
+					class="btn btn-primary pull-right">
+					<fa-icon [icon]="'plus'" [fixedWidth]="true"></fa-icon> <span
+						jhiTranslate="entity.action.add-product">Add</span>
+				</button>
+				<br> <br>
+				<h3 class="text-center">
+					<span class="badge badge-secondary"> <span
+						jhiTranslate="barfitterApp.orderOpened.subtotal"></span> {{
+						getSubtotal() | localizedCurrency}}
+					</span>
+				</h3>
+				<hr>
+			</div>
+
+
+			<div class="table-responsive" *ngIf="productsOrdered != null && productsOrdered.length>0">
+				<table
+					class="jh-table table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th><span jhiTranslate="global.field.index">#</span></th>
+							<th><span jhiTranslate="barfitterApp.productOrdered.product">Product</span></th>
+							<th><span
+								jhiTranslate="barfitterApp.productOrdered.sellPriceGross">Price</span></th>
+							<th><span
+								jhiTranslate="barfitterApp.productOrdered.quantity">Quantity</span></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let productOrdered of productsOrdered; let i = index">
+							<td>{{i+1}}.</td>
+							<td>{{productOrdered.product.name}}</td>
+							<td>{{productOrdered.sellPriceGross | localizedCurrency}}</td>
+							<td>{{productOrdered.quantity}}</td>
+
+							<td class="text-right">
+								<div class="btn-group flex-btn-group-container">
+									<button type="submit" (click)="deleteProduct(i)"
+										class="btn btn-danger btn-sm" [disabled]="isSaving">
+										<fa-icon [icon]="'times'" [fixedWidth]="true"></fa-icon><span
+											class="hidden-xs hidden-sm"
+											jhiTranslate="entity.action.delete"></span>
+									</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+				<div *ngIf="xsellArray != null && xsellArray.length>0">
+					<h4 class="modal-title" id="propose"
+						jhiTranslate="barfitterApp.productOrdered.propose">propose:</h4>
+					<table class="jh-table table table-striped table-bordered">
+						<tr *ngFor="let xsell of xsellArray" class="success">
+							<td><div
+									(click)="findSubcategories({id:xsell.id}); loadProductsOnCategory({id:xsell.id})">
+									{{xsell.name}}</div></td>
+
+						</tr>
+					</table>
+				</div>
+			</div>
+			<button type="button" class="btn btn-outline-secondary"
+				*ngIf="prtCat == 0 && showSubstitute==false"
+				(click)="toggleShowSubstitute()">
+				<fa-icon [icon]="'exchange-alt'" [fixedWidth]="true"></fa-icon>&nbsp;<span
+					jhiTranslate="barfitterApp.productOrdered.addSubstitute">Substitute</span>
+			</button>
+			<button type="button" class="btn btn-outline-secondary"
+				*ngIf="prtCat == 0 && showSubstitute==true"
+				(click)="toggleShowSubstitute()">
+				<fa-icon [icon]="'exchange-alt'" [fixedWidth]="true"></fa-icon>&nbsp;<span
+					jhiTranslate="barfitterApp.productOrdered.hideSubstitute">Hide
+					Substitute</span>
+			</button>
+			<div *ngIf="showSubstitute && prtCat == 0">
+				<BR> <BR>
+				<div class="form-group">
+					<label class="control-label"
+						jhiTranslate="barfitterApp.productOrdered.quantity"
+						for="field_quantity">Quantity</label> <input type="number"
+						class="form-control" name="quantity" id="field_quantity"
+						[(ngModel)]="substitute.orderedQuantity" required />
+				</div>
+
+				<div class="form-group">
+					<label class="control-label"
+						jhiTranslate="barfitterApp.productOrdered.sellPriceGross"
+						for="field_sellPriceGross">Sell Price Gross</label> <input
+						type="number" class="form-control" name="sellPriceGross"
+						id="field_sellPriceGross" [(ngModel)]="substitute.sellPriceGross"
+						required />
+				</div>
+
+				<div class="form-group">
+					<label class="control-label"
+						jhiTranslate="barfitterApp.productOrdered.comment"
+						for="field_comment">Comment</label> <input type="text"
+						class="form-control" name="comment" id="field_comment"
+						[(ngModel)]="substitute.comment" required />
+				</div>
+
+				<button type="button"
+					[disabled]="substitute.comment==null
+        					 || substitute.sellPriceGross==null || substitute.orderedQuantity==null"
+					(click)="addSubstitute(); findSubcategories({id:0}); loadProductsOnCategory({id:0})"
+					class="btn btn-primary pull-right">
+					<fa-icon [icon]="'plus'" [fixedWidth]="true"></fa-icon><span
+						jhiTranslate="barfitterApp.productOrdered.addSubstitute">Add
+						Substitute</span>
+				</button>
+			</div>
+
+
+			<div *ngIf="!showSubstitute" class="form-group">
+				<br> <label class="control-label"
+					jhiTranslate="barfitterApp.orderOpened.comment" for="field_comment">Comment</label>
+				<input type="text" class="form-control" name="comment"
+					id="field_comment" [(ngModel)]="orderOpened.comment" />
+			</div>
+		</div>
+
+		<h1 class="text-center">
+			<span class="badge badge-info" *ngIf="total>0"> <span
+				jhiTranslate="barfitterApp.orderOpened.total"></span>: {{ total |
+				localizedCurrency}}
+			</span>
+		</h1>
+
+		<h2 class="text-center">
+			<span class="badge badge-warning" *ngIf="isSaving"> <span
+				jhiTranslate="global.menu.saving"></span>
+			</span>
+		</h2>
+	<br> <br>
+	<div *ngIf="productsOrdered != null && productsOrdered.length>0">
+		<ul class="list-group" *ngIf="!joinedPaymentClicked">
+			<li class="list-group-item"
+				*ngFor="let payment of activePayments">
+				<button *ngIf="payment.id!=1 && payment.id!=2" type="submit"
+					class="btn-lg btn-block btn-success"
+					(click)="pay(payment.id)" [disabled]="isSaving">
+					<fa-icon [icon]="'bolt'" [fixedWidth]="true"></fa-icon>&nbsp; {{ payment.description }}
+				</button>
+				<button *ngIf="payment.id==1" type="submit"
+					class="btn-lg btn-block btn-success" [disabled]="isSaving"
+					data-dismiss="modal" (click)="pay(payment.id)">
+					<fa-icon [icon]="'bolt'" [fixedWidth]="true"></fa-icon><span
+						jhiTranslate="barfitterApp.payment.cash"></span>
+				</button> <span *ngIf="payment.id==1"> <br> <label
+					class="control-label"> <span
+						jhiTranslate="barfitterApp.payment.cash"></span>:
+				</label> <input class="form-control" [(ngModel)]="cash"
+					[ngModelOptions]="{standalone: true}" type="number" /><br><span
+					*ngIf="cash>total"><label class="control-label">
+							<span jhiTranslate="barfitterApp.orderOpened.change"></span>:
+							{{(cash-total) | localizedCurrency}}
+					</label> </span></span>
+				<button *ngIf="payment.id==2" type="submit"
+					class="btn-lg btn-block btn-success"
+					(click)="pay(payment.id)" [disabled]="isSaving">
+					<fa-icon [icon]="'bolt'" [fixedWidth]="true"></fa-icon><span
+						jhiTranslate="barfitterApp.payment.card"></span>
+				</button>
+			</li>
+			<li class="list-group-item">
+				<button type="button" class="btn-lg btn-block btn-primary"
+					(click)="joinedPayment(); activePaymentsForJoined()" [disabled]="isSaving">
+					<fa-icon [icon]="'link'" [fixedWidth]="true"></fa-icon>&nbsp;<span
+						jhiTranslate="barfitterApp.orderOpened.joinedPayment">Joined
+						payment</span>
+				</button>
+			</li>
+		</ul>
+
+		<ul class="list-group" *ngIf="joinedPaymentClicked">
+			<li class="list-group-item"
+				*ngFor="let payment of joinedPayments ">
+
+				<div *ngIf="payment.payment.id!=1 && payment.payment.id!=2"
+					class="form-group">
+					<label class="control-label">{{payment.payment.description}}</label>
+					<input type="number" class="form-control"
+						[(ngModel)]="payment.amount" [ngModelOptions]="{standalone: true}"
+						(ngModelChange)="getRest()" />
+				</div>
+				<div *ngIf="payment.payment.id==1" class="form-group">
+					<label class="control-label"><span
+						jhiTranslate="barfitterApp.payment.cash"></span></label> <input
+						type="number" class="form-control" [(ngModel)]="payment.amount"
+						[ngModelOptions]="{standalone: true}" (ngModelChange)="getRest()" />
+				</div>
+				<div *ngIf="payment.payment.id==2" class="form-group">
+					<label class="control-label"><span
+						jhiTranslate="barfitterApp.payment.card"></span></label> <input
+						type="number" class="form-control" [(ngModel)]="payment.amount"
+						[ngModelOptions]="{standalone: true}" (ngModelChange)="getRest()" />
+				</div>
+
+			</li>
+
+		</ul>
+				<button type="button"  *ngIf="joinedPaymentClicked" 
+					(click)="joinedPayment()"
+					class="btn btn-danger pull-left">
+					<fa-icon [icon]="'times'" [fixedWidth]="true"></fa-icon>&nbsp; <span
+						jhiTranslate="barfitterApp.payment.cancelJoinedPayment">Reset</span>
+				</button>
+	</div>
+	<br>
+	<div *ngIf="rest!=0">
+		<h3 class="text-center">
+			<span class="label label-info"> <span
+				jhiTranslate="barfitterApp.orderOpened.change"></span>: {{ rest |
+				localizedCurrency}}
+			</span>
+		</h3>
+	</div>
+
+
+
+
+	<div class="modal-footer">
+	<div class="btn-group pull-left">
+		<button type="button" [routerLink]="['/barman-panel' ]"
+			*jhiHasAnyAuthority="'ROLE_BARMAN'" class="btn btn-info">
+			<fa-icon [icon]="'tv'" [fixedWidth]="true"></fa-icon>&nbsp; <span
+				jhiTranslate="global.menu.panel">Panel</span>
+		</button></div>
+		<button type="button"
+			[disabled]="editForm.form.invalid || isSaving || !sumCorrected"
+			*ngIf="joinedPaymentClicked" (click)="jpay();"
+			class="btn btn-primary">
+			<fa-icon [icon]="'save'" [fixedWidth]="true"></fa-icon>&nbsp;<span
+				jhiTranslate="entity.action.save">Save</span>
+		</button>
+	</div>
+</form>
+

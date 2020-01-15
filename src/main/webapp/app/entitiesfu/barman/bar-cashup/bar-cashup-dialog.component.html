@@ -1,0 +1,99 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()"
+	#editForm="ngForm">
+	<div class="modal-header">
+		<h4 class="modal-title" id="myCashupbadge"
+			jhiTranslate="barfitterApp.cashup.detail.title">Create or edit a
+			Cashup</h4>
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true" (click)="clear()">&times;</button>
+	</div>
+		<div class="text-center" *ngIf="spinner || isSaving">
+			<br> <br>
+			<span><fa-icon [icon]="'sync'" [fixedWidth]="true" [spin]="true"></fa-icon></span> <br> <br>
+		</div>
+	<div class="modal-body" *ngIf="lastCashup">
+		<jhi-alert-error></jhi-alert-error>
+
+		<div *ngIf="orderOpeneds.length>0" class="badge badge-danger">
+			<span jhiTranslate="barfitterApp.cashup.home.openedOrders">There
+				are still opened orders. Are you sure you want to continue?</span> <br> <br>
+		</div>
+		<br>
+
+		<table class=" table table-bordered table-striped">
+			<tr *ngFor="let sum of sums">
+				<td *ngIf="sum.payment.id!=1 && sum.payment.id!=2"><label>{{sum.payment.description}}:
+						{{sum.amount | localizedCurrency}}</label></td>
+				<td *ngIf="sum.payment.id==1"><label> <span
+						jhiTranslate="barfitterApp.payment.cash"></span>: {{sum.amount |
+						localizedCurrency}}
+				</label></td>
+				<td *ngIf="sum.payment.id==2"><label> <span
+						jhiTranslate="barfitterApp.payment.card"></span>: {{sum.amount |
+						localizedCurrency}}
+				</label></td>
+			</tr>
+			<tr class="success">
+				<td><h4>
+						<span jhiTranslate="barfitterApp.cashup.totalSale"
+							for="field_totalSale">Total Sale</span>: {{total |
+						localizedCurrency}}
+					</h4></td>
+			</tr>
+		</table>
+
+		<label><span jhiTranslate="barfitterApp.cashup.startCash">Start
+				Cash</span>: </label> <span>{{lastCashup.startCash | localizedCurrency}}</span>
+		<hr>
+
+		<div *ngIf="lastCashup.cashTakenByManager">
+			<label><span
+				jhiTranslate="barfitterApp.cashup.cashTakenByManager">Cash
+					Taken By Manager</span>: </label> <span>{{lastCashup.cashTakenByManager |
+				localizedCurrency}}</span>
+		</div>
+
+		<div *ngIf="lastCashup.cashTakenByBoss">
+			<label><span
+				jhiTranslate="barfitterApp.cashup.cashTakenByBoss">Cash Taken
+					By Boss</span>: </label> <span>{{lastCashup.cashTakenByBoss |
+				localizedCurrency}}</span>
+		</div>
+		<hr>
+
+		<div *ngIf="
+        lastCashup" class="form-group">
+			<label class="control-label"
+				jhiTranslate="barfitterApp.cashup.endCash" for="field_endCash">End
+				Cash</label> <input type="number" class="form-control" name="endCash"
+				id="field_endCash" [(ngModel)]="lastCashup.endCash"
+				#myEndCash="ngModel" required autofocus />
+			<div
+				*ngIf="myEndCash.touched && lastCashup.endCash!=lastCashup.startCash+cash-lastCashup.cashTakenByBoss-lastCashup.cashTakenByManager"
+				class="badge badge-danger">
+				<span jhiTranslate="barfitterApp.cashup.home.cashError">Are
+					you sure? Write comment.</span>
+			</div>
+		</div>
+		<br>
+
+		<div>
+			<label class="control-label"
+				jhiTranslate="barfitterApp.cashup.comment" for="field_comment">Comment</label>
+			<input type="text" class="form-control" name="comment"
+				id="field_comment" [(ngModel)]="lastCashup.comment" />
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal"
+			(click)="clear()" [disabled]="isSaving">
+			<span class="fa fa-ban"></span>&nbsp;<span
+				jhiTranslate="entity.action.cancel">Cancel</span>
+		</button>
+		<button type="submit" [disabled]="editForm.form.invalid || isSaving"
+			class="btn btn-primary">
+			<span class="fa fa-save"></span>&nbsp;<span
+				jhiTranslate="entity.action.save">Save</span>
+		</button>
+	</div>
+</form>

@@ -1,0 +1,26 @@
+{
+  "barfitterApp": {
+    "productType": {
+      "home": {
+        "title": "Product Types",
+        "createLabel": "Dodaj Product Type",
+        "createOrEditLabel": "Dodaj lub edytuj: Product Type",
+        "search": "Szukaj Product Type"
+      },
+      "created": "Utworzono nowy Product Type z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono Product Type z identyfikatorem {{ param }}",
+      "deleted": "Usunięto Product Type z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Product Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Product Type"
+      },
+      "description": "Description",
+      "active": "Active",
+      "ready": "gotowy",
+      "madeInKithen": "robiony na kuchni",
+      "madeAtBar": "robiony na barze"
+    }
+  }
+}

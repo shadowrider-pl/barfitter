@@ -1,0 +1,23 @@
+{
+  "barfitterApp": {
+    "orderedProductStatus": {
+      "home": {
+        "title": "OrderedProductStatuses",
+        "createLabel": "Genera un nuovo Ordered Product Status",
+        "createOrEditLabel": "Genera o modifica un Ordered Product Status",
+        "notFound": "No Ordered Product Statuses found"
+      },
+      "created": "&Egrave; stato generato un nuovo Ordered Product Status con identificatore {{ param }}",
+      "updated": "&Egrave; stato aggiornato Ordered Product Status identificato da {{ param }}",
+      "deleted": "&Egrave; stato eliminato Ordered Product Status con identificatore {{ param }}",
+      "delete": {
+        "question": "Sei sicuro di volere eliminare Ordered Product Status {{ id }}?"
+      },
+      "detail": {
+        "title": "Ordered Product Status"
+      },
+      "description": "Description",
+      "active": "Active"
+    }
+  }
+}

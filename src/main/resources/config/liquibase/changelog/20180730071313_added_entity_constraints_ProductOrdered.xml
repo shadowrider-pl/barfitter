@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity ProductOrdered.
+    -->
+    <changeSet id="20180730071313-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="order_id"
+                                 baseTableName="product_ordered"
+                                 constraintName="fk_product_ordered_order_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="order_opened"/>
+
+        <addForeignKeyConstraint baseColumnNames="ordered_product_status_id"
+                                 baseTableName="product_ordered"
+                                 constraintName="fk_product_ordered_ordered_product_status_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ordered_product_status"/>
+
+        <addForeignKeyConstraint baseColumnNames="product_ordered_purch_price_rate_id"
+                                 baseTableName="product_ordered"
+                                 constraintName="fk_product_ordered_product_ordered_purch_price_rate_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="vat"/>
+
+        <addForeignKeyConstraint baseColumnNames="product_ordered_sell_price_rate_id"
+                                 baseTableName="product_ordered"
+                                 constraintName="fk_product_ordered_product_ordered_sell_price_rate_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="vat"/>
+
+        <addForeignKeyConstraint baseColumnNames="product_id"
+                                 baseTableName="product_ordered"
+                                 constraintName="fk_product_ordered_product_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="product"/>
+
+        <addForeignKeyConstraint baseColumnNames="chef_id"
+                                 baseTableName="product_ordered"
+                                 constraintName="fk_product_ordered_chef_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="restaurant_id"
+                                 baseTableName="product_ordered"
+                                 constraintName="fk_product_ordered_restaurant_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="restaurant"/>
+
+    </changeSet>
+</databaseChangeLog>

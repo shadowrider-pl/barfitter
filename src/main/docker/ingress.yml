@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: barfitter-ingress
+  namespace: barfitter
+  annotations:
+    certmanager.k8s.io/cluster-issuer: tls-issuer
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-body-size: 50m
+    nginx.ingress.kubernetes.io/proxy-read-timeout: '1800'
+    nginx.ingress.kubernetes.io/proxy-send-timeout: '1800'
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/secure-backends: 'true'
+    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+    nginx.ingress.kubernetes.io/websocket-services: SERVICE_NAME
+    nginx.org/websocket-services: SERVICE_NAME
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            backend:
+              serviceName: barfitter-svc
+              servicePort: 8080

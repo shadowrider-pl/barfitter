@@ -1,0 +1,42 @@
+{
+  "barfitterApp": {
+    "productSold": {
+      "home": {
+        "title": "Product Solds",
+        "createLabel": "Product Sold erstellen",
+        "createOrEditLabel": "Product Sold erstellen oder bearbeiten",
+        "notFound": "No Product Solds found"
+      },
+      "created": "Product Sold erstellt mit ID {{ param }}",
+      "updated": "Product Sold aktualisiert mit ID {{ param }}",
+      "deleted": "Product Sold gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Product Sold {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Product Sold"
+      },
+      "orderedTime": "Ordered Time",
+      "acceptedTime": "Accepted Time",
+      "finishedTime": "Finished Time",
+      "takenTime": "Taken Time",
+      "quantity": "Quantity",
+      "comment": "Comment",
+      "purchPriceNet": "Purch Price Net",
+      "purchPriceGross": "Purch Price Gross",
+      "purchVatValue": "Purch Vat Value",
+      "sellPriceNet": "Sell Price Net",
+      "sellPriceGross": "Sell Price Gross",
+      "sellVatValue": "Sell Vat Value",
+      "difference": "Difference",
+      "deliveryDate": "Delivery Date",
+      "sendTime": "Send Time",
+      "product": "Product",
+      "order": "Order",
+      "productSoldPurchPriceRate": "Product Sold Purch Price Rate",
+      "productSoldSellPriceRate": "Product Sold Sell Price Rate",
+      "chef": "Chef",
+      "restaurant": "Restaurant"
+    }
+  }
+}

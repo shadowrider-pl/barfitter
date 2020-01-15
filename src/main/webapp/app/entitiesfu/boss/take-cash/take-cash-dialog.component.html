@@ -1,0 +1,49 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()"
+	#editForm="ngForm">
+
+	<div class="modal-header">
+		<h4 class="modal-title" id="myTakeCashLabel"
+			jhiTranslate="barfitterApp.cashup.home.takeCash">Create or edit
+			a Take Cash</h4>
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true" (click)="clear()">&times;</button>
+	</div>
+	<div class="modal-body">
+		<jhi-alert-error></jhi-alert-error>
+		<div *ngIf="cashup.cashTakenByManager>0">
+			<label class="form-control-label"
+				jhiTranslate="barfitterApp.cashup.cashTakenByManager"
+				for="field_cashTakenByManager">Cash Taken By Manager</label>:
+			  {{cashup.cashTakenByManager | localizedCurrency}}
+		<hr>
+		</div>
+		<div *ngIf="cashup.cashTakenByBoss>0">
+			<label class="form-control-label"
+				jhiTranslate="barfitterApp.cashup.cashTakenByBoss"
+				for="field_cashTakenByManager">Cash Taken By Boss</label>:
+			  {{cashup.cashTakenByBoss | localizedCurrency}}
+		<hr>
+		</div>
+		<div class="form-group" *ngIf="role == 'boss'">
+			<input type="number" class="form-control" name="takeCash"
+				id="field_takeCash" [(ngModel)]="cashup.cashTakenByBoss" required />
+		</div>
+		<div class="form-group" *ngIf="role == 'manager'">
+			<input type="number" class="form-control" name="takeCash"
+				id="field_takeCash" [(ngModel)]="cashup.cashTakenByManager" required />
+		</div>
+
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal"
+			(click)="clear()">
+			<fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span
+				jhiTranslate="entity.action.cancel">Cancel</span>
+		</button>
+		<button type="submit" [disabled]="editForm.form.invalid || isSaving"
+			class="btn btn-primary">
+			<fa-icon [icon]="'save'"></fa-icon>&nbsp;<span
+				jhiTranslate="entity.action.save">Save</span>
+		</button>
+	</div>
+</form>

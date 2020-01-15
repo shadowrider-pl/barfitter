@@ -1,0 +1,31 @@
+
+<div *ngIf="desk">
+    <h2><span jhiTranslate="barfitterApp.desk.detail.title">Desk</span></h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="barfitterApp.desk.description">Description</span></dt>
+        <dd>
+            <span>{{desk.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="barfitterApp.desk.active">Active</span></dt>
+        <dd>
+               <fa-icon [icon]="'check'" *ngIf="desk.active" style="color:green"></fa-icon>
+                	<fa-icon [icon]="'times'" *ngIf="!desk.active"  style="color:red"></fa-icon></td>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'barfitter-desk/'+ desk.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,52 @@
+<div>
+    <h2>
+        <span jhiTranslate="global.menu.entities.substitutes">Substitutes</span>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="substitutes">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="barfitterApp.productOrdered.orderedTime">Ordered Time</span></th>
+            <th><span jhiTranslate="barfitterApp.productOrdered.quantity">Quantity</span></th>
+            <th><span jhiTranslate="barfitterApp.productOrdered.comment">Comment</span></th>
+            <th><span jhiTranslate="barfitterApp.productOrdered.sellPriceGross">Sell Price Gross</span></th>
+            <th><span jhiTranslate="barfitterApp.orderOpened.orderId">Order Closed</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let substitutes of substitutes ;trackBy: trackId">
+                <td>{{substitutes.orderedTime | localizedDate:'medium'}}</td>
+                <td>{{substitutes.quantity}}</td>
+                <td>{{substitutes.comment}}</td>
+                <td>{{substitutes.sellPriceGross | localizedCurrency}}</td>
+                <td>
+                    <div *ngIf="substitutes.order">
+                        {{substitutes.order?.id}}
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'substitutes/'+ substitutes.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+	<button type="button" (click)="ngOnInit()" class="btn btn-outline-secondary">
+		<fa-icon [icon]="'sync'" [fixedWidth]="true"></fa-icon>  <span class="hidden-xs hidden-sm"
+			jhiTranslate="barfitterApp.productOrdered.refresh">Refresh</span>
+	</button>
+</div>

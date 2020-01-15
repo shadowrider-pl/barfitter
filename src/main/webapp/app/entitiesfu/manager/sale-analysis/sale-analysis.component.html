@@ -1,0 +1,119 @@
+<div>    
+	<h2 jhiTranslate="barfitterApp.orderClosed.sale">Order Closed</h2>
+    <!-- {{date | date:'longDate'}} -->
+    <jhi-alert></jhi-alert>
+     <div class="table-responsive">
+       	 		<table class=" table">
+       	 		<tr>
+       	 		<td>
+        			<label><span jhiTranslate="barfitterApp.cashup.home.chooseMonth">Choose Month</span>: </label>
+        		</td>
+        		<td>
+        			<label><span jhiTranslate="barfitterApp.productSold.chooseAmountOfLastWeeks">Choose LastWeeks</span>: </label>
+        		</td>
+        		<td *ngIf="cashups.length>0">
+        			<label><span jhiTranslate="barfitterApp.cashup.home.chooseDay">Choose Day</span>: </label>
+        		</td>
+        		</tr>
+        		<tr>
+        		<td>	
+		<select class="form-control" id="cashup" name="cashup"
+			[(ngModel)]="monthX" style='width: 200px'
+			(ngModelChange)="changeMonth($event)">
+			<option *ngFor="let month of months;"
+				[value]="month.id">{{month.barmanLoginTime |
+				localizedDate:"MM-yyyy"}}</option>
+		</select> 
+				</td>
+				<td>
+        			<div class="form-group">	
+            		<select class="form-control" id="field_weeks" name="weeks" [(ngModel)]="weekX" style='width:70px'
+            		(ngModelChange)="changeWeeks($event)">
+            		<option *ngFor="let week of weeksArray" [value]="week.id">{{week.weeks}}</option>
+            		</select>
+            		</div>
+				</td>
+				<td *ngIf="cashups.length>0">
+        			<div class="form-group">	
+            		<select class="form-control" id="field_day" name="day" [(ngModel)]="dayX" style='width:150px'
+            		(ngModelChange)="changeDay($event)">
+            		<option *ngFor="let day of cashups" [value]="day.id">{{day.barmanLoginTime|
+				localizedDate:"longDate"}}</option>
+            		</select>
+            		</div>
+				</td>
+				</tr>
+				</table>
+	</div>				
+    <br/>
+	 <div class="text-center" *ngIf="spinner">
+		<fa-icon [icon]="'sync'" [fixedWidth]="true" [spin]="true"></fa-icon> <br> <br>
+		<br> <br>
+	</div>
+    <div class="table-responsive" *ngIf="countedCategories">
+	
+       	 		<table class=" table table-bordered">
+       	 		<tr *ngIf="countedCategories.length>0">
+       	 		<th><span jhiTranslate="global.menu.entities.category">Categories</span></th>
+       	 		</tr>
+       	 		<tr *ngFor="let category of countedCategories;">
+                    <td>
+					<div (click)="categoryFilter({id:category.category.id})">
+					{{category.category.name}} ({{category.count}})</div></td>
+       	 		</tr>
+                <tr *ngIf="filteredProducts.length > 0">
+                	<td><button
+					(click)="reset()"
+					class="pull-left btn btn-danger" type="button" title="Reset">
+					<span jhiTranslate="entity.action.reset">Reset</span>
+					<fa-icon [icon]="'times'" [fixedWidth]="true"></fa-icon>
+					</button></td>
+                </tr>
+       	 		</table>
+    </div>      
+       	 
+    <div class="table-responsive" *ngIf="products && products.length>0">
+    			<table class=" table table-bordered">
+       	 		<tr>
+                    <th><span jhiTranslate="global.field.index">#</span></th>
+                    <th><span jhiTranslate="barfitterApp.productSold.product">Product</span></th>
+                    <th><span jhiTranslate="barfitterApp.productSold.quantity">Quantity</span></th>
+                    <th><span jhiTranslate="barfitterApp.productSold.sellPriceGross">Price</span></th>
+                    <th><span jhiTranslate="barfitterApp.productSold.sellPriceNet">Sell Price Net</span></th>
+                    <th><span jhiTranslate="barfitterApp.productSold.sellVatValue">Sell Vat Value</span></th>
+                    <th><span jhiTranslate="barfitterApp.productSold.purchPriceNet">Purch Price Net</span></th>
+                    <th><span jhiTranslate="barfitterApp.productSold.purchVatValue">Purch Vat Value</span></th>
+                    <th><span jhiTranslate="barfitterApp.productSold.difference">difference</span></th>
+                </tr>
+               <tr *ngFor="let productSold of products;
+							let i = index" [attr.data-index]="i"" class="text-rigth">
+                    <td>{{i+1}}.</td>
+                    <td>{{productSold.product.name}}</td>
+                    <td>{{productSold.quantity}}</td>                    
+                    <td>{{productSold.sellPriceGross | localizedCurrency}}</td>
+                    <td>{{productSold.sellPriceNet | localizedCurrency}}</td>
+                    <td>{{productSold.sellVatValue | localizedCurrency}}</td>
+                    <td>{{productSold.purchPriceNet | localizedCurrency}}</td>
+                    <td>{{productSold.purchVatValue | localizedCurrency}}</td>
+                     <td *ngIf="productSold.previousPeriodQuantity>0" placement="top" ngbTooltip="{{productSold.previousPeriodQuantity}}">
+                    	{{((productSold.quantity-productSold.previousPeriodQuantity)/productSold.previousPeriodQuantity)*100 | number:'1.0-0'}}%</td>
+                     <td *ngIf="productSold.previousPeriodQuantity <= 0">-</td>
+                </tr>
+          </table>
+				
+        <table class=" table table-bordered table-striped" *ngIf="countedCategories.length>0">
+                <tr class="success">
+                <td><h2><span jhiTranslate="barfitterApp.cashup.totalSale" for="field_totalSale">Total Sale</span>: {{totalsellPriceGross | localizedCurrency}}</h2></td>
+                </tr>
+                <tr>
+                <td><span jhiTranslate="barfitterApp.productSold.vatDue" for="field_totalSale">VatDifference</span>: {{vatDueMinusInputVat | localizedCurrency}}</td>
+                </tr>
+                <tr>
+                <td><span jhiTranslate="barfitterApp.productSold.sellPriceNet">Sell Price Net</span> - <span jhiTranslate="barfitterApp.productSold.purchPriceNet">Purch Price Net</span>: {{profit | localizedCurrency}}</td>
+                </tr>
+		</table>
+    </div>      	 	
+
+</div>
+
+

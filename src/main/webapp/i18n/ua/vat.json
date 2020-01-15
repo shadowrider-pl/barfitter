@@ -1,0 +1,25 @@
+{
+  "barfitterApp": {
+    "vat": {
+      "home": {
+        "title": "Vats",
+        "createLabel": "Створити новий Vat",
+        "createOrEditLabel": "Створити чи редагувати Vat",
+        "notFound": "No Vats found"
+      },
+      "created": "Новий Vat створений з ідентифікатором {{ param }}",
+      "updated": "Vat оновлений з ідентифікатором {{ param }}",
+      "deleted": "Vat видалений з ідентифікатором {{ param }}",
+      "delete": {
+        "question": "Ви впевнені, що хочете видалити Vat {{ id }}?"
+      },
+      "detail": {
+        "title": "Vat"
+      },
+      "description": "Description",
+      "rate": "Rate",
+      "active": "Active",
+      "restaurant": "Restaurant"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity OrderOpened.
+    -->
+    <changeSet id="20180730071308-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="payment_id"
+                                 baseTableName="order_opened"
+                                 constraintName="fk_order_opened_payment_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="payment"/>
+
+        <addForeignKeyConstraint baseColumnNames="desk_id"
+                                 baseTableName="order_opened"
+                                 constraintName="fk_order_opened_desk_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="desk"/>
+
+        <addForeignKeyConstraint baseColumnNames="barman_id"
+                                 baseTableName="order_opened"
+                                 constraintName="fk_order_opened_barman_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="restaurant_id"
+                                 baseTableName="order_opened"
+                                 constraintName="fk_order_opened_restaurant_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="restaurant"/>
+
+    </changeSet>
+</databaseChangeLog>

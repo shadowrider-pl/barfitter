@@ -1,0 +1,95 @@
+<button type="submit" (click)="scrollUp()" class="btn btn-info"
+	id="upButton">
+	<fa-icon [icon]="'arrow-up'" [fixedWidth]="true"></fa-icon>
+</button>
+<button type="submit" (click)="scrollDown()" class="btn btn-info"
+	id="downButton">
+	<fa-icon [icon]="'arrow-down'" [fixedWidth]="true"></fa-icon>
+</button>
+<div [ngSwitch]="isAuthenticated()" *jhiHasAnyAuthority="'ROLE_CHEF'">
+	<div *ngIf="orderOpened== undefined || !orderOpened.desk">
+		<div class="text-center" *ngIf="orderSpinner">
+			<fa-icon [icon]="'sync'" [fixedWidth]="true" [spin]="true"></fa-icon>  <br> <br>
+			<br> <br>
+		</div>
+		<div class="text-center" *ngIf="spinner">
+			<fa-icon [icon]="'sync'" [fixedWidth]="true" [spin]="true"></fa-icon>  <br> <br>
+			<br> <br>
+		</div>
+		<jhi-alert-error></jhi-alert-error>
+		<jhi-alert></jhi-alert>
+		<div class="row" *ngIf="ordersWithProductsAndStatus != undefined && !spinner">
+			<div
+				*ngFor="let order of ordersWithProductsAndStatus | orderBy : 'orderId'"
+				class="col-sm-6 col-md-4 col-lg-3 py-2">
+				<div class="card  h-100  text-white bg-danger"
+					*ngIf="order.status==2"
+					[routerLink]="['../orders-for-chef', order.id]">
+					<div class="card-header text-center">{{order.orderId}} - {{order.desk.description}}</div>
+					<div class="card-body">
+						<p class="card-text">
+						<ul>
+							<li
+								*ngFor="let product of order.productsToOrder | orderBy : 'product.product.name';">
+								{{product.product.name}}</li>
+						</ul>
+						</p>
+					</div>
+                    <div *ngIf="order.comment" class="card-footer">
+                    {{order.comment}}
+                    </div>
+				</div>
+				<div class="card  h-100  text-white bg-info" *ngIf="order.status==3"
+					[routerLink]="['../orders-for-chef', order.id]">
+					<div class="card-header">{{order.orderId}}</div>
+					<div class="card-body">
+						<p class="card-text">
+						<ul>
+							<li
+								*ngFor="let product of order.productsToOrder | orderBy : 'product.product.name';">
+								{{product.product.name}}</li>
+						</ul>
+						</p>
+					</div>
+				</div>
+				<div class="card  h-100  text-white bg-secondary"
+					*ngIf="order.status==4 || order.status==5"
+					[routerLink]="['../orders-for-chef', order.id]">
+					<div class="card-header">{{order.orderId}}</div>
+					<div class="card-body">
+						<p class="card-text">
+						<ul>
+							<li
+								*ngFor="let product of order.productsToOrder | orderBy : 'product.product.name';">
+								{{product.product.name}}</li>
+						</ul>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<button type="button" (click)="getOrders()" class="btn btn-outline-secondary">
+		<fa-icon [icon]="'sync'" [fixedWidth]="true"></fa-icon>  <span class="hidden-xs hidden-sm"
+			jhiTranslate="barfitterApp.productOrdered.refresh">Refresh</span>
+	</button>
+	<hr>
+
+
+	<!-- ----------------------------------------------------------------- -->
+	<button [routerLink]="['../products-for-chef' ]"
+		*jhiHasAnyAuthority="'ROLE_CHEF'" class="btn-block btn-success btn-lg"
+		type="button" title="Product Ordereds">
+		<fa-icon [icon]="'list'" [fixedWidth]="true"></fa-icon><span
+			jhiTranslate="home.productsForChef"></span>
+	</button>
+
+	<br>
+
+	<div [ngSwitch]="isAuthenticated()">
+		<div class="alert alert-success" *ngSwitchCase="true">
+			<span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
+				[translateValues]="{username: account.login}"> You are logged in as user "{{account.login}}". </span>
+		</div>
+	</div>
+</div>

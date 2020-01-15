@@ -1,0 +1,14 @@
+{
+  "barfitterApp": {
+    "authorization": {
+      "authorized": "Authorized",
+      "home": {
+        "title": "Authorization",
+        "search": "Search for product",
+        "authorizeSelected": "Authorize selected",
+        "authorize": "Authorize",
+        "deleteSelected": "Delete selected"
+      }
+    }
+  }
+}

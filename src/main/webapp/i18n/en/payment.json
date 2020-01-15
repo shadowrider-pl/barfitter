@@ -1,0 +1,27 @@
+{
+  "barfitterApp": {
+    "payment": {
+      "home": {
+        "title": "Payments",
+        "createLabel": "Create a new Payment",
+        "createOrEditLabel": "Create or edit a Payment",
+        "search": "Search for Payment"
+      },
+      "created": "A new Payment is created with identifier.",
+      "updated": "A Payment is updated with identifier.",
+      "deleted": "A Payment is deleted with identifier.",
+      "delete": {
+        "question": "Are you sure you want to delete Payment?"
+      },
+      "detail": {
+        "title": "Payment"
+      },
+      "description": "Description",
+      "cash": "Cash",
+      "changePayment": "Change payment",
+      "active": "Active",
+      "card": "Card",
+      "cancelJoinedPayment": "Cancel Joined Payment"
+    }
+  }
+}

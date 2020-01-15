@@ -1,0 +1,369 @@
+<div>
+
+	<main id="main">
+		<!-- <jhi-google-adsense></jhi-google-adsense> -->
+
+		<!--==========================
+      About Us Section
+    ============================-->
+		<section id="about">
+			<div class="container">
+
+				<header class="section-header">
+					<h3 jhiTranslate="home.layout.about.header">Barfitter</h3>
+					<p jhiTranslate="home.layout.about.aboutHeader" class="text-justify">Darmowy
+						system sprzedażowo-magazynowy online do restauracji i barów.</p>
+				</header>
+
+
+
+				<div class="row about-cols">
+
+					<div class="col-md-4 animated fadeInUp">
+						<div class="about-col" (mouseover)="hover1=true" (mouseleave)="hover1=false">
+							<div class="img">
+								<img src="../../content/images/home-img/about-vision.jpg" alt="" class="img-fluid">
+								<div class="icon">
+									<fa-icon [icon]="'tachometer-alt'" [fixedWidth]="true" size="2x"
+										[ngClass]=" hover1 ? 'home-green' : 'home-white'"></fa-icon>
+
+								</div>
+							</div>
+							<h2 class="title" jhiTranslate="home.layout.about.col1H2">
+								<a href="#">Twój cel</a>
+							</h2>
+							<p jhiTranslate="home.layout.about.col1">Przejdź na wyższy
+								poziom zarządzania swoją restauracją.</p>
+						</div>
+					</div>
+
+					<div class="col-md-4 animated fadeInUp">
+						<div class="about-col" (mouseover)="hover2=true" (mouseleave)="hover2=false">
+							<div class="img">
+								<img src="../../content/images/home-img/about-plan.jpg" alt="" class="img-fluid">
+								<div class="icon">
+									<fa-icon [icon]="'eye'" [fixedWidth]="true" size="2x"
+										[ngClass]=" hover2 ? 'home-green' : 'home-white'"></fa-icon>
+								</div>
+							</div>
+							<h2 class="title" jhiTranslate="home.layout.about.col2H2">
+								<a href="#">Nowy wymiar kontroli</a>
+							</h2>
+							<p jhiTranslate="home.layout.about.col2">Zapewnij sobie
+								kontrolę nad zamówieniami, sprzedażą i magazynem z dowolnego
+								miejsca.</p>
+						</div>
+					</div>
+
+					<div class="col-md-4 animated fadeInUp">
+						<div class="about-col" (mouseover)="hover3=true" (mouseleave)="hover3=false">
+							<div class="img">
+								<img src="../../content/images/home-img/about-mission.jpg" alt="" class="img-fluid">
+								<div class="icon">
+									<fa-icon [icon]="'mobile'" [fixedWidth]="true" size="2x"
+										[ngClass]=" hover3 ? 'home-green' : 'home-white'"></fa-icon>
+								</div>
+							</div>
+							<h2 class="title" jhiTranslate="home.layout.about.col3H2">
+								<a href="#">Technologia</a>
+							</h2>
+							<p jhiTranslate="home.layout.about.col3">Wykorzystaj
+								nowoczesne i darmowe narzędzia informatyczne w swoim biznesie.</p>
+						</div>
+					</div>
+					<!-- 
+				<div class="col-md-4 animated fadeInUp">
+					<div class="about-col">
+						<div class="img" (mouseover)="hover3=true" (mouseleave)="hover3=false">
+							<img src="../../content/images/home-img/about-mission.jpg" alt=""
+								class="img-fluid">
+							<div class="icon">
+								<fa-icon [icon]="'mobile'" [fixedWidth]="true" size="2x"
+								[ngClass]=" hover3 ? 'home-green' : 'home-white'" ></fa-icon>
+							</div>
+						</div>
+						<h2 class="title" jhiTranslate="home.layout.about.col3H2">
+							<a href="#">Technologia</a>
+						</h2>
+						<p jhiTranslate="home.layout.about.col3">Wykorzystaj
+							nowoczesne i darmowe narzędzia informatyczne w swoim biznesie.</p>
+					</div>
+				</div>
+ -->
+				</div>
+
+			</div>
+		</section>
+		<!-- #about -->
+		<!--==========================
+      Services Section Korzyści
+    ============================-->
+		<section id="services">
+			<div class="container">
+
+				<header class="section-header animated fadeInUp">
+					<h3 jhiTranslate="home.layout.services.header">Services</h3>
+					<p jhiTranslate="home.layout.services.headerContent" class="text-justify">Przekaż swoim pracownikom
+						dostęp do
+						aplikacji i skończ z bonami i karteczkami z zamówieniami
+						rozsypanymi po całej kuchni i na barze. Wszystko będą mieli w
+						swoich telefonach lub daj im tablety. Jeśli uważasz, że na barze
+						potrzebny jest duży terminal dotykowy – nie ma problemu – po prostu
+						podłącz go do Internetu i otwórz przeglądarkę WWW.</p>
+				</header>
+
+				<div class="row">
+
+					<div class="col-lg-4 col-md-6 box animated bounceInUp">
+						<div class="icon">
+							<fa-icon [icon]="'tablet'" [fixedWidth]="true" size="2x" class="home-green"></fa-icon>
+						</div>
+						<h4 class="title" jhiTranslate="home.layout.services.c1">
+							<a href="">System</a>
+						</h4>
+						<p class="description" jhiTranslate="home.layout.services.c1Content">Nie potrzebujesz
+							instalować żadnych programów – wystarczy przeglądarka WWW na Twoim
+							telefonie. Zapomnij o kopiach zapasowych i aktualizacjach. Zadbaj
+							tylko o stabilne połączenie z Internetem.</p>
+					</div>
+					<div class="col-lg-4 col-md-6 box animated bounceInUp">
+						<div class="icon">
+							<fa-icon [icon]="'hourglass-end'" [fixedWidth]="true" size="2x" class="home-green">
+							</fa-icon>
+						</div>
+						<h4 class="title" jhiTranslate="home.layout.services.c2">
+							<a href="">Czas to pieniądz</a>
+						</h4>
+						<p class="description" jhiTranslate="home.layout.services.c2Content">Nie daj klientom
+							zbyt długo czekać na zamówione posiłki. Kontroluj czasy
+							przygotowywania dań i produktów na kuchni.</p>
+					</div>
+					<div class="col-lg-4 col-md-6 box animated bounceInUp">
+						<div class="icon">
+							<fa-icon [icon]="'chart-area'" [fixedWidth]="true" size="2x" class="home-green"></fa-icon>
+						</div>
+						<h4 class="title" jhiTranslate="home.layout.services.c3">
+							<a href="">Statystyki</a>
+						</h4>
+						<p class="description" jhiTranslate="home.layout.services.c3Content">Analizuj
+							statystyki sprzedaży. Możesz to robić w ujęciu dziennym i
+							miesięcznym. Dodatkowo możesz przeanalizować ostatnie 1, 4 lub 6
+							tygodniu. Dla każdego okresu możesz przebadać określoną kategorię
+							produktową.</p>
+					</div>
+					<div class="col-lg-4 col-md-6 box animated bounceInUp">
+						<div class="icon">
+							<fa-icon [icon]="'paper-plane'" [fixedWidth]="true" size="2x" class="home-green"></fa-icon>
+						</div>
+						<h4 class="title" jhiTranslate="home.layout.services.c4">
+							<a href="">Powiadomienia</a>
+						</h4>
+						<p class="description" jhiTranslate="home.layout.services.c4Content">Zapewnij
+							automatyczną komunikację pomiędzy kelnerem, barem a kuchnią.
+							Wysyłaj zamówienia na kuchnię jeszcze przy stoliku klienta.</p>
+					</div>
+					<div class="col-lg-4 col-md-6 box animated bounceInUp">
+						<div class="icon">
+							<fa-icon [icon]="'users'" [fixedWidth]="true" size="2x" class="home-green"></fa-icon>
+						</div>
+						<h4 class="title" jhiTranslate="home.layout.services.c5">
+							<a href="">Użytkownicy</a>
+						</h4>
+						<p class="description" jhiTranslate="home.layout.services.c5Content">Przypisz
+							użytkownikom odpowiadające im role: manager, barman lub kucharz.
+							Zapewnij im dostęp tylko do koniecznych zasobów.</p>
+					</div>
+					<div class="col-lg-4 col-md-6 box animated bounceInUp">
+						<div class="icon">
+							<fa-icon [icon]="'dollar-sign'" [fixedWidth]="true" size="2x" class="home-green"></fa-icon>
+						</div>
+						<h4 class="title" jhiTranslate="home.layout.services.c6">
+							<a href="">Płatności</a>
+						</h4>
+						<p class="description" jhiTranslate="home.layout.services.c6Content">Dodawaj nowe
+							formy płatności. Możesz też wykorzystać płatności łączone.</p>
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+		<!-- #services -->
+
+
+
+
+
+
+		<!--==========================
+      Section Funkcje
+    ============================-->
+
+		<section id="services">
+			<div class="container">
+
+				<header class="section-header animated fadeInUp">
+					<h3 jhiTranslate="home.layout.funkcje.header">Funkcje</h3>
+				</header>
+				<BR><BR>
+				<div class="row">
+
+					<div class="col-lg-4 col-md-6 box animated bounceInUp">
+						<div class="icon">
+							<fa-icon [icon]="'clock'" [fixedWidth]="true" size="2x" class="home-green"></fa-icon>
+						</div>
+						<h4 class="title" jhiTranslate="home.layout.funkcje.f1">
+							<a href="">System</a>
+						</h4>
+					</div>
+					<div class="col-lg-4 col-md-6 box animated bounceInUp">
+						<div class="icon">
+							<fa-icon [icon]="'hourglass-end'" [fixedWidth]="true" size="2x" class="home-green">
+							</fa-icon>
+						</div>
+						<h4 class="title" jhiTranslate="home.layout.funkcje.f2">
+							<a href="">Czas to pieniądz</a>
+						</h4>
+					</div>
+					<div class="col-lg-4 col-md-6 box animated bounceInUp">
+						<div class="icon">
+							<fa-icon [icon]="'stopwatch'" [fixedWidth]="true" size="2x" class="home-green"></fa-icon>
+						</div>
+						<h4 class="title" jhiTranslate="home.layout.funkcje.f3">
+							<a href="">Statystyki</a>
+						</h4>
+					</div>
+					<div class="col-lg-4 col-md-6 box animated bounceInUp">
+						<div class="icon">
+							<fa-icon [icon]="'money-bill'" [fixedWidth]="true" size="2x" class="home-green"></fa-icon>
+						</div>
+						<h4 class="title" jhiTranslate="home.layout.funkcje.f4">
+							<a href="">Powiadomienia</a>
+						</h4>
+					</div>
+					<div class="col-lg-4 col-md-6 box animated bounceInUp">
+						<div class="icon">
+							<fa-icon [icon]="'comments'" [fixedWidth]="true" size="2x" class="home-green"></fa-icon>
+						</div>
+						<h4 class="title" jhiTranslate="home.layout.funkcje.f5">
+							<a href="">Użytkownicy</a>
+						</h4>
+					</div>
+					<div class="col-lg-4 col-md-6 box animated bounceInUp">
+						<div class="icon">
+							<fa-icon [icon]="'money-bill-alt'" [fixedWidth]="true" size="2x" class="home-green">
+							</fa-icon>
+						</div>
+						<h4 class="title" jhiTranslate="home.layout.funkcje.f6">
+							<a href="">Płatności</a>
+						</h4>
+					</div>
+					<div class="col-lg-4 col-md-6 box animated bounceInUp">
+						<div class="icon">
+							<fa-icon [icon]="'chart-line'" [fixedWidth]="true" size="2x" class="home-green"></fa-icon>
+						</div>
+						<h4 class="title" jhiTranslate="home.layout.funkcje.f7">
+							<a href="">Płatności</a>
+						</h4>
+					</div>
+					<div class="col-lg-4 col-md-6 box animated bounceInUp">
+						<div class="icon">
+							<fa-icon [icon]="'dolly'" [fixedWidth]="true" size="2x" class="home-green"></fa-icon>
+						</div>
+						<h4 class="title" jhiTranslate="home.layout.funkcje.f8">
+							<a href="">Płatności</a>
+						</h4>
+					</div>
+					<div class="col-lg-4 col-md-6 box animated bounceInUp">
+						<div class="icon">
+							<fa-icon [icon]="'keyboard'" [fixedWidth]="true" size="2x" class="home-green"></fa-icon>
+						</div>
+						<h4 class="title" jhiTranslate="home.layout.funkcje.f9">
+							<a href="">Płatności</a>
+						</h4>
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+		<!-- #services -->
+
+		<!--==========================
+      Call To Action Section
+    ============================-->
+		<section id="call-to-action" class="animated fadeIn">
+			<div class="container text-center">
+				<h3 jhiTranslate="home.layout.callToAction.header">Zacznij już
+					dziś</h3>
+				<p>
+					<span jhiTranslate="home.layout.callToAction.content1">Zapoznaj
+						się z </span> <a routerLink='../manual'><span
+							jhiTranslate="home.layout.callToAction.manualLink">podręcznikiem
+							użytkownika</a></span> <span jhiTranslate="home.layout.callToAction.content2">
+						i pracuj wykorzystując innowacyjne technologie.</span>
+				</p>
+				<a class="cta-btn" href="#contact" routerLink="register-restaurant"><span
+						jhiTranslate="home.layout.callToAction.button">Zarejestruj
+						swoją restaurację</span></a>
+			</div>
+		</section>
+		<!-- #call-to-action -->
+		<!--==========================
+      Contact Section
+    ============================-->
+		<!--<section id="contact" class="section-bg animated fadeInUp">
+		<div class="container">
+
+			<div class="section-header">
+				<h3>Contact Us</h3>
+				<p>Sed ut perspiciatis unde omnis iste natus error sit
+					voluptatem accusantium doloremque</p>
+			</div>
+
+			<div class="row contact-info">
+
+				<div class="col-md-4">
+					<div class="contact-address">
+						<i class="ion-ios-location-outline"></i>
+						<h3>Address</h3>
+						<address>A108 Adam Street, NY 535022, USA</address>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="contact-phone">
+						<i class="ion-ios-telephone-outline"></i>
+						<h3>Phone Number</h3>
+						<p>
+							<a href="tel:+155895548855">+1 5589 55488 55</a>
+						</p>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="contact-email">
+						<i class="ion-ios-email-outline"></i>
+						<h3>Email</h3>
+						<p>
+							<a href="mailto:info@example.com">info@example.com</a>
+						</p>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</section> -->
+		<!-- #contact -->
+	</main>
+
+	<div [ngSwitch]="isAuthenticated()">
+		<div class="alert alert-success" *ngSwitchCase="true">
+			<span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
+				[translateValues]="{username: account.login}"> You are logged in as user "{{account.login}}". </span>
+		</div>
+	</div>
+
+
+</div>

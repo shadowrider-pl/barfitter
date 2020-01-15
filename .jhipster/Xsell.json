@@ -1,0 +1,33 @@
+{
+    "name": "Xsell",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "fromCategory",
+            "otherEntityName": "category",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "toCategory",
+            "otherEntityName": "category",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "restaurant",
+            "otherEntityName": "restaurant",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180730071318",
+    "entityTableName": "xsell",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

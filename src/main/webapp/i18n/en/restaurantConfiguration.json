@@ -1,0 +1,35 @@
+{
+  "barfitterApp": {
+    "restaurantConfiguration": {
+      "home": {
+        "title": "Restaurant Configurations",
+        "createLabel": "Create a new Restaurant Configuration",
+        "createOrEditLabel": "Create or edit a Restaurant Configuration",
+        "search": "Search for Restaurant Configuration"
+      },
+      "created": "A new Restaurant Configuration is created with identifier {{ param }}",
+      "updated": "A Restaurant Configuration is updated with identifier {{ param }}",
+      "deleted": "A Restaurant Configuration is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Restaurant Configuration {{ id }}?"
+      },
+      "detail": {
+        "title": "Restaurant Configuration"
+      },
+      "confText1": "Conf Text 1",
+      "confText2": "Conf Text 2",
+      "confText": "Conf Text",
+      "confDate1": "Conf Date 1",
+      "confDate2": "Conf Date 2",
+      "confInt1": "Conf Int 1",
+      "confInt2": "Conf Int 2",
+      "confBoolean1": "Conf Boolean 1",
+      "confBoolean2": "Conf Boolean 2",
+      "confBigDecimal1": "Conf Big Decimal 1",
+      "confBigDecimal2": "Conf Big Decimal 2",
+      "confDouble1": "Conf Double 1",
+      "confDouble2": "Conf Double 2",
+      "restaurant": "Restaurant"
+    }
+  }
+}

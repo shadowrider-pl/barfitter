@@ -1,0 +1,130 @@
+
+<div class="modal-header">
+	<h4 class="modal-title" id="myTodaysOrdersLabel"
+		jhiTranslate="barfitterApp.orderClosed.detail.title">Todays Order</h4>
+</div>
+<div class="modal-body">
+	<jhi-alert-error></jhi-alert-error>
+	<dl class="row">
+		<dt class="col-sm-6 text-right">
+			<span jhiTranslate="barfitterApp.orderOpened.openingTime">Opening
+				Time</span>
+		</dt>
+		<dd class="col-sm-6">
+			<span>{{todaysOrders.openingTime | localizedDate:'medium'}}</span>
+		</dd>
+		<dt class="col-sm-6 text-right">
+			<span jhiTranslate="barfitterApp.orderOpened.closingTime">Closing
+				Time</span>
+		</dt>
+		<dd class="col-sm-6">
+			<span>{{todaysOrders.closingTime | localizedDate:'medium'}}</span>
+		</dd>
+		<dt class="col-sm-6 text-right">
+			<span jhiTranslate="barfitterApp.orderClosed.desk">Desk</span>
+		</dt>
+		<dd class="col-sm-6" *ngIf="todaysOrders.desk">{{todaysOrders.desk.description}}</dd>
+		<dd class="col-sm-6" *ngIf="!todaysOrders.desk"> - </dd>
+		<dt class="col-sm-6 text-right">
+			<span jhiTranslate="barfitterApp.orderClosed.total">Total</span>
+		</dt>
+		<dd class="col-sm-6">
+			<span>{{todaysOrders.total | localizedCurrency}}</span>
+		</dd>
+		<dt class="col-sm-6 text-right">
+			<span jhiTranslate="barfitterApp.orderClosed.payment">Payment</span>
+		</dt>
+		<dd class="col-sm-6"> 
+			<div *ngIf="todaysOrders.payment.id==1">
+				<span jhiTranslate="barfitterApp.payment.cash"></span>
+			</div>
+			<div *ngIf="todaysOrders.payment.id==2">
+				<span jhiTranslate="barfitterApp.payment.card"></span>
+			</div>
+			<div *ngIf="todaysOrders.payment.id!=1 && todaysOrders.payment.id!=2 && todaysOrders.payment.description==null">
+				{{todaysOrders.payment.description}}</div>
+			<div *ngIf="todaysOrders.payment.id!=1 && todaysOrders.payment.id!=2 && todaysOrders.payment.description!=null">
+				{{paymentChangedDescription}}</div>
+
+			<button *ngIf="showChangePaymentButton" type="submit"
+				data-dismiss="modal" (click)="showPayments()"
+				class="btn btn-primary btn-sm">
+				<fa-icon [icon]="'credit-card'" [fixedWidth]="true"></fa-icon> <span
+					class="hidden-xs hidden-sm"
+					jhiTranslate="barfitterApp.orderClosed.changePayment"></span>
+			</button>
+			<div>
+				<ul class="list-group" *ngIf="!showChangePaymentButton">
+					<li class="list-group-item"><h4 class="text-center">
+					<span jhiTranslate="barfitterApp.orderClosed.changePayment"></span></h4></li>
+					<li class="list-group-item"
+						*ngFor="let payment of activePayments">
+						<button *ngIf="payment.id!=1 && payment.id!=2 && todaysOrders.payment.id!=payment.id" type="submit"
+							class="btn-sm btn-block btn-success" data-dismiss="modal"
+							(click)="changePayment(payment.id)">
+							<fa-icon [icon]="'bolt'" [fixedWidth]="true"></fa-icon>{{ payment.description }}
+						</button>
+						<button *ngIf="payment.id==1 && todaysOrders.payment.id!=payment.id" type="submit"
+							class="btn-sm btn-block btn-success" data-dismiss="modal"
+							(click)="changePayment(payment.id)">
+							<fa-icon [icon]="'bolt'" [fixedWidth]="true"></fa-icon><span
+								jhiTranslate="barfitterApp.payment.cash"></span>
+						</button>
+						<button *ngIf="payment.id==2 && todaysOrders.payment.id!=payment.id" type="submit"
+							class="btn-sm btn-block btn-success" data-dismiss="modal"
+							(click)="changePayment(payment.id)">
+							<fa-icon [icon]="'bolt'" [fixedWidth]="true"></fa-icon><span
+								jhiTranslate="barfitterApp.payment.card"></span>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</dd>
+		<dt class="col-sm-6 text-right">
+			<span jhiTranslate="barfitterApp.orderClosed.comment">comment</span>
+		</dt>
+		<dd class="col-sm-6">{{todaysOrders.comment}}</dd>
+		<dt class="col-sm-6 text-right">
+			<span jhiTranslate="barfitterApp.orderClosed.cashupDay">Cashup
+				Day</span>
+		</dt>
+		<dd class="col-sm-6">{{todaysOrders.cashupDay.barmanLoginTime |
+			localizedDate:'shortDate'}}</dd>
+	</dl>
+	<div class="table-responsive">
+		<table class="jh-table table table-striped table-hover">
+			<thead>
+				<tr>
+					<th><span jhiTranslate="global.field.index">#</span></th>
+					<th><span jhiTranslate="barfitterApp.productOrdered.product">Product</span></th>
+					<th><span
+						jhiTranslate="barfitterApp.productOrdered.sellPriceGross">Price</span></th>
+					<th><span jhiTranslate="barfitterApp.productOrdered.quantity">Quantity</span></th>
+					<th><span jhiTranslate="barfitterApp.productOrdered.comment">Comment</span></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					*ngFor="let productSold of todaysOrders.productsSold; 
+							let i = index"
+					[attr.data-index]="i"">
+					<td>{{i+1}}.</td>
+					<td>{{productSold.product.name}}</td>
+					<td>{{productSold.sellPriceGross | localizedCurrency}}</td>
+					<td>{{productSold.quantity}}</td>
+					<td>{{productSold.comment}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-dismiss="modal"
+		(click)="clear()">
+		<fa-icon [icon]="'ban'" [fixedWidth]="true"></fa-icon>&nbsp;<span
+			jhiTranslate="entity.action.cancel">Cancel</span>
+	</button>
+        <button type="button" *ngIf="paymentChanged==true" [disabled]="isSaving" class="btn btn-primary">
+            <fa-icon [icon]="'save'" [fixedWidth]="true"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save" (click)="save()">Save</span>
+        </button>
+</div>

@@ -1,0 +1,45 @@
+{
+  "barfitterApp": {
+    "cashup": {
+      "home": {
+        "title": "Cashup",
+        "monthlyReport": "Monthly report",
+        "createLabel": "Start new day",
+        "createOrEditLabel": "Create or edit a Cashup",
+        "takeCash": "Take cash",
+        "openedOrders": "There are still opened orders. <br>&nbsp  Are you sure you want to continue?",
+        "cashError": "Are you sure? Write comment.",
+        "reportMonth": "Month",
+        "chooseMonth": "Choose month",
+        "chooseDay": "Choose date",
+        "cashupFirst": "Cashup before starting new day!",
+        "cashup": "Cashup",
+        "lastCashup": "Cash on closing previous day",
+        "search": "Search for Cashup"
+      },
+      "created": "Registered new day opening.",
+      "updated": "Cashup succesful.",
+      "deleted": "A Cashup is deleted with identifier {{ param }}",
+      "cashTaken": "Cash taken",
+      "delete": {
+        "question": "Are you sure you want to delete Cashup {{ id }}?"
+      },
+      "detail": {
+        "title": "Cashup"
+      },
+      "barmanLoginTime": "Barman Login Time",
+      "cashupTime": "Cashup Time",
+      "startCash": "Start Cash",
+      "endCash": "End Cash",
+      "totalSale": "Total Sale",
+      "cashTakenByManager": "Cash Taken By Manager",
+      "cashTakenByBoss": "Cash Taken By Boss",
+      "comment": "Comment",
+      "cashupUser": "Cashup User",
+      "openingUser": "Opening User",
+      "confirm": "Are you sure? Write comment.",
+      "restaurant": "Restaurant",
+      "nothingToView": "No data to present."
+    }
+  }
+}

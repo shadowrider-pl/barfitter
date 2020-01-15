@@ -1,0 +1,24 @@
+{
+  "barfitterApp": {
+    "payment": {
+      "home": {
+        "title": "Payments",
+        "createLabel": "Payment erstellen",
+        "createOrEditLabel": "Payment erstellen oder bearbeiten",
+        "notFound": "No Payments found"
+      },
+      "created": "Payment erstellt mit ID {{ param }}",
+      "updated": "Payment aktualisiert mit ID {{ param }}",
+      "deleted": "Payment gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Payment {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Payment"
+      },
+      "description": "Description",
+      "active": "Active",
+      "restaurant": "Restaurant"
+    }
+  }
+}

@@ -1,0 +1,216 @@
+<div>
+	<h2 jhiTranslate="barfitterApp.stock.home.title">Product On Stocks</h2>
+
+	<jhi-alert></jhi-alert>
+	<div class="table-responsive" *ngIf="stocks">
+		<hr>
+		<div class="form-group">
+			<label class="form-control-label"
+				jhiTranslate="barfitterApp.stock.home.chooseType"
+				for="field_productType">Product Type</label> <select
+				class="form-control" id="field_productType" name="productType"
+				[(ngModel)]="productTypeX" style='width: 200px'
+				(ngModelChange)="changeProductType()">
+				<option *ngFor="let productTypeOption of producttypes"
+					[value]="productTypeOption.id">{{productTypeOption.description}}</option>
+			</select>
+		</div>
+							<button type="button" *ngIf="showProductsReadyOutOfStockButton"
+								class="btn btn-danger btn-sm" (click)="showProductsReadyOutOfStock()">
+								<fa-icon [icon]="'calendar-times'"></fa-icon>
+								<span class="hidden-xs hidden-sm"
+									jhiTranslate="barfitterApp.stock.home.showProductsReadyOutOfStock"></span>
+							</button>
+		<hr>
+
+	</div>
+
+
+
+	<div class="table-responsive" *ngIf="selectedProductType==1 && showProductsReadyOutOfStockButton">
+		<table class="jh-table table table-striped table-bordered">
+			<thead>
+				<tr *ngIf="!spinner">
+					<th><span jhiTranslate="global.field.index">#</span></th>
+					<th><span jhiTranslate="barfitterApp.productOnStock.product">Product</span></th>
+					<th class="text-center"><span
+						jhiTranslate="barfitterApp.productOnStock.quantity">Quantity</span></th>
+					<th class="text-center"><span
+						jhiTranslate="barfitterApp.productOnStock.sellPriceGross">Sell
+							Price Gross</span></th>
+					<th class="text-center	"><span
+						jhiTranslate="barfitterApp.category.detail.title">category</span></th>
+					<th class="text-center	"><span
+						jhiTranslate="barfitterApp.product.active">active</span></th>
+
+					<th></th>
+				</tr>
+				<tr *ngIf="spinner">
+					<td colspan="6"><div class="text-center">
+							<fa-icon [icon]="'sync'" [fixedWidth]="true" [spin]="true"></fa-icon>
+						</div></td>
+				</tr>
+			</thead>
+			<tbody *ngIf="!spinner">
+				<tr *ngFor="let productOnStock of stocks; 
+							let i = index"
+					[attr.data-index]="i"">
+					<td>{{i+1}}.</td>
+					<td>{{productOnStock.product.name}}</td>
+					<td class="text-right"
+						[routerLink]="['/', { outlets: { popup: 'stock/'+ productOnStock.id + '/edit'} }]">{{productOnStock.quantity}}</td>
+					<td class="text-right">{{productOnStock.sellPriceGross |
+						localizedCurrency}}</td>
+					<td class="text-left">{{productOnStock.product.category.name}}</td>
+					<td class="text-center"><fa-icon [icon]="'check'"
+							*ngIf="productOnStock.product !== undefined 
+							&& productOnStock.product.active"
+							style="color:green"></fa-icon> <fa-icon [icon]="'times'"
+							*ngIf="productOnStock.product !== undefined 
+							&& !productOnStock.product.active"
+							style="color:red"></fa-icon></td>
+					<td class="text-left">
+						<div class="btn-group flex-btn-group-container">
+							<button type="button"
+								[routerLink]="['/', { outlets: { popup: 'stock/'+ productOnStock.id + '/edit'} }]"
+								class="btn btn-primary btn-sm">
+								<fa-icon [icon]="'pencil-alt'"></fa-icon>
+								<span class="hidden-xs hidden-sm"
+									jhiTranslate="entity.action.edit"></span>
+							</button>
+							<button type="button" *ngIf="productOnStock.id!=1"
+								[routerLink]="['/', { outlets: { popup: 'stock/'+ productOnStock.id + '/delete'} }]"
+								class="btn btn-danger btn-sm">
+								<fa-icon [icon]="'times'"></fa-icon>
+								<span class="hidden-xs hidden-sm"
+									jhiTranslate="entity.action.delete"></span>
+							</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+		<div class="table-responsive">
+            <button (click)="previousState()" *ngIf="showProductsReadyOutOfStockBoolean"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+		<br>
+		<br>
+		<div *ngIf="showProductsReadyOutOfStockBoolean">
+			<h3 class="form-control-label"
+				jhiTranslate="barfitterApp.stock.home.productsReadyOutOfStock">Out
+				Of Stock</h3>
+			<table class="jh-table table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th><span jhiTranslate="global.field.index">#</span></th>
+						<th><span jhiTranslate="barfitterApp.productOnStock.product">Product</span></th>
+						<th class="text-center"><span
+							jhiTranslate="barfitterApp.productOnStock.sellPriceGross">Sell
+								Price Gross</span></th>
+						<th class="text-center	"><span
+							jhiTranslate="barfitterApp.category.detail.title">category</span></th>
+						<th class="text-center	"><span
+							jhiTranslate="barfitterApp.product.active">active</span></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr *ngIf="showProductsReadyOutOfStockBoolean && outOfStockSpinner" class="text-center"><td colspan="6"><fa-icon [icon]="'sync'" [fixedWidth]="true" [spin]="true"></fa-icon></td></tr>
+					<tr
+						*ngFor="let productOutOfStock of outOfStock; 
+							let i = index"
+						[attr.data-index]="i">
+						<td>{{i+1}}.</td>
+						<td>{{productOutOfStock.name}}</td>
+						<td class="text-right">{{productOutOfStock.sellPriceGross |
+							localizedCurrency}}</td>
+						<td class="text-left">{{productOutOfStock.category.name}}</td>
+						<td class="text-center"><fa-icon [icon]="'check'"
+								*ngIf="productOutOfStock !== undefined 
+							&& productOutOfStock.active"
+								style="color:green"></fa-icon> <fa-icon [icon]="'times'"
+								*ngIf="productOutOfStock !== undefined 
+							&& !productOutOfStock.active"
+								style="color:red"></fa-icon></td>
+						<td class="text-left">
+							<div class="btn-group flex-btn-group-container">
+								<button type="button" *ngIf="productOutOfStock.id!=1"
+									[routerLink]="['/', { outlets: { popup: 'stock/out-of-stock/'+ productOutOfStock.id + '/delete'} }]"
+									class="btn btn-danger btn-sm">
+									<fa-icon [icon]="'times'"></fa-icon>
+									<span class="hidden-xs hidden-sm"
+										jhiTranslate="entity.action.delete"></span>
+								</button>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+	<div class="table-responsive" *ngIf="selectedProductType!=1">
+		<table class="jh-table table table-striped table-bordered">
+			<thead>
+				<tr>
+					<th><span jhiTranslate="global.field.index">#</span></th>
+					<th><span jhiTranslate="barfitterApp.productOnStock.product">Product</span></th>
+					<th class="text-center"><span
+						jhiTranslate="barfitterApp.productOnStock.sellPriceGross">Sell
+							Price Gross</span></th>
+					<th class="text-center"><span
+						jhiTranslate="barfitterApp.category.detail.title">category</span></th>
+					<th class="text-center	"><span
+						jhiTranslate="barfitterApp.product.active">active</span></th>
+					<th></th>
+				</tr>
+				<tr *ngIf="spinner">
+					<td colspan="6"><div class="text-center">
+							<fa-icon [icon]="'sync'" [fixedWidth]="true" [spin]="true"></fa-icon>
+						</div></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let productOnStock of stocks; 
+							let i = index"
+					[attr.data-index]="i"">
+					<td>{{i+1}}.</td>
+					<td>{{productOnStock.product.name}}</td>
+					<td class="text-right">{{productOnStock.sellPriceGross |
+						localizedCurrency}}</td>
+					<td class="text-left">{{productOnStock.product.category.name}}</td>
+					<td class="text-center"><fa-icon [icon]="'check'"
+							*ngIf="productOnStock.product !== undefined 
+							&& productOnStock.product.active"
+							style="color:green"></fa-icon> <fa-icon [icon]="'times'"
+							*ngIf="productOnStock.product !== undefined 
+							&& !productOnStock.product.active"
+							style="color:red"></fa-icon></td>
+					<td class="text-left">
+						<div class="btn-group flex-btn-group-container">
+							<button type="button"
+								[routerLink]="['/', { outlets: { popup: 'stock/'+ productOnStock.id + '/edit'} }]"
+								class="btn btn-primary btn-sm">
+								<fa-icon [icon]="'pencil-alt'"></fa-icon>
+								<span class="hidden-xs hidden-sm"
+									jhiTranslate="entity.action.edit"></span>
+							</button>
+							<button type="button" *ngIf="productOnStock.id!=1"
+								[routerLink]="['/', { outlets: { popup: 'stock/'+ productOnStock.id + '/delete'} }]"
+								class="btn btn-danger btn-sm">
+								<fa-icon [icon]="'times'"></fa-icon>
+								<span class="hidden-xs hidden-sm"
+									jhiTranslate="entity.action.delete"></span>
+							</button>
+
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

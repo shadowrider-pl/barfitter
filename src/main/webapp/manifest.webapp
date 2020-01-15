@@ -1,0 +1,31 @@
+{
+  "name": "Barfitter",
+  "short_name": "Barfitter",
+  "icons": [
+      {
+          "src": "./content/images/barfitter192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+      },
+      {
+          "src": "./content/images/barfitter256.png",
+          "sizes": "256x256",
+          "type": "image/png"
+      },
+      {
+          "src": "./content/images/barfitter384.png",
+          "sizes": "384x384",
+          "type": "image/png"
+      },
+      {
+          "src": "./content/images/barfitter512.png",
+          "sizes": "512x512",
+          "type": "image/png"
+      }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#e0e0e0",
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "portrait"
+}

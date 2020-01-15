@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="payment">
+            <h2><span jhiTranslate="barfitterApp.payment.detail.title">Payment</span> {{payment.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="barfitterApp.payment.description">Description</span></dt>
+                <dd>
+                    <span>{{payment.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.payment.active">Active</span></dt>
+                <dd>
+                    <span>{{payment.active}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.payment.restaurant">Restaurant</span></dt>
+                <dd>
+                    <div *ngIf="payment.restaurant">
+                        <a [routerLink]="['/restaurant', payment.restaurant?.id, 'view']">{{payment.restaurant?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/payment', payment.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

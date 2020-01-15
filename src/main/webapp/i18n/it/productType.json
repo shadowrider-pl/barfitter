@@ -1,0 +1,23 @@
+{
+  "barfitterApp": {
+    "productType": {
+      "home": {
+        "title": "ProductTypes",
+        "createLabel": "Genera un nuovo Product Type",
+        "createOrEditLabel": "Genera o modifica un Product Type",
+        "notFound": "No Product Types found"
+      },
+      "created": "&Egrave; stato generato un nuovo Product Type con identificatore {{ param }}",
+      "updated": "&Egrave; stato aggiornato Product Type identificato da {{ param }}",
+      "deleted": "&Egrave; stato eliminato Product Type con identificatore {{ param }}",
+      "delete": {
+        "question": "Sei sicuro di volere eliminare Product Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Product Type"
+      },
+      "description": "Description",
+      "active": "Active"
+    }
+  }
+}

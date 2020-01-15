@@ -1,0 +1,32 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myProductOrderedLabel" jhiTranslate="barfitterApp.productOrdered.home.editLabel">Create or edit a Product Ordered</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group">
+			<h2>{{productOrdered.product.name}}</h2>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barfitterApp.productOrdered.sellPriceGross" for="field_sellPriceGross">Sell Price Gross</label>
+            <input type="number" class="form-control" name="sellPriceGross" id="field_sellPriceGross"
+                [(ngModel)]="productOrdered.sellPriceGross" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barfitterApp.productOrdered.comment" for="field_comment">Comment</label>
+            <input type="text" class="form-control" name="comment" id="field_comment"
+                [(ngModel)]="productOrdered.comment" />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

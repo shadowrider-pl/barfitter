@@ -1,0 +1,125 @@
+{
+    "name": "ProductOrdered",
+    "fields": [
+        {
+            "fieldName": "orderedTime",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "acceptedTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "finishedTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "takenTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "quantity",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "comment",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "purchPriceNet",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "purchPriceGross",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "purchVatValue",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "sellPriceNet",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "sellPriceGross",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "sellVatValue",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "difference",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "deliveryDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "orderPosition",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "sendTime",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "order",
+            "otherEntityName": "orderOpened",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "orderedProductStatus",
+            "otherEntityName": "orderedProductStatus",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "productOrderedPurchPriceRate",
+            "otherEntityName": "vat",
+            "otherEntityField": "description"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "productOrderedSellPriceRate",
+            "otherEntityName": "vat",
+            "otherEntityField": "description"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "product",
+            "otherEntityName": "product",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "chef",
+            "otherEntityName": "user",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "restaurant",
+            "otherEntityName": "restaurant",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180730071313",
+    "entityTableName": "product_ordered",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

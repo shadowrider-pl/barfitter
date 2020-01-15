@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="productOnStock">
+            <h2><span jhiTranslate="barfitterApp.productOnStock.detail.title">Product On Stock</span> {{productOnStock.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="barfitterApp.productOnStock.deliveryDate">Delivery Date</span></dt>
+                <dd>
+                    <span>{{productOnStock.deliveryDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOnStock.quantity">Quantity</span></dt>
+                <dd>
+                    <span>{{productOnStock.quantity}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOnStock.purchPriceNet">Purch Price Net</span></dt>
+                <dd>
+                    <span>{{productOnStock.purchPriceNet}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOnStock.purchPriceGross">Purch Price Gross</span></dt>
+                <dd>
+                    <span>{{productOnStock.purchPriceGross}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOnStock.purchVatValue">Purch Vat Value</span></dt>
+                <dd>
+                    <span>{{productOnStock.purchVatValue}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOnStock.sellPriceNet">Sell Price Net</span></dt>
+                <dd>
+                    <span>{{productOnStock.sellPriceNet}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOnStock.sellPriceGross">Sell Price Gross</span></dt>
+                <dd>
+                    <span>{{productOnStock.sellPriceGross}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOnStock.sellVatValue">Sell Vat Value</span></dt>
+                <dd>
+                    <span>{{productOnStock.sellVatValue}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOnStock.product">Product</span></dt>
+                <dd>
+                    <div *ngIf="productOnStock.product">
+                        <a [routerLink]="['/product', productOnStock.product?.id, 'view']">{{productOnStock.product?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOnStock.restaurant">Restaurant</span></dt>
+                <dd>
+                    <div *ngIf="productOnStock.restaurant">
+                        <a [routerLink]="['/restaurant', productOnStock.restaurant?.id, 'view']">{{productOnStock.restaurant?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/product-on-stock', productOnStock.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

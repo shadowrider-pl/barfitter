@@ -1,0 +1,38 @@
+{
+  "barfitterApp": {
+    "productDelivered": {
+      "home": {
+        "title": "Produkty dostarczone",
+        "createLabel": "Dodaj nowy produkt",
+        "createOrEditLabel": "Dodaj lub edytuj Produkt",
+        "search": "Szukaj produktu"
+      },
+      "created": "Dodano nowy produkt.",
+      "updated": "Produkt został zmieniony.",
+      "deleted": "Produkt usunięty",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć ten produkt?"
+      },
+      "detail": {
+        "title": "Produkt dostarczony"
+      },
+      "deliveryDate": "Data zakupu",
+      "quantity": "Ilość",
+      "product": "Produkt",
+      "name": "Nazwa",
+      "purchPriceNet": "Cena zakupu netto",
+      "sellPriceGross": "Cena sprzedaży brutto",
+      "active": "Aktywny",
+      "purchPriceGross": "Cena zakupu brutto",
+      "purchVatValue": "Vat zakupu",
+      "sellPriceNet": "Cena sprzedaży netto",
+      "sellVatValue": "Vat sprzedaży",
+      "productDeliveredPurchPriceRate": "Stawka Vatu zakupu",
+      "productDeliveredSellPriceRate": "Stawka Vatu sprzedaży",
+      "productType": "Typ Produktu",
+      "category": "Kategoria",
+      "productAlreadyExists": "Produkt o tej nazwie już istnieje",
+      "selectToday": "Dzisiaj"
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+    "name": "ProductDelivered",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "deliveryDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "quantity",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "purchPriceGross",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "sellPriceGross",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "purchPriceNet",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "purchVatValue",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "sellPriceNet",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "sellVatValue",
+            "fieldType": "BigDecimal"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "product",
+            "otherEntityName": "product",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "category",
+            "otherEntityName": "category",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "productDeliveredPurchPriceRate",
+            "otherEntityName": "vat",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "productDeliveredSellPriceRate",
+            "otherEntityName": "vat",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "productType",
+            "otherEntityName": "productType",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "restaurant",
+            "otherEntityName": "restaurant",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180730071306",
+    "entityTableName": "product_delivered",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

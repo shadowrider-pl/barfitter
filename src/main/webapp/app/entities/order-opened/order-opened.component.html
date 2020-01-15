@@ -1,0 +1,96 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="barfitterApp.orderOpened.home.title">Order Openeds</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-order-opened" [routerLink]="['/order-opened/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="barfitterApp.orderOpened.home.createLabel">
+            Create a new Order Opened
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="orderOpeneds?.length === 0">
+        <span jhiTranslate="barfitterApp.orderOpened.home.notFound">No orderOpeneds found</span>
+    </div>
+    <div class="table-responsive" *ngIf="orderOpeneds?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="total"><span jhiTranslate="barfitterApp.orderOpened.total">Total</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="comment"><span jhiTranslate="barfitterApp.orderOpened.comment">Comment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="openingTime"><span jhiTranslate="barfitterApp.orderOpened.openingTime">Opening Time</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="closingTime"><span jhiTranslate="barfitterApp.orderOpened.closingTime">Closing Time</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="orderId"><span jhiTranslate="barfitterApp.orderOpened.orderId">Order Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="payment.id"><span jhiTranslate="barfitterApp.orderOpened.payment">Payment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="desk.id"><span jhiTranslate="barfitterApp.orderOpened.desk">Desk</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="barman.login"><span jhiTranslate="barfitterApp.orderOpened.barman">Barman</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="restaurant.id"><span jhiTranslate="barfitterApp.orderOpened.restaurant">Restaurant</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let orderOpened of orderOpeneds ;trackBy: trackId">
+                <td><a [routerLink]="['/order-opened', orderOpened.id, 'view' ]">{{orderOpened.id}}</a></td>
+                <td>{{orderOpened.total}}</td>
+                <td>{{orderOpened.comment}}</td>
+                <td>{{orderOpened.openingTime | date:'medium'}}</td>
+                <td>{{orderOpened.closingTime | date:'medium'}}</td>
+                <td>{{orderOpened.orderId}}</td>
+                <td>
+                    <div *ngIf="orderOpened.payment">
+                        <a [routerLink]="['/payment', orderOpened.payment?.id, 'view' ]" >{{orderOpened.payment?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="orderOpened.desk">
+                        <a [routerLink]="['/desk', orderOpened.desk?.id, 'view' ]" >{{orderOpened.desk?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{orderOpened.barman?.login}}
+                </td>
+                <td>
+                    <div *ngIf="orderOpened.restaurant">
+                        <a [routerLink]="['/restaurant', orderOpened.restaurant?.id, 'view' ]" >{{orderOpened.restaurant?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/order-opened', orderOpened.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/order-opened', orderOpened.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/order-opened', { outlets: { popup: orderOpened.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="orderOpeneds?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+{
+  "barfitterApp": {
+    "stock": {
+      "home": {
+        "title": "Stock",
+        "search": "Search for Product",
+        "chooseType": "Choose product type",
+        "productsReadyOutOfStock": "Products out of stock",
+        "showProductsReadyOutOfStock": "Show products out of stock"
+      },
+      "detail": {
+        "title": "Stock"
+      }
+    }
+  }
+}

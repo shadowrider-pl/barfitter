@@ -1,0 +1,192 @@
+<button type="submit" (click)="scrollUp()" class="btn btn-info"
+	id="upButton">
+	<fa-icon [icon]="'arrow-up'" [fixedWidth]="true"></fa-icon>
+</button>
+<button type="submit" (click)="scrollDown()" class="btn btn-info"
+	id="downButton">
+	<fa-icon [icon]="'arrow-down'" [fixedWidth]="true"></fa-icon>
+</button>
+<div>
+	<h1 class="text-center">{{title}}</h1>
+	<h4 *ngIf="showNoOrders"
+		jhiTranslate="barfitterApp.orderOpened.noProductsForDeliver">noOrders</h4>
+	<jhi-alert></jhi-alert>
+	<br />
+	<div class="table-responsive" *ngIf="!showNoOrders">
+		<table class="table table-striped table-bordered">
+			<tbody>
+				<tr
+					*ngFor="let orderOpened of orderOpeneds ;trackBy: trackId; 
+					let i = index"
+					[attr.data-index]="i">
+					<td><dl class="row" style="margin-left: 1px">
+							<dt class="col-sm-6">
+								<span jhiTranslate="global.field.id">ID:</span>
+							</dt>
+							<dd class="col-sm-6">
+								<span>{{orderOpened.id}}</span>
+							</dd>
+							<dt class="col-sm-6">
+								<span jhiTranslate="barfitterApp.orderOpened.desk">Desk:</span>
+							</dt>
+							<dd class="col-sm-6">
+								<span>{{orderOpened.desk.description}}</span>
+							</dd>
+							<dt class="col-sm-6">
+								<span jhiTranslate="barfitterApp.orderOpened.openingTime">Opening
+									Time:</span>
+							</dt>
+							<dd class="col-sm-6">
+								<span>{{orderOpened.openingTime |
+									localizedDate:'shortTime'}}</span>
+							</dd>
+							<dt class="col-sm-6" *ngIf="orderOpened.comment">
+								<span jhiTranslate="barfitterApp.orderOpened.comment">Comment:</span>
+							</dt>
+							<dd class="col-sm-6" *ngIf="orderOpened.comment">
+								<span>{{orderOpened.comment}}</span>
+							</dd>
+							<dt class="col-sm-6">
+								<span jhiTranslate="barfitterApp.orderOpened.barman">User:</span>
+							</dt>
+							<dd class="col-sm-6">{{orderOpened.barman.login}}</dd>
+						</dl>
+						<h3 class="text-center">
+							<span class="badge badge-info" *ngIf="orderOpened.total">
+								<span class="hidden-xs hidden-sm"><span
+									jhiTranslate="barfitterApp.orderOpened.total">Total</span>: </span>{{
+								orderOpened.total | localizedCurrency}}
+							</span>
+						</h3> <br> <br></td>
+					<td>
+						<table class="table-bordered table-striped table-hover">
+							<tr>
+								<th><span jhiTranslate="global.field.index">#</span></th>
+								<th><span
+									jhiTranslate="barfitterApp.productOrdered.product">Product</span></th>
+								<th><span
+									jhiTranslate="barfitterApp.productOrdered.sellPriceGross">Price</span></th>
+								<th><span
+									jhiTranslate="barfitterApp.productOrdered.quantity">Quantity</span></th>
+								<th><span
+									jhiTranslate="barfitterApp.productOrdered.comment">Comment</span></th>
+								<th><span
+									jhiTranslate="barfitterApp.productOrdered.orderedProductStatus">Ordered
+										Product Status</span></th>
+							</tr>
+							<tr
+								*ngFor="let productOrdered of orderOpened.productsToOrder; 
+											let ii = index"
+								[attr.data-index]="ii">
+								<td>{{ii+1}}.</td>
+								<td>{{productOrdered.product.name}}</td>
+								<td>{{productOrdered.sellPriceGross | localizedCurrency}}</td>
+								<td>{{productOrdered.quantity}}</td>
+								<td>{{productOrdered.comment}}</td>
+								<td
+									*ngIf="(productOrdered.orderedProductStatus==null || productOrdered.orderedProductStatus.id==null) 
+											&& productOrdered.product.productType!=null && productOrdered.product.productType.id==2">
+									<div *ngIf="productOrdered.orderedProductStatus!=null">
+										{{productOrdered.orderedProductStatus.description}}<br>
+										<hr>
+									</div>
+									<button type="button" [disabled]="isSaving"
+										(click)="sendToKitchen(productOrdered.id)"
+										class="btn btn-success btn-sm">
+										<fa-icon [icon]="'step-forward'" [fixedWidth]="true"></fa-icon><span
+											class="hidden-xs hidden-sm"
+											jhiTranslate="barfitterApp.productOrdered.sendToKitchen"></span>
+									</button>
+								</td>
+								<td
+									*ngIf="productOrdered.orderedProductStatus!=null && 
+											productOrdered.orderedProductStatus.id==4 && productOrdered.product.productType.id==2">
+									{{productOrdered.orderedProductStatus.description}}
+									[{{productOrdered.finishedTime | localizedDate:'shortTime'}}]<br>
+									<hr>
+									<button type="button" (click)="deliver(productOrdered.id); "
+										class="btn btn-primary btn-sm" [disabled]="isSaving">
+										<fa-icon [icon]="'check-circle'" [fixedWidth]="true"></fa-icon> <span
+											class="hidden-xs hidden-sm"
+											jhiTranslate="barfitterApp.productOrdered.deliver"></span>
+									</button>
+								</td>
+								<td
+									*ngIf="productOrdered.orderedProductStatus!=null 
+										&& productOrdered.orderedProductStatus.id==2">
+									{{productOrdered.orderedProductStatus.description}}
+									[{{productOrdered.sendTime | localizedDate:'shortTime'}}]</td>
+								<td
+									*ngIf="productOrdered.orderedProductStatus!=null 
+										&& productOrdered.orderedProductStatus.id==3">
+									{{productOrdered.orderedProductStatus.description}}
+									[{{productOrdered.acceptedTime | localizedDate:'shortTime'}}]</td>
+								<td
+									*ngIf="productOrdered.orderedProductStatus!=null 
+										&& productOrdered.orderedProductStatus.id==5">
+									{{productOrdered.orderedProductStatus.description}}
+									[{{productOrdered.acceptedTime | localizedDate:'shortTime'}}]</td>
+								<td
+									*ngIf="productOrdered.orderedProductStatus!=null 
+										&& productOrdered.orderedProductStatus.id==6">
+									{{productOrdered.orderedProductStatus.description}}
+									[{{productOrdered.takenTime | localizedDate:'shortTime'}}]</td>
+								<td
+									*ngIf="(productOrdered.product.productType!=null 
+										&& productOrdered.product.productType.id!=2) 
+										|| (productOrdered.orderedProductStatus==null && productOrdered.product.productType==null)">-</td>
+
+							</tr>
+							<tr>
+								<td colspan="7"><span
+									*ngIf="showButtonSendAllToKitchenArray[i]==orderOpened.id">
+										<button type="button" [disabled]="isSaving"
+											(click)="sendAllToKitchen(orderOpened)"
+											class="btn btn-success">
+											<fa-icon [icon]="'fast-forward'" [fixedWidth]="true"></fa-icon><span
+												class="hidden-xs hidden-sm"
+												jhiTranslate="barfitterApp.productOrdered.sendAllToKitchen">Send
+												All to Kitchen</span>
+										</button>
+								</span> <span *ngIf="showButtonDeliverAllArray[i]==orderOpened.id">
+										<button type="button" [disabled]="isSaving"
+											(click)="deliverAll(orderOpened)" class="btn btn-primary">
+											<fa-icon [icon]="'check-circle'" [fixedWidth]="true"></fa-icon> <span
+												class="hidden-xs hidden-sm"
+												jhiTranslate="barfitterApp.productOrdered.deliverAll">Deliver
+												All</span>
+										</button>
+								</span>
+									<button type="button" (click)="loadAll()"
+										class="btn btn-outline-secondary" [disabled]="isSaving">
+										<fa-icon [icon]="'sync'" [fixedWidth]="true"></fa-icon>  <span
+											class="hidden-xs hidden-sm"
+											jhiTranslate="barfitterApp.productOrdered.refresh">Refresh</span>
+									</button></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<HR>
+	<div>
+		<button type="submit" routerLink="/panel"
+			*jhiHasAnyAuthority="'ROLE_BARMAN'" class="btn btn-outline-secondary">
+			<fa-icon [icon]="'arrow-left'" [fixedWidth]="true"></fa-icon> &nbsp;<span
+				jhiTranslate="entity.action.back"> Back</span>
+		</button>
+		<button type="button" [routerLink]="['/barman-panel' ]"
+			*jhiHasAnyAuthority="'ROLE_BARMAN'" class="btn btn-info">
+			<fa-icon [icon]="'tv'" [fixedWidth]="true"></fa-icon>
+			<span jhiTranslate="global.menu.panel">Panel</span>
+		</button>
+		<button [routerLink]="['../all-orders' ]"
+			*jhiHasAnyAuthority="'ROLE_BARMAN'" class="btn btn-primary"
+			type="button" title="Orders">
+			<fa-icon [icon]="'list'" [fixedWidth]="true"></fa-icon><span jhiTranslate="home.orders"></span>
+		</button>
+	</div>
+</div>

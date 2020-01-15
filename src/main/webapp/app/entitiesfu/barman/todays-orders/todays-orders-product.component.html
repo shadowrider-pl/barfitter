@@ -1,0 +1,97 @@
+
+<div class="modal-header" *ngIf="todaysOrders">
+	<h2>
+		{{todaysOrders.product?.name}}
+	</h2>
+</div>
+<div class="modal-body" *ngIf="todaysOrders">
+	<jhi-alert-error></jhi-alert-error>
+	<dl class="row">
+		<dt class="col-sm-6 text-right">
+			<span jhiTranslate="barfitterApp.productSold.orderedTime">Ordered
+				Time</span>
+		</dt>
+		<dd class="col-sm-6">
+			<span>{{todaysOrders.orderedTime | localizedDate:'shortTime'}}</span>
+		</dd>
+		
+		<dt class="col-sm-6 text-right" *ngIf="todaysOrders.product?.productType.id==2">
+			<span jhiTranslate="barfitterApp.productSold.sendTime">Send
+				Time</span>
+		</dt>
+		<dd class="col-sm-6" *ngIf="todaysOrders.product?.productType.id==2">
+			<span>{{todaysOrders.sendTime | localizedDate:'shortTime'}}</span>
+			- <span
+					[ngClass]="(sendingTime>30) ? 'badge badge-danger' : ''">[{{sendingTime}}']</span>
+		</dd>
+		<dt class="col-sm-6 text-right" *ngIf="todaysOrders.product?.productType.id==2">
+			<span jhiTranslate="barfitterApp.productSold.acceptedTime">Accepted
+				Time</span>
+		</dt>
+		<dd class="col-sm-6" *ngIf="todaysOrders.product?.productType.id==2">
+			<span>{{todaysOrders.acceptedTime | localizedDate:'shortTime'}}</span> -
+				<span [ngClass]="(acceptingTime>30) ? 'badge badge-danger' : ''">[{{acceptingTime}}']</span>
+		</dd>
+		<dt class="col-sm-6 text-right" *ngIf="todaysOrders.product?.productType.id==2">
+			<span jhiTranslate="barfitterApp.productSold.finishedTime">Finished
+				Time</span>
+		</dt>
+		<dd class="col-sm-6" *ngIf="todaysOrders.product?.productType.id==2">
+			<span>{{todaysOrders.finishedTime | localizedDate:'shortTime'}}</span> -
+				<span [ngClass]="(finishingTime>30) ? 'badge badge-danger' : ''">[{{finishingTime}}']</span>
+		</dd>
+		<dt class="col-sm-6 text-right" *ngIf="todaysOrders.product?.productType.id==2">
+			<span jhiTranslate="barfitterApp.productSold.takenTime">Taken
+				Time</span>
+		</dt>
+		<dd class="col-sm-6" *ngIf="todaysOrders.product?.productType.id==2">
+			<span>{{todaysOrders.takenTime | localizedDate:'shortTime'}}</span> - <span
+					[ngClass]="(takingTime>30) ? 'badge badge-danger' : ''">[{{takingTime}}']</span>
+		</dd>
+		<dt class="col-sm-6 text-right">
+			<span jhiTranslate="barfitterApp.productSold.quantity">Quantity</span>
+		</dt>
+		<dd class="col-sm-6">
+			<span>{{todaysOrders.quantity}}</span>
+		</dd>
+		<dt class="col-sm-6 text-right" *ngIf="todaysOrders.comment">
+			<span jhiTranslate="barfitterApp.productSold.comment">Comment</span>
+		</dt>
+		<dd class="col-sm-6" *ngIf="todaysOrders.comment">
+			<span>{{todaysOrders.comment}}</span>
+		</dd>
+		<dt class="col-sm-6 text-right">
+			<span jhiTranslate="barfitterApp.productSold.sellPriceGross">Sell
+				Price Gross</span>
+		</dt>
+		<dd class="col-sm-6">
+			<span>{{todaysOrders.sellPriceGross | localizedCurrency}}</span>
+		</dd>
+		<dt class="col-sm-6 text-right" *ngIf="todaysOrders.difference>0">
+			<span jhiTranslate="barfitterApp.productSold.difference">Difference</span>
+		</dt>
+		<dd class="col-sm-6" *ngIf="todaysOrders.difference>0">
+			<span>{{todaysOrders.difference | localizedCurrency}}</span>
+		</dd>
+		<dt class="col-sm-6 text-right">
+			<span jhiTranslate="barfitterApp.productSold.order">Order</span>
+		</dt>
+		<dd class="col-sm-6">
+			<div *ngIf="todaysOrders.order">
+				{{todaysOrders.order?.orderId}}
+			</div>
+		</dd>
+		<dt class="col-sm-6 text-right" *ngIf="todaysOrders.product?.productType.id==2">
+			<span jhiTranslate="barfitterApp.productSold.chef">Chef</span>
+		</dt>
+		<dd class="col-sm-6" *ngIf="todaysOrders.product?.productType.id==2">{{todaysOrders.chef?.login}}</dd>
+	</dl>
+
+</div>
+<div class="modal-footer">
+	<button type="submit" (click)="clear()"
+		class="btn btn-secondary">
+		<fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span
+			jhiTranslate="entity.action.cancel"> cancel</span>
+	</button>
+</div>

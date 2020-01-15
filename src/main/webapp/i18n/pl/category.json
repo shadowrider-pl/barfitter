@@ -1,0 +1,30 @@
+{
+  "barfitterApp": {
+    "category": {
+      "home": {
+        "title": "Kategorie",
+        "createLabel": "Dodaj Kategorię",
+        "category": "Kategoria",
+        "createSubCategoryLabel": "Dodaj podkategorię",
+        "createOrEditLabel": "Dodaj lub edytuj: Kategorie",
+        "search": "Szukaj Kategorii"
+      },
+      "created": "Utworzono nową kategorię.",
+      "updated": "Zmieniono kategorię.",
+      "deleted": "Usunięto kategorię.",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć tę Kategorię?",
+        "cantDeleteCategory": "Nie można usunąć tej kategorii, ponieważ są do niej przypisane poniższe produkty:"
+      },
+      "detail": {
+        "title": "Kategorie"
+      },
+      "name": "Nazwa",
+      "parentId": "Nadrzędna kategoria",
+      "active": "Aktywny",
+      "chooseCategory": "Wybierz kategorię nadrzędną. Jeśli dodajesz nową kategorię główną, zostaw poniższe pole puste",
+      "categoryExists": "Kategoria o takiej nazwie już istnieje",
+      "productsInCategory": "Produkty w tej kategorii"
+    }
+  }
+}

@@ -1,0 +1,121 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()"
+	#editForm="ngForm">
+
+	<div class="modal-header">
+		<h4 class="modal-title" id="myOrderOpenedLabel"
+			jhiTranslate="barfitterApp.orderOpened.choosePayment">choosePayment</h4>
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true" (click)="clear()">&times;</button>
+	</div>
+	<div class="text-center" *ngIf="spinner">
+		<span><fa-icon [icon]="'sync'" [fixedWidth]="true" [spin]="true"></fa-icon></span> <br> <br>
+		<br> <br>
+	</div>
+	
+	<div class="modal-body" *ngIf="!dayOpened && !spinner">
+		<button [routerLink]="['/', { outlets: { popup: ['new-day'] } }]"
+			*jhiHasAnyAuthority="'ROLE_BARMAN'"
+			class="btn-block btn-success btn-lg" type="button" title="Orders">
+			<fa-icon [icon]="'calendar-alt'" [fixedWidth]="true"></fa-icon> <span jhiTranslate="home.newDay"></span>
+		</button>
+	</div>
+	<div class="modal-body" *ngIf="dayOpened">
+		<jhi-alert-error></jhi-alert-error>
+		<h5 class="text-center">{{deskDescription}}</h5>
+		<hr>
+		<h4 class="text-center">
+			<span jhiTranslate="barfitterApp.orderOpened.total"></span>:
+			{{orderOpened.total | localizedCurrency}}
+		</h4>
+		<ul class="list-group" *ngIf="!joinedPaymentClicked && !isSaving">
+			<li class="list-group-item"
+				*ngFor="let payment of activePayments">
+				<button *ngIf="payment.id!=1 && payment.id!=2" type="submit"
+					class="btn-lg btn-block btn-success" data-dismiss="modal"
+					(click)="pay(payment.id)" [disabled]="isSaving">
+					<fa-icon [icon]="'bolt'" [fixedWidth]="true"></fa-icon>&nbsp; {{ payment.description }}
+				</button>
+				<button *ngIf="payment.id==1" type="submit"
+					class="btn-lg btn-block btn-success" [disabled]="isSaving"
+					data-dismiss="modal" (click)="pay(payment.id)">
+					<fa-icon [icon]="'bolt'" [fixedWidth]="true"></fa-icon> <span
+						jhiTranslate="barfitterApp.payment.cash"></span>
+				</button> <span *ngIf="payment.id==1"> <br> <label
+					class="control-label"> <span
+						jhiTranslate="barfitterApp.payment.cash"></span>:
+				</label> <input class="form-control" [(ngModel)]="cash"
+					[ngModelOptions]="{standalone: true}" type="number" /><br> <span
+					*ngIf="cash>orderOpened.total"><label class="control-label">
+							<span jhiTranslate="barfitterApp.orderOpened.change"></span>:
+							{{(cash-orderOpened.total) | localizedCurrency}}
+					</label> </span></span>
+				<button *ngIf="payment.id==2" type="submit"
+					class="btn-lg btn-block btn-success" data-dismiss="modal"
+					(click)="pay(payment.id)" [disabled]="isSaving">
+					<fa-icon [icon]="'bolt'" [fixedWidth]="true"></fa-icon> <span
+						jhiTranslate="barfitterApp.payment.card"></span>
+				</button>
+			</li>
+			<li class="list-group-item">
+				<button type="button" class="btn-lg btn-block btn-primary"
+					(click)="joinedPayment(); activePaymentsForJoined()"
+					data-dismiss="modal" [disabled]="isSaving">
+					<fa-icon [icon]="'link'" [fixedWidth]="true"></fa-icon>&nbsp;<span
+						jhiTranslate="barfitterApp.orderOpened.joinedPayment">Joined
+						payment</span>
+				</button>
+			</li>
+		</ul>
+
+		<ul class="list-group" *ngIf="joinedPaymentClicked">
+			<li class="list-group-item"
+				*ngFor="let payment of joinedPayments ">
+
+				<div *ngIf="payment.payment.id!=1 && payment.payment.id!=2"
+					class="form-group">
+					<label class="control-label">{{payment.payment.description}}</label>
+					<input type="number" class="form-control"
+						[(ngModel)]="payment.amount" [ngModelOptions]="{standalone: true}"
+						(ngModelChange)="getRest()" />
+				</div>
+				<div *ngIf="payment.payment.id==1" class="form-group">
+					<label class="control-label"><span
+						jhiTranslate="barfitterApp.payment.cash"></span></label> <input
+						type="number" class="form-control" [(ngModel)]="payment.amount"
+						[ngModelOptions]="{standalone: true}" (ngModelChange)="getRest()" />
+				</div>
+				<div *ngIf="payment.payment.id==2" class="form-group">
+					<label class="control-label"><span
+						jhiTranslate="barfitterApp.payment.card"></span></label> <input
+						type="number" class="form-control" [(ngModel)]="payment.amount"
+						[ngModelOptions]="{standalone: true}" (ngModelChange)="getRest()" />
+				</div>
+
+			</li>
+
+		</ul>
+		<br>
+		<div *ngIf="rest!=0">
+			<h3 class="text-center">
+				<span class="label label-info"> <span
+					jhiTranslate="barfitterApp.orderOpened.change"></span>: {{ rest |
+					localizedCurrency}}
+				</span>
+			</h3>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal"
+			(click)="clear()" [disabled]="isSaving">
+			<fa-icon [icon]="'ban'" [fixedWidth]="true"></fa-icon>&nbsp;<span
+				jhiTranslate="entity.action.cancel">Cancel</span>
+		</button>
+		<button type="button"
+			[disabled]="editForm.form.invalid || isSaving || !sumCorrected"
+			*ngIf="joinedPaymentClicked" (click)="jpay(); clear()"
+			class="btn btn-primary">
+			<fa-icon [icon]="'save'" [fixedWidth]="true"></fa-icon>&nbsp;<span
+				jhiTranslate="entity.action.save">Save</span>
+		</button>
+	</div>
+</form>

@@ -1,0 +1,44 @@
+{
+  "barfitterApp": {
+    "productOrdered": {
+      "home": {
+        "title": "Product Ordereds",
+        "createLabel": "Создать новый Product Ordered",
+        "createOrEditLabel": "Создать или отредактировать Product Ordered",
+        "notFound": "No Product Ordereds found"
+      },
+      "created": "Новый Product Ordered создан с идентификатором {{ param }}",
+      "updated": "Product Ordered обновлен с идентификатором {{ param }}",
+      "deleted": "Product Ordered удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Product Ordered {{ id }}?"
+      },
+      "detail": {
+        "title": "Product Ordered"
+      },
+      "orderedTime": "Ordered Time",
+      "acceptedTime": "Accepted Time",
+      "finishedTime": "Finished Time",
+      "takenTime": "Taken Time",
+      "quantity": "Quantity",
+      "comment": "Comment",
+      "purchPriceNet": "Purch Price Net",
+      "purchPriceGross": "Purch Price Gross",
+      "purchVatValue": "Purch Vat Value",
+      "sellPriceNet": "Sell Price Net",
+      "sellPriceGross": "Sell Price Gross",
+      "sellVatValue": "Sell Vat Value",
+      "difference": "Difference",
+      "deliveryDate": "Delivery Date",
+      "orderPosition": "Order Position",
+      "sendTime": "Send Time",
+      "order": "Order",
+      "orderedProductStatus": "Ordered Product Status",
+      "productOrderedPurchPriceRate": "Product Ordered Purch Price Rate",
+      "productOrderedSellPriceRate": "Product Ordered Sell Price Rate",
+      "product": "Product",
+      "chef": "Chef",
+      "restaurant": "Restaurant"
+    }
+  }
+}

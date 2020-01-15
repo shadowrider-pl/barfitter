@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="paymentToCashup">
+            <h2><span jhiTranslate="barfitterApp.paymentToCashup.detail.title">Payment To Cashup</span> {{paymentToCashup.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="barfitterApp.paymentToCashup.totalPayment">Total Payment</span></dt>
+                <dd>
+                    <span>{{paymentToCashup.totalPayment}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.paymentToCashup.cashup">Cashup</span></dt>
+                <dd>
+                    <div *ngIf="paymentToCashup.cashup">
+                        <a [routerLink]="['/cashup', paymentToCashup.cashup?.id, 'view']">{{paymentToCashup.cashup?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.paymentToCashup.payment">Payment</span></dt>
+                <dd>
+                    <div *ngIf="paymentToCashup.payment">
+                        <a [routerLink]="['/payment', paymentToCashup.payment?.id, 'view']">{{paymentToCashup.payment?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/payment-to-cashup', paymentToCashup.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

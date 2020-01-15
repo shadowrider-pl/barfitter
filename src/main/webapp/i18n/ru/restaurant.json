@@ -1,0 +1,33 @@
+{
+  "barfitterApp": {
+    "restaurant": {
+      "home": {
+        "title": "Restaurants",
+        "createLabel": "Создать новый Restaurant",
+        "createOrEditLabel": "Создать или отредактировать Restaurant",
+        "notFound": "No Restaurants found"
+      },
+      "created": "Новый Restaurant создан с идентификатором {{ param }}",
+      "updated": "Restaurant обновлен с идентификатором {{ param }}",
+      "deleted": "Restaurant удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Restaurant {{ id }}?"
+      },
+      "detail": {
+        "title": "Restaurant"
+      },
+      "name": "Name",
+      "country": "Country",
+      "address": "Address",
+      "zipCode": "Zip Code",
+      "city": "City",
+      "vatNumber": "Vat Number",
+      "licenceDate": "Licence Date",
+      "licenceType": "Licence Type",
+      "nextLicenceType": "Next Licence Type",
+      "adsLevel": "Ads Level",
+      "currency": "Currency",
+      "createdDate": "Created Date"
+    }
+  }
+}

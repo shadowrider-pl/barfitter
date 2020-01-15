@@ -1,0 +1,31 @@
+{
+  "barfitterApp": {
+    "orderedProductStatus": {
+      "home": {
+        "title": "Ordered Product Statuses",
+        "createLabel": "Dodaj Ordered Product Status",
+        "createOrEditLabel": "Dodaj lub edytuj: Ordered Product Status",
+        "search": "Szukaj Ordered Product Status"
+      },
+      "status": {
+        "ordered": "Zamówione",
+        "sent": "Wysłane na kuchnię",
+        "accepted": "Przyjęte na kuchni",
+        "ready": "Gotowe",
+        "rejected": "Odrzucone na kuchni",
+        "delivered": "Wydane"
+      },
+      "created": "Utworzono nowy Ordered Product Status z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono Ordered Product Status z identyfikatorem {{ param }}",
+      "deleted": "Usunięto Ordered Product Status z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Ordered Product Status {{ id }}?"
+      },
+      "detail": {
+        "title": "Ordered Product Status"
+      },
+      "description": "Description",
+      "active": "Active"
+    }
+  }
+}

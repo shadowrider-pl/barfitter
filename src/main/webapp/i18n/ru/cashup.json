@@ -1,0 +1,32 @@
+{
+  "barfitterApp": {
+    "cashup": {
+      "home": {
+        "title": "Cashups",
+        "createLabel": "Создать новый Cashup",
+        "createOrEditLabel": "Создать или отредактировать Cashup",
+        "notFound": "No Cashups found"
+      },
+      "created": "Новый Cashup создан с идентификатором {{ param }}",
+      "updated": "Cashup обновлен с идентификатором {{ param }}",
+      "deleted": "Cashup удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Cashup {{ id }}?"
+      },
+      "detail": {
+        "title": "Cashup"
+      },
+      "barmanLoginTime": "Barman Login Time",
+      "cashupTime": "Cashup Time",
+      "startCash": "Start Cash",
+      "endCash": "End Cash",
+      "totalSale": "Total Sale",
+      "cashTakenByManager": "Cash Taken By Manager",
+      "cashTakenByBoss": "Cash Taken By Boss",
+      "comment": "Comment",
+      "cashupUser": "Cashup User",
+      "openingUser": "Opening User",
+      "restaurant": "Restaurant"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "barfitterApp": {
+    "bestseller": {
+      "home": {
+        "title": "Bestsellers",
+        "createLabel": "Genera un nuovo Bestseller",
+        "createOrEditLabel": "Genera o modifica un Bestseller",
+        "notFound": "No Bestsellers found"
+      },
+      "created": "&Egrave; stato generato un nuovo Bestseller con identificatore {{ param }}",
+      "updated": "&Egrave; stato aggiornato Bestseller identificato da {{ param }}",
+      "deleted": "&Egrave; stato eliminato Bestseller con identificatore {{ param }}",
+      "delete": {
+        "question": "Sei sicuro di volere eliminare Bestseller {{ id }}?"
+      },
+      "detail": {
+        "title": "Bestseller"
+      },
+      "product": "Product",
+      "restaurant": "Restaurant"
+    }
+  }
+}

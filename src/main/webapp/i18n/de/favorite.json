@@ -1,0 +1,23 @@
+{
+  "barfitterApp": {
+    "favorite": {
+      "home": {
+        "title": "Favorites",
+        "createLabel": "Favorite erstellen",
+        "createOrEditLabel": "Favorite erstellen oder bearbeiten",
+        "notFound": "No Favorites found"
+      },
+      "created": "Favorite erstellt mit ID {{ param }}",
+      "updated": "Favorite aktualisiert mit ID {{ param }}",
+      "deleted": "Favorite gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Favorite {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Favorite"
+      },
+      "product": "Product",
+      "restaurant": "Restaurant"
+    }
+  }
+}

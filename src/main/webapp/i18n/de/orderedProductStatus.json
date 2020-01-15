@@ -1,0 +1,23 @@
+{
+  "barfitterApp": {
+    "orderedProductStatus": {
+      "home": {
+        "title": "Ordered Product Statuses",
+        "createLabel": "Ordered Product Status erstellen",
+        "createOrEditLabel": "Ordered Product Status erstellen oder bearbeiten",
+        "notFound": "No Ordered Product Statuses found"
+      },
+      "created": "Ordered Product Status erstellt mit ID {{ param }}",
+      "updated": "Ordered Product Status aktualisiert mit ID {{ param }}",
+      "deleted": "Ordered Product Status gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Ordered Product Status {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Ordered Product Status"
+      },
+      "description": "Description",
+      "active": "Active"
+    }
+  }
+}

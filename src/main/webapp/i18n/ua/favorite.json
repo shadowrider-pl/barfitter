@@ -1,0 +1,23 @@
+{
+  "barfitterApp": {
+    "favorite": {
+      "home": {
+        "title": "Favorites",
+        "createLabel": "Створити новий Favorite",
+        "createOrEditLabel": "Створити чи редагувати Favorite",
+        "notFound": "No Favorites found"
+      },
+      "created": "Новий Favorite створений з ідентифікатором {{ param }}",
+      "updated": "Favorite оновлений з ідентифікатором {{ param }}",
+      "deleted": "Favorite видалений з ідентифікатором {{ param }}",
+      "delete": {
+        "question": "Ви впевнені, що хочете видалити Favorite {{ id }}?"
+      },
+      "detail": {
+        "title": "Favorite"
+      },
+      "product": "Product",
+      "restaurant": "Restaurant"
+    }
+  }
+}

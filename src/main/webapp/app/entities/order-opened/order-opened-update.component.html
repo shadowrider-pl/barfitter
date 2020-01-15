@@ -1,0 +1,79 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-order-opened-heading" jhiTranslate="barfitterApp.orderOpened.home.createOrEditLabel">Create or edit a Order Opened</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.orderOpened.total" for="field_total">Total</label>
+                    <input type="number" class="form-control" name="total" id="field_total"
+                           formControlName="total"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.orderOpened.comment" for="field_comment">Comment</label>
+                    <input type="text" class="form-control" name="comment" id="field_comment"
+                           formControlName="comment"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.orderOpened.openingTime" for="field_openingTime">Opening Time</label>
+                    <div class="d-flex">
+                        <input id="field_openingTime" type="datetime-local" class="form-control" name="openingTime" formControlName="openingTime" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.orderOpened.closingTime" for="field_closingTime">Closing Time</label>
+                    <div class="d-flex">
+                        <input id="field_closingTime" type="datetime-local" class="form-control" name="closingTime" formControlName="closingTime" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.orderOpened.orderId" for="field_orderId">Order Id</label>
+                    <input type="number" class="form-control" name="orderId" id="field_orderId"
+                           formControlName="orderId"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.orderOpened.payment" for="field_payment">Payment</label>
+                    <select class="form-control" id="field_payment" name="payment" formControlName="payment">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="paymentOption.id === editForm.get('payment').value?.id ? editForm.get('payment').value : paymentOption" *ngFor="let paymentOption of payments; trackBy: trackPaymentById">{{paymentOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.orderOpened.desk" for="field_desk">Desk</label>
+                    <select class="form-control" id="field_desk" name="desk" formControlName="desk">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="deskOption.id === editForm.get('desk').value?.id ? editForm.get('desk').value : deskOption" *ngFor="let deskOption of desks; trackBy: trackDeskById">{{deskOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.orderOpened.barman" for="field_barman">Barman</label>
+                    <select class="form-control" id="field_barman" name="barman" formControlName="barman">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === editForm.get('barman').value?.id ? editForm.get('barman').value : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.orderOpened.restaurant" for="field_restaurant">Restaurant</label>
+                    <select class="form-control" id="field_restaurant" name="restaurant" formControlName="restaurant">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="restaurantOption.id === editForm.get('restaurant').value?.id ? editForm.get('restaurant').value : restaurantOption" *ngFor="let restaurantOption of restaurants; trackBy: trackRestaurantById">{{restaurantOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

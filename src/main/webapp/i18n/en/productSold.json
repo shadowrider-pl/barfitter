@@ -1,0 +1,47 @@
+{
+  "barfitterApp": {
+    "productSold": {
+      "home": {
+        "title": "Product Solds",
+        "createLabel": "Create a new Product Sold",
+        "createOrEditLabel": "Create or edit a Product Sold",
+        "search": "Search for Product Sold"
+      },
+      "created": "A new Product Sold is created with identifier {{ param }}",
+      "updated": "A Product Sold is updated with identifier {{ param }}",
+      "deleted": "A Product Sold is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Product Sold {{ id }}?"
+      },
+      "detail": {
+        "title": "Product Sold"
+      },
+      "orderedTime": "Ordered Time",
+      "acceptedTime": "Accepted Time",
+      "finishedTime": "Finished Time",
+      "takenTime": "Taken Time",
+      "quantity": "Quantity",
+      "comment": "Comment",
+      "substitute": "Substitute",
+      "substituteAuthorized": "Substitute authorized",
+      "authorize": "Authorize",
+      "purchPriceNet": "Purch Price Net",
+      "purchPriceGross": "Purch Price Gross",
+      "purchVatValue": "Purch Vat Value",
+      "sellPriceNet": "Sell Price Net",
+      "sellPriceGross": "Sell Price Gross",
+      "sellVatValue": "Sell Vat Value",
+      "difference": "Difference",
+      "deliveryDate": "Delivery Date",
+      "product": "Product",
+      "order": "Order",
+      "productSoldPurchPriceRate": "Purch Price Vat Rate",
+      "productSoldSellPriceRate": "Sell Price Vat Rate",
+      "chef": "Chef",
+      "chooseAmountOfLastWeeks": "Choose amount of last weeks for analysis",
+      "vatDue": "Vat due",
+      "sendTime": "Send Time",
+      "restaurant": "Restaurant"
+    }
+  }
+}

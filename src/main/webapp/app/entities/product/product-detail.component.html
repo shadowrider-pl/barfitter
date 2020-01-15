@@ -1,0 +1,85 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="product">
+            <h2><span jhiTranslate="barfitterApp.product.detail.title">Product</span> {{product.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="barfitterApp.product.name">Name</span></dt>
+                <dd>
+                    <span>{{product.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.product.purchPriceNet">Purch Price Net</span></dt>
+                <dd>
+                    <span>{{product.purchPriceNet}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.product.sellPriceGross">Sell Price Gross</span></dt>
+                <dd>
+                    <span>{{product.sellPriceGross}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.product.active">Active</span></dt>
+                <dd>
+                    <span>{{product.active}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.product.purchPriceGross">Purch Price Gross</span></dt>
+                <dd>
+                    <span>{{product.purchPriceGross}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.product.purchVatValue">Purch Vat Value</span></dt>
+                <dd>
+                    <span>{{product.purchVatValue}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.product.sellPriceNet">Sell Price Net</span></dt>
+                <dd>
+                    <span>{{product.sellPriceNet}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.product.sellVatValue">Sell Vat Value</span></dt>
+                <dd>
+                    <span>{{product.sellVatValue}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.product.productSellPriceRate">Product Sell Price Rate</span></dt>
+                <dd>
+                    <div *ngIf="product.productSellPriceRate">
+                        <a [routerLink]="['/vat', product.productSellPriceRate?.id, 'view']">{{product.productSellPriceRate?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.product.productPurchPriceRate">Product Purch Price Rate</span></dt>
+                <dd>
+                    <div *ngIf="product.productPurchPriceRate">
+                        <a [routerLink]="['/vat', product.productPurchPriceRate?.id, 'view']">{{product.productPurchPriceRate?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.product.productType">Product Type</span></dt>
+                <dd>
+                    <div *ngIf="product.productType">
+                        <a [routerLink]="['/product-type', product.productType?.id, 'view']">{{product.productType?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.product.category">Category</span></dt>
+                <dd>
+                    <div *ngIf="product.category">
+                        <a [routerLink]="['/category', product.category?.id, 'view']">{{product.category?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.product.restaurant">Restaurant</span></dt>
+                <dd>
+                    <div *ngIf="product.restaurant">
+                        <a [routerLink]="['/restaurant', product.restaurant?.id, 'view']">{{product.restaurant?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/product', product.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

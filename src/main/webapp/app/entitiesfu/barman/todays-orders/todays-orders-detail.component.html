@@ -1,0 +1,28 @@
+
+<div *ngIf="todaysOrders">
+    <h2><span jhiTranslate="barfitterApp.todaysOrders.detail.title">Todays Orders</span> {{todaysOrders.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="barfitterApp.todaysOrders.orderClosed">Order Closed</span></dt>
+        <dd>
+            <div *ngIf="todaysOrders.orderClosed">
+                <a [routerLink]="['/order-closed', todaysOrders.orderClosed?.id]">{{todaysOrders.orderClosed?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <fa-icon [icon]="'arrow-left'" [fixedWidth]="true"></fa-icon> &nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'todays-orders/'+ todaysOrders.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <fa-icon [icon]="'pencil-alt'" [fixedWidth]="true"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

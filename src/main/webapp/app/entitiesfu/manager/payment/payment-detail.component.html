@@ -1,0 +1,30 @@
+
+<div *ngIf="payment">
+    <h2><span jhiTranslate="barfitterApp.payment.detail.title">Payment</span></h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="barfitterApp.payment.description">Description</span></dt>
+        <dd>
+            <span>{{payment.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="barfitterApp.payment.active">Active</span></dt>
+        <dd><fa-icon [icon]="'check'" *ngIf="payment.active" style="color:green"></fa-icon>
+                	<fa-icon [icon]="'times'" *ngIf="!payment.active"  style="color:red"></fa-icon>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'm-payment/'+ payment.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

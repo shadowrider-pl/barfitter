@@ -1,0 +1,50 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myDeskLabel" jhiTranslate="barfitterApp.desk.home.createOrEditLabel">Create or edit a Desk</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barfitterApp.desk.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="desk.description" (change)="checkDescription()" required/>
+            <div [hidden]="!(editForm.controls.description?.dirty && editForm.controls.description?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.description?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+		<div *ngIf="foundExistingDesk" class="badge badge-danger">
+			<span jhiTranslate="barfitterApp.desk.deskExists">Desk already exists</span> 
+		</div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barfitterApp.desk.active" for="field_active">Active</label>
+            <input type="checkbox" class="form-control" name="active" id="field_active"
+                [(ngModel)]="desk.active" />
+        </div>
+        
+        <div class="form-group" *ngIf="desk.parentId!=0">
+            <label jhiTranslate="barfitterApp.desk.chooseRoom" for="field_parentId">Parent</label><br>
+            <span  *ngIf="!desk.id" jhiTranslate="barfitterApp.desk.newRoom" for="field_parentId">New Room</span>
+            <select class="form-control" id="field_parentDesk" name="parentDesk" 
+            [(ngModel)]="desk.parentId" (ngModelChange)="changeParentDesk($event)" >
+                <option *ngFor="let parentDesk of desks;" 
+                [ngValue]="parentDesk.id === desk?.parentId ? desk.parentId : parentDesk" 
+                >{{parentDesk.description}}</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving || foundExistingDesk" class="btn btn-primary">
+            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

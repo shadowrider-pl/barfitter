@@ -1,0 +1,64 @@
+
+<div *ngIf="category">
+	<h2>
+		<span jhiTranslate="barfitterApp.category.detail.title">Category</span>
+		{{category.id}}
+	</h2>
+	<hr>
+	<jhi-alert-error></jhi-alert-error>
+	<dl class="row-md jh-entity-details">
+		<dt>
+			<span jhiTranslate="barfitterApp.category.name">Name</span>
+		</dt>
+		<dd>
+			<span>{{category.name}}</span>
+		</dd>
+		<dt>
+			<span jhiTranslate="barfitterApp.category.productsInCategory">products
+				In Category</span>
+		</dt>
+		<dd>
+			<div class="text-center" *ngIf="noProductsFound">
+				<span jhiTranslate="barfitterApp.orderOpened.noProductsFound">no Products Found
+				In Category</span>
+			</div>
+			<div class="text-center" *ngIf="spinner">
+				<fa-icon [icon]="'sync'" [fixedWidth]="true" [spin]="true"></fa-icon>
+				<br> <br> <br> <br>
+			</div>
+			<table
+				class="jh-table table table-striped table-hover table-bordered">
+				<tbody
+					*ngIf="productsFoundInCategory !== undefined && productsFoundInCategory.length>0">
+					<tr
+						*ngFor="let product of productsFoundInCategory; 
+			let ii = index"
+						[attr.data-index]="ii">
+						<td>{{ii+1}}.</td>
+						<td>{{product.product.name}}</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</dd>
+		<dt>
+			<span jhiTranslate="barfitterApp.category.active">Active</span>
+		</dt>
+		<dd>
+			<fa-icon [icon]="'check'" *ngIf="category.active" style="color:green"></fa-icon>
+			<fa-icon [icon]="'times'" *ngIf="!category.active" style="color:red"></fa-icon>
+		</dd>
+	</dl>
+
+	<button type="submit" (click)="previousState()" class="btn btn-info">
+		<fa-icon [icon]="'arrow-left'"></fa-icon>
+		&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+	</button>
+
+	<button type="button"
+		[routerLink]="['/', { outlets: { popup: 'barfitter-category/'+ category.id + '/edit'} }]"
+		replaceUrl="true" queryParamsHandling="merge" class="btn btn-primary">
+		<fa-icon [icon]="'pencil-alt'"></fa-icon>
+		&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+	</button>
+</div>

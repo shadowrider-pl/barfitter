@@ -1,0 +1,92 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-restaurant-heading" jhiTranslate="barfitterApp.restaurant.home.createOrEditLabel">Create or edit a Restaurant</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.country" for="field_country">Country</label>
+                    <input type="text" class="form-control" name="country" id="field_country"
+                           formControlName="country"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.address" for="field_address">Address</label>
+                    <input type="text" class="form-control" name="address" id="field_address"
+                           formControlName="address"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.zipCode" for="field_zipCode">Zip Code</label>
+                    <input type="text" class="form-control" name="zipCode" id="field_zipCode"
+                           formControlName="zipCode"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.city" for="field_city">City</label>
+                    <input type="text" class="form-control" name="city" id="field_city"
+                           formControlName="city"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.vatNumber" for="field_vatNumber">Vat Number</label>
+                    <input type="text" class="form-control" name="vatNumber" id="field_vatNumber"
+                           formControlName="vatNumber"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.licenceDate" for="field_licenceDate">Licence Date</label>
+                    <div class="input-group">
+                        <input id="field_licenceDate" type="text" class="form-control" name="licenceDate" ngbDatepicker  #licenceDateDp="ngbDatepicker" formControlName="licenceDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="licenceDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.licenceType" for="field_licenceType">Licence Type</label>
+                    <input type="text" class="form-control" name="licenceType" id="field_licenceType"
+                           formControlName="licenceType"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.nextLicenceType" for="field_nextLicenceType">Next Licence Type</label>
+                    <input type="text" class="form-control" name="nextLicenceType" id="field_nextLicenceType"
+                           formControlName="nextLicenceType"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.adsLevel" for="field_adsLevel">Ads Level</label>
+                    <input type="number" class="form-control" name="adsLevel" id="field_adsLevel"
+                           formControlName="adsLevel"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.currency" for="field_currency">Currency</label>
+                    <input type="text" class="form-control" name="currency" id="field_currency"
+                           formControlName="currency"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.createdDate" for="field_createdDate">Created Date</label>
+                    <div class="input-group">
+                        <input id="field_createdDate" type="text" class="form-control" name="createdDate" ngbDatepicker  #createdDateDp="ngbDatepicker" formControlName="createdDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="createdDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

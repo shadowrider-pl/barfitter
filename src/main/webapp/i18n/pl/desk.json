@@ -1,0 +1,27 @@
+{
+  "barfitterApp": {
+    "desk": {
+      "home": {
+        "title": "Stolik",
+        "createLabel": "Dodaj stolik",
+        "createOrEditLabel": "Dodaj lub edytuj: stolik",
+        "search": "Szukaj stolika"
+      },
+      "created": "Utworzono nowy stolik.",
+      "updated": "Zmieniono stolik.",
+      "deleted": "Usunięto stolik.",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć ten stolik?"
+      },
+      "detail": {
+        "title": "Stolik"
+      },
+      "description": "Opis",
+      "active": "Aktywny",
+      "parentId": "Sala",
+      "chooseRoom": "Wybierz salę",
+      "newRoom": "Jeśli dodajesz nową salę, zostaw poniższe pole puste",
+      "deskExists": "Stolik o takiej nazwie już istnieje"
+    }
+  }
+}

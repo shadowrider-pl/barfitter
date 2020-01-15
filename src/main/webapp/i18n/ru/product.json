@@ -1,0 +1,34 @@
+{
+  "barfitterApp": {
+    "product": {
+      "home": {
+        "title": "Products",
+        "createLabel": "Создать новый Product",
+        "createOrEditLabel": "Создать или отредактировать Product",
+        "notFound": "No Products found"
+      },
+      "created": "Новый Product создан с идентификатором {{ param }}",
+      "updated": "Product обновлен с идентификатором {{ param }}",
+      "deleted": "Product удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Product {{ id }}?"
+      },
+      "detail": {
+        "title": "Product"
+      },
+      "name": "Name",
+      "purchPriceNet": "Purch Price Net",
+      "sellPriceGross": "Sell Price Gross",
+      "active": "Active",
+      "purchPriceGross": "Purch Price Gross",
+      "purchVatValue": "Purch Vat Value",
+      "sellPriceNet": "Sell Price Net",
+      "sellVatValue": "Sell Vat Value",
+      "productSellPriceRate": "Product Sell Price Rate",
+      "productPurchPriceRate": "Product Purch Price Rate",
+      "productType": "Product Type",
+      "category": "Category",
+      "restaurant": "Restaurant"
+    }
+  }
+}

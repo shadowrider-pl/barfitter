@@ -1,0 +1,26 @@
+{
+  "barfitterApp": {
+    "vat": {
+      "home": {
+        "title": "Stawki Vat",
+        "createLabel": "Dodaj stawkę Vat",
+        "createOrEditLabel": "Dodaj lub edytuj: Vat",
+        "search": "Szukaj..."
+      },
+      "created": "Utworzono nową stawkę VAT",
+      "updated": "Zmieniono stawkę VAT",
+      "deleted": "Usunięto stawkę VAT",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Vat {{ id }}?"
+      },
+      "detail": {
+        "title": "Vat"
+      },
+      "description": "Opis",
+      "rate": "Stawka",
+      "note": "Stawkę podaj jako ułamek. Np. dla stawki 23% wpisz 0,23",
+      "active": "Aktywny",
+      "restaurant": "Restauracja"
+    }
+  }
+}

@@ -1,0 +1,94 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="barfitterApp.cashup.home.title">Cashups</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-cashup" [routerLink]="['/cashup/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="barfitterApp.cashup.home.createLabel">
+            Create a new Cashup
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="cashups?.length === 0">
+        <span jhiTranslate="barfitterApp.cashup.home.notFound">No cashups found</span>
+    </div>
+    <div class="table-responsive" *ngIf="cashups?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="barmanLoginTime"><span jhiTranslate="barfitterApp.cashup.barmanLoginTime">Barman Login Time</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="cashupTime"><span jhiTranslate="barfitterApp.cashup.cashupTime">Cashup Time</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="startCash"><span jhiTranslate="barfitterApp.cashup.startCash">Start Cash</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="endCash"><span jhiTranslate="barfitterApp.cashup.endCash">End Cash</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="totalSale"><span jhiTranslate="barfitterApp.cashup.totalSale">Total Sale</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="cashTakenByManager"><span jhiTranslate="barfitterApp.cashup.cashTakenByManager">Cash Taken By Manager</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="cashTakenByBoss"><span jhiTranslate="barfitterApp.cashup.cashTakenByBoss">Cash Taken By Boss</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="comment"><span jhiTranslate="barfitterApp.cashup.comment">Comment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="cashupUser.id"><span jhiTranslate="barfitterApp.cashup.cashupUser">Cashup User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="openingUser.id"><span jhiTranslate="barfitterApp.cashup.openingUser">Opening User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="restaurant.id"><span jhiTranslate="barfitterApp.cashup.restaurant">Restaurant</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let cashup of cashups ;trackBy: trackId">
+                <td><a [routerLink]="['/cashup', cashup.id, 'view' ]">{{cashup.id}}</a></td>
+                <td>{{cashup.barmanLoginTime | date:'medium'}}</td>
+                <td>{{cashup.cashupTime | date:'medium'}}</td>
+                <td>{{cashup.startCash}}</td>
+                <td>{{cashup.endCash}}</td>
+                <td>{{cashup.totalSale}}</td>
+                <td>{{cashup.cashTakenByManager}}</td>
+                <td>{{cashup.cashTakenByBoss}}</td>
+                <td>{{cashup.comment}}</td>
+                <td>
+                    {{cashup.cashupUser?.id}}
+                </td>
+                <td>
+                    {{cashup.openingUser?.id}}
+                </td>
+                <td>
+                    <div *ngIf="cashup.restaurant">
+                        <a [routerLink]="['/restaurant', cashup.restaurant?.id, 'view' ]" >{{cashup.restaurant?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/cashup', cashup.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/cashup', cashup.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/cashup', { outlets: { popup: cashup.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="cashups?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

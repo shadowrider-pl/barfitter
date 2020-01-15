@@ -1,0 +1,42 @@
+{
+  "barfitterApp": {
+    "productSold": {
+      "home": {
+        "title": "Product Solds",
+        "createLabel": "Создать новый Product Sold",
+        "createOrEditLabel": "Создать или отредактировать Product Sold",
+        "notFound": "No Product Solds found"
+      },
+      "created": "Новый Product Sold создан с идентификатором {{ param }}",
+      "updated": "Product Sold обновлен с идентификатором {{ param }}",
+      "deleted": "Product Sold удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Product Sold {{ id }}?"
+      },
+      "detail": {
+        "title": "Product Sold"
+      },
+      "orderedTime": "Ordered Time",
+      "acceptedTime": "Accepted Time",
+      "finishedTime": "Finished Time",
+      "takenTime": "Taken Time",
+      "quantity": "Quantity",
+      "comment": "Comment",
+      "purchPriceNet": "Purch Price Net",
+      "purchPriceGross": "Purch Price Gross",
+      "purchVatValue": "Purch Vat Value",
+      "sellPriceNet": "Sell Price Net",
+      "sellPriceGross": "Sell Price Gross",
+      "sellVatValue": "Sell Vat Value",
+      "difference": "Difference",
+      "deliveryDate": "Delivery Date",
+      "sendTime": "Send Time",
+      "product": "Product",
+      "order": "Order",
+      "productSoldPurchPriceRate": "Product Sold Purch Price Rate",
+      "productSoldSellPriceRate": "Product Sold Sell Price Rate",
+      "chef": "Chef",
+      "restaurant": "Restaurant"
+    }
+  }
+}

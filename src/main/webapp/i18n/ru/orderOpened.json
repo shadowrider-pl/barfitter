@@ -1,0 +1,30 @@
+{
+  "barfitterApp": {
+    "orderOpened": {
+      "home": {
+        "title": "Order Openeds",
+        "createLabel": "Создать новый Order Opened",
+        "createOrEditLabel": "Создать или отредактировать Order Opened",
+        "notFound": "No Order Openeds found"
+      },
+      "created": "Новый Order Opened создан с идентификатором {{ param }}",
+      "updated": "Order Opened обновлен с идентификатором {{ param }}",
+      "deleted": "Order Opened удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Order Opened {{ id }}?"
+      },
+      "detail": {
+        "title": "Order Opened"
+      },
+      "total": "Total",
+      "comment": "Comment",
+      "openingTime": "Opening Time",
+      "closingTime": "Closing Time",
+      "orderId": "Order Id",
+      "payment": "Payment",
+      "desk": "Desk",
+      "barman": "Barman",
+      "restaurant": "Restaurant"
+    }
+  }
+}

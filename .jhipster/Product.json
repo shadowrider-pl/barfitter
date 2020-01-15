@@ -1,0 +1,84 @@
+{
+    "name": "Product",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "purchPriceNet",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "sellPriceGross",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "purchPriceGross",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "purchVatValue",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "sellPriceNet",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "sellVatValue",
+            "fieldType": "BigDecimal"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "productSellPriceRate",
+            "otherEntityName": "vat",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "productPurchPriceRate",
+            "otherEntityName": "vat",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "productType",
+            "otherEntityName": "productType",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "category",
+            "otherEntityName": "category",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "restaurant",
+            "otherEntityName": "restaurant",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180730071304",
+    "entityTableName": "product",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,117 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="productSold">
+            <h2><span jhiTranslate="barfitterApp.productSold.detail.title">Product Sold</span> {{productSold.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="barfitterApp.productSold.orderedTime">Ordered Time</span></dt>
+                <dd>
+                    <span>{{productSold.orderedTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productSold.acceptedTime">Accepted Time</span></dt>
+                <dd>
+                    <span>{{productSold.acceptedTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productSold.finishedTime">Finished Time</span></dt>
+                <dd>
+                    <span>{{productSold.finishedTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productSold.takenTime">Taken Time</span></dt>
+                <dd>
+                    <span>{{productSold.takenTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productSold.quantity">Quantity</span></dt>
+                <dd>
+                    <span>{{productSold.quantity}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productSold.comment">Comment</span></dt>
+                <dd>
+                    <span>{{productSold.comment}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productSold.purchPriceNet">Purch Price Net</span></dt>
+                <dd>
+                    <span>{{productSold.purchPriceNet}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productSold.purchPriceGross">Purch Price Gross</span></dt>
+                <dd>
+                    <span>{{productSold.purchPriceGross}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productSold.purchVatValue">Purch Vat Value</span></dt>
+                <dd>
+                    <span>{{productSold.purchVatValue}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productSold.sellPriceNet">Sell Price Net</span></dt>
+                <dd>
+                    <span>{{productSold.sellPriceNet}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productSold.sellPriceGross">Sell Price Gross</span></dt>
+                <dd>
+                    <span>{{productSold.sellPriceGross}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productSold.sellVatValue">Sell Vat Value</span></dt>
+                <dd>
+                    <span>{{productSold.sellVatValue}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productSold.difference">Difference</span></dt>
+                <dd>
+                    <span>{{productSold.difference}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productSold.deliveryDate">Delivery Date</span></dt>
+                <dd>
+                    <span>{{productSold.deliveryDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productSold.sendTime">Send Time</span></dt>
+                <dd>
+                    <span>{{productSold.sendTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productSold.product">Product</span></dt>
+                <dd>
+                    <div *ngIf="productSold.product">
+                        <a [routerLink]="['/product', productSold.product?.id, 'view']">{{productSold.product?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productSold.order">Order</span></dt>
+                <dd>
+                    <div *ngIf="productSold.order">
+                        <a [routerLink]="['/order-closed', productSold.order?.id, 'view']">{{productSold.order?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productSold.productSoldPurchPriceRate">Product Sold Purch Price Rate</span></dt>
+                <dd>
+                    <div *ngIf="productSold.productSoldPurchPriceRate">
+                        <a [routerLink]="['/vat', productSold.productSoldPurchPriceRate?.id, 'view']">{{productSold.productSoldPurchPriceRate?.description}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productSold.productSoldSellPriceRate">Product Sold Sell Price Rate</span></dt>
+                <dd>
+                    <div *ngIf="productSold.productSoldSellPriceRate">
+                        <a [routerLink]="['/vat', productSold.productSoldSellPriceRate?.id, 'view']">{{productSold.productSoldSellPriceRate?.description}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productSold.chef">Chef</span></dt>
+                <dd>
+                    {{productSold.chef?.login}}
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productSold.restaurant">Restaurant</span></dt>
+                <dd>
+                    <div *ngIf="productSold.restaurant">
+                        <a [routerLink]="['/restaurant', productSold.restaurant?.id, 'view']">{{productSold.restaurant?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/product-sold', productSold.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

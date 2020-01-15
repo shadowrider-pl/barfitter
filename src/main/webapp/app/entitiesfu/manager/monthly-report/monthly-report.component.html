@@ -1,0 +1,97 @@
+<div>
+    <h2 jhiTranslate="barfitterApp.cashup.home.monthlyReport">Cashups</h2>
+    <jhi-alert></jhi-alert>
+	</div>
+	<div><label><span jhiTranslate="barfitterApp.cashup.home.chooseMonth">Choose Month</span>: </label>
+		<select class="form-control" id="cashup" name="cashup"
+			[(ngModel)]="monthX" style='width: 200px'
+			(ngModelChange)="changeMonth($event)">
+			<option *ngFor="let month of months;"
+				[value]="month.id">{{month.barmanLoginTime |
+				localizedDate:"MM-yyyy"}}</option>
+		</select>
+	<br />
+	</div>        
+	 <hr>
+	
+    <div class="table-responsive" *ngIf="cashups == undefined || cashups.length == 0">
+    <span jhiTranslate="barfitterApp.cashup.nothingToView">No data</span>
+    </div>
+    <div class="table-responsive" *ngIf="cashups != undefined && cashups.length>0">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="predicate" ascending="reverse" callback="reset()">
+                    <th><span jhiTranslate="global.field.index">#</span></th>
+                    <th><span jhiTranslate="barfitterApp.cashup.barmanLoginTime">Barman Login Time</span> </th>
+                    <th><span jhiTranslate="barfitterApp.cashup.cashupTime">Cashup Time</span> </th>
+                    <th><span jhiTranslate="barfitterApp.cashup.totalSale">Total Sale</span> </th>
+                    <th><span jhiTranslate="barfitterApp.cashup.startCash">Start Cash</span> </th>
+                    <th><span jhiTranslate="barfitterApp.cashup.endCash">End Cash</span> </th>
+                    <th><span jhiTranslate="barfitterApp.cashup.cashTakenByManager">Cash Taken By Manager</span> </th>
+                    <th><span jhiTranslate="barfitterApp.cashup.cashTakenByBoss">Cash Taken By Boss</span> </th>
+                    <th><span jhiTranslate="barfitterApp.cashup.comment">Comment</span> </th>
+                    <th><span jhiTranslate="barfitterApp.cashup.openingUser">Opening User</span> </th>
+                    <th><span jhiTranslate="barfitterApp.cashup.cashupUser">Cashup User</span> </th>
+                    <th><span jhiTranslate="barfitterApp.orderClosed.payment">Payment</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cashup of cashups; let ii = index"
+								[attr.data-index]="ii"">
+                    <td>{{ii+1}}.</td>
+                    <td>{{cashup.cashup.barmanLoginTime | localizedDate:'medium'}}</td>
+                    <td>{{cashup.cashup.cashupTime | localizedDate:'medium'}}</td>
+                    <td>{{cashup.cashup.totalSale | localizedCurrency}}</td>
+                    <td [ngClass]="{'bg-danger': (ii!=0 && cashup.cashup.startCash!=cashups[ii - 1].cashup.endCash)}">{{cashup.cashup.startCash | localizedCurrency}}</td>
+                    <td [ngClass]="{'bg-danger': (ii!=(cashups.length-1) && cashup.cashup.endCash!=cashups[ii + 1].cashup.startCash) }">{{cashup.cashup.endCash | localizedCurrency}}</td>
+                    <td>{{cashup.cashup.cashTakenByManager | localizedCurrency}}</td>
+                    <td>{{cashup.cashup.cashTakenByBoss | localizedCurrency}}</td>
+                    <td>{{cashup.cashup.comment}}</td>
+                    <td *ngIf="cashup.cashup.openingUser != null">{{cashup.cashup.openingUser.login}}</td>
+                    <td *ngIf="cashup.cashup.openingUser == null"> - </td>
+                    <td *ngIf="cashup.cashup.cashupUser != null">{{cashup.cashup.cashupUser.login}}</td>
+                    <td *ngIf="cashup.cashup.cashupUser == null"> - </td>
+                    <td>
+                    	<table class="jh-table table table-striped">
+                    	<tr *ngFor="let payment of cashup.paymentsToCashup">
+                    	<td *ngIf="payment.payment.id!=1 && payment.payment.id!=2">{{payment.payment.description}}: {{payment.totalPayment | localizedCurrency}}</td>
+                    	<td *ngIf="payment.payment.id==1" 
+                    	[ngClass]="{'bg-danger': ((cashups.length-1) && cashup.cashup.endCash!=cashup.cashup.startCash+payment.totalPayment)}">
+                    	<span jhiTranslate="barfitterApp.payment.cash"></span>: {{payment.totalPayment | localizedCurrency}}</td>
+                    	<td *ngIf="payment.payment.id==2"><span jhiTranslate="barfitterApp.payment.card"></span>: {{payment.totalPayment | localizedCurrency}}</td>
+                    	</tr>
+                    	</table>
+					</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    [routerLink]="['../monthly-report', cashup.cashup.id ]"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon [icon]="'eye'"></fa-icon>
+                                <span class="hidden-xs hidden-sm" jhiTranslate="entity.action.view"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+                        
+        <table class=" table table-bordered table-striped">
+                <tr *ngFor="let sum of sums">
+                <td *ngIf="sum.payment.id!=1 && sum.payment.id!=2"><label>{{sum.payment.description}}: {{sum.amount |localizedCurrency}}</label></td>
+                <td *ngIf="sum.payment.id==1"><label><span jhiTranslate="barfitterApp.payment.cash"></span>: {{sum.amount |localizedCurrency}}</label></td>
+                <td *ngIf="sum.payment.id==2"><label><span jhiTranslate="barfitterApp.payment.card"></span>: {{sum.amount |localizedCurrency}}</label></td>
+                </tr>
+				<tr class="success">
+                <td><h4><span jhiTranslate="barfitterApp.cashup.totalSale" for="field_totalSale">Total Sale</span>: {{total | localizedCurrency}}</h4></td>
+                </tr>
+		</table>
+		
+    </div>
+</div>
+
+
+
+

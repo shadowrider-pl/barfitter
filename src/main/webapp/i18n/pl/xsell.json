@@ -1,0 +1,23 @@
+{
+  "barfitterApp": {
+    "xsell": {
+      "home": {
+        "title": "Sprzedaż krzyżowa",
+        "createLabel": "Dodaj sprzedaż krzyżową",
+        "createOrEditLabel": "Dodaj lub edytuj sprzedaż krzyżową",
+        "search": "Szukaj sprzedaży krzyżowej"
+      },
+      "created": "Utworzono nową sprzedaż krzyżową.",
+      "updated": "Sprzedaż krzyżowa uaktualniona.",
+      "deleted": "Sprzedaż krzyżowa usunięta.",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć tę Sprzedaż krzyżową?"
+      },
+      "detail": {
+        "title": "Sprzedaż krzyżowa"
+      },
+      "fromCategory": "Z kategorii",
+      "toCategory": "Do kategorii"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "barfitterApp": {
+    "desk": {
+      "home": {
+        "title": "Desks",
+        "createLabel": "Create a new Desk",
+        "createOrEditLabel": "Create or edit a Desk",
+        "search": "Search for Desk"
+      },
+      "created": "A new Desk is created.",
+      "updated": "A Desk is updated.",
+      "deleted": "A Desk is deleted.",
+      "delete": {
+        "question": "Are you sure you want to delete this Desk?"
+      },
+      "detail": {
+        "title": "Desk"
+      },
+      "description": "Description",
+      "active": "Active",
+      "parentId": "Room",
+      "chooseRoom": "Choose room",
+      "newRoom": "If you adding new room, leave field below empty",
+      "deskExists": "Desk already exists"
+    }
+  }
+}

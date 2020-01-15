@@ -1,0 +1,90 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myDefaulValusLabelLabel" jhiTranslate="global.loadDefaults">loadDefaults</h4>
+    </div> 
+    <div class="modal-body">
+        <div>
+            <span jhiTranslate="global.loadDefaultsText"></span><br>
+        </div>
+        <div><BR></div>
+        <jhi-alert-error></jhi-alert-error>
+        <div class="alert alert-success" *ngIf="showAllDone">
+            <span jhiTranslate="global.loadDefaultsDone"></span><br>
+            <button type="button" [routerLink]="['/panel']"
+                class="btn btn-primary btn-sm">
+                <fa-icon [icon]="'random'"></fa-icon> 
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.forward">forward</span>
+            </button>
+        </div>
+        <div class="table-responsive" *ngIf="!isVats">
+            <h4 class="modal-title" id="myVatLabel" jhiTranslate="home.vatRates">vatRates</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th><span jhiTranslate="barfitterApp.vat.active">Active</span> </th>
+                        <th><span jhiTranslate="barfitterApp.vat.description">Description</span></th>
+                        <th><span jhiTranslate="barfitterApp.vat.rate">Rate</span> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let vat of vats ;trackBy: trackVatId">
+                        <td><input type="checkbox" name="vat_active" id="vat_field_active"
+                                [(ngModel)]="vat.active" /></td>
+                        <td>{{vat.description}}</td>
+                        <td>{{vat.rate}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><hr>
+        <div><BR></div>
+
+        <div class="table-responsive" *ngIf="!isCategories">
+            <h4 class="modal-title" id="mycategoryLabel" jhiTranslate="barfitterApp.category.home.title">category</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th><span jhiTranslate="barfitterApp.category.active">Active</span></th>
+                        <th><span jhiTranslate="barfitterApp.category.name">Name</span></th>
+                        <th><span jhiTranslate="barfitterApp.category.parentId">Parent Id</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let category of categories ;trackBy: trackCategoryId">
+                        <td><input type="checkbox" name="category_active" id="category_field_active" (change)="checkParentCategory(category)"
+                                [(ngModel)]="category.active" /></td>
+                        <td>{{category.name}}</td>
+                        <td>{{getCategoryParentName(category.parentId)}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><hr>
+        <div><BR></div>
+
+        <div class="table-responsive" *ngIf="!isDesks">
+            <h4 class="modal-title" id="mydeskLabel" jhiTranslate="barfitterApp.desk.home.title">desk</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th><span jhiTranslate="barfitterApp.desk.active">Active</span></th>
+                        <th><span jhiTranslate="barfitterApp.desk.description">Description</span></th>
+                        <th><span jhiTranslate="barfitterApp.desk.parentId">parentId</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let desk of desks ;trackBy: trackDeskId">
+                        <td><input type="checkbox" name="desk_active" id="desk_field_active" (change)="checkParentDesk(desk)"
+                                [(ngModel)]="desk.active" /></td>
+                        <td>{{desk.description}}</td>
+                        <td>{{getDeskParentName(desk.parentId)}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-sm" [disabled]="isSaving" *ngIf="!showAllDone">
+        <fa-icon [icon]="'save'"></fa-icon> 
+        <span class="d-none d-md-inline" jhiTranslate="global.loadDefaults">Load defaults</span>
+    </button>
+    </div>
+</form>

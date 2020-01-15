@@ -1,0 +1,36 @@
+{
+  "barfitterApp": {
+    "productDelivered": {
+      "home": {
+        "title": "Product Delivereds",
+        "createLabel": "Создать новый Product Delivered",
+        "createOrEditLabel": "Создать или отредактировать Product Delivered",
+        "notFound": "No Product Delivereds found"
+      },
+      "created": "Новый Product Delivered создан с идентификатором {{ param }}",
+      "updated": "Product Delivered обновлен с идентификатором {{ param }}",
+      "deleted": "Product Delivered удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Product Delivered {{ id }}?"
+      },
+      "detail": {
+        "title": "Product Delivered"
+      },
+      "name": "Name",
+      "deliveryDate": "Delivery Date",
+      "quantity": "Quantity",
+      "purchPriceGross": "Purch Price Gross",
+      "sellPriceGross": "Sell Price Gross",
+      "purchPriceNet": "Purch Price Net",
+      "purchVatValue": "Purch Vat Value",
+      "sellPriceNet": "Sell Price Net",
+      "sellVatValue": "Sell Vat Value",
+      "product": "Product",
+      "category": "Category",
+      "productDeliveredPurchPriceRate": "Product Delivered Purch Price Rate",
+      "productDeliveredSellPriceRate": "Product Delivered Sell Price Rate",
+      "productType": "Product Type",
+      "restaurant": "Restaurant"
+    }
+  }
+}

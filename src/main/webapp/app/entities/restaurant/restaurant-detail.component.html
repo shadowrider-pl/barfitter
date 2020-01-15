@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="restaurant">
+            <h2><span jhiTranslate="barfitterApp.restaurant.detail.title">Restaurant</span> {{restaurant.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="barfitterApp.restaurant.name">Name</span></dt>
+                <dd>
+                    <span>{{restaurant.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.restaurant.country">Country</span></dt>
+                <dd>
+                    <span>{{restaurant.country}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.restaurant.address">Address</span></dt>
+                <dd>
+                    <span>{{restaurant.address}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.restaurant.zipCode">Zip Code</span></dt>
+                <dd>
+                    <span>{{restaurant.zipCode}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.restaurant.city">City</span></dt>
+                <dd>
+                    <span>{{restaurant.city}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.restaurant.vatNumber">Vat Number</span></dt>
+                <dd>
+                    <span>{{restaurant.vatNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.restaurant.licenceDate">Licence Date</span></dt>
+                <dd>
+                    <span>{{restaurant.licenceDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.restaurant.licenceType">Licence Type</span></dt>
+                <dd>
+                    <span>{{restaurant.licenceType}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.restaurant.nextLicenceType">Next Licence Type</span></dt>
+                <dd>
+                    <span>{{restaurant.nextLicenceType}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.restaurant.adsLevel">Ads Level</span></dt>
+                <dd>
+                    <span>{{restaurant.adsLevel}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.restaurant.currency">Currency</span></dt>
+                <dd>
+                    <span>{{restaurant.currency}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.restaurant.createdDate">Created Date</span></dt>
+                <dd>
+                    <span>{{restaurant.createdDate}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/restaurant', restaurant.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

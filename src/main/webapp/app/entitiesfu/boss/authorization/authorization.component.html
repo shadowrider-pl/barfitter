@@ -1,0 +1,106 @@
+<div>
+    <h2>
+        <span jhiTranslate="home.authorization">AuthorizationX</span>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive"  *ngIf="productsDeliveredWithSelect.length>0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+					<th><input type="checkbox" (click)="allNeedsClicked()" ></th>
+            <th jhiSortBy="id"><span jhiTranslate="global.field.index">#</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="product.id"><span jhiTranslate="barfitterApp.productDelivered.product">Product</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span jhiTranslate="barfitterApp.productDelivered.name">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="deliveryDate"><span jhiTranslate="barfitterApp.productDelivered.deliveryDate">Delivery Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="quantity"><span jhiTranslate="barfitterApp.productDelivered.quantity">Quantity</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="purchPriceGross"><span jhiTranslate="barfitterApp.productDelivered.purchPriceGross">Purch Price Gross</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="sellPriceGross"><span jhiTranslate="barfitterApp.productDelivered.sellPriceGross">Sell Price Gross</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="purchPriceNet"><span jhiTranslate="barfitterApp.productDelivered.purchPriceNet">Purch Price Net</span> <span class="fa fa-sort"></span></th>
+            <!-- <th jhiSortBy="purchVatValue"><span jhiTranslate="barfitterApp.productDelivered.purchVatValue">Purch Vat Value</span> <span class="fa fa-sort"></span></th> -->
+            <th jhiSortBy="sellPriceNet"><span jhiTranslate="barfitterApp.productDelivered.sellPriceNet">Sell Price Net</span> <span class="fa fa-sort"></span></th>
+            <!-- <th jhiSortBy="sellVatValue"><span jhiTranslate="barfitterApp.productDelivered.sellVatValue">Sell Vat Value</span> <span class="fa fa-sort"></span></th> -->
+            <th jhiSortBy="category.id"><span jhiTranslate="barfitterApp.productDelivered.category">Category</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="productDeliveredPurchPriceRate.id"><span jhiTranslate="barfitterApp.productDelivered.productDeliveredPurchPriceRate">Product Delivered Purch Price Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="productDeliveredSellPriceRate.id"><span jhiTranslate="barfitterApp.productDelivered.productDeliveredSellPriceRate">Product Delivered Sell Price Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="productType.id"><span jhiTranslate="barfitterApp.productDelivered.productType">Product Type</span> <span class="fa fa-sort"></span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let productDelivered of productsDeliveredWithSelect ;trackBy: trackId;
+							let i = index"
+					[attr.data-index]="i"">
+            <td><input type='checkbox' [(ngModel)]="productDelivered.selected"></td>
+                <td>{{i+1}}.</td>
+                <td>
+                    <div *ngIf="productDelivered.product">
+                        {{productDelivered.product?.name}}
+                    </div>
+                </td>
+
+                <td>{{productDelivered.name}}</td>
+                <td>{{productDelivered.deliveryDate | localizedDate:'shortDate'}}</td>
+                <td>{{productDelivered.quantity}}</td>
+                <td>{{productDelivered.purchPriceGross | localizedCurrency}}</td>
+                <td>{{productDelivered.sellPriceGross | localizedCurrency}}</td>
+                <td>{{productDelivered.purchPriceNet | localizedCurrency}}</td>
+                <!-- <td>{{productDelivered.purchVatValue}}</td> -->
+                <td>{{productDelivered.sellPriceNet | localizedCurrency}}</td>
+                <!-- <td>{{productDelivered.sellVatValue}}</td> -->
+                <td>
+                    <div *ngIf="productDelivered.category">
+                        {{productDelivered.category?.name}}
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="productDelivered.productDeliveredPurchPriceRate">
+                        {{productDelivered.productDeliveredPurchPriceRate?.description}}
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="productDelivered.productDeliveredSellPriceRate">
+                        {{productDelivered.productDeliveredSellPriceRate?.description}}
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="productDelivered.productType">
+                        {{productDelivered.productType?.description}}
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit" [disabled]="isSaving"
+                                (click)="authorizeProduct(productDelivered)"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'gavel'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="barfitterApp.authorization.home.authorize">authorize</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <BR>
+		<div class="btn-group flex-btn-group-container pull-left" *ngIf="productsDeliveredWithSelect.length>0">
+        <button (click)="authorizeProductList()" [disabled]="isSaving"
+		class="pull-left btn btn-primary" type="button" title="Delete">
+		<fa-icon [icon]="'gavel'"></fa-icon>
+		<span class="hidden-xs hidden-sm" jhiTranslate="barfitterApp.authorization.home.authorizeSelected"></span>
+		</button>
+        <button (click)="deleteSelectedItems()" [disabled]="isSaving"
+		class="pull-left btn btn-danger" type="button" title="Delete">
+		<fa-icon [icon]="'trash'"></fa-icon>
+		<span class="hidden-xs hidden-sm" jhiTranslate="barfitterApp.authorization.home.deleteSelected"></span>
+		</button>
+		</div>
+
+    <div *ngIf="productDelivereds && productDelivereds.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

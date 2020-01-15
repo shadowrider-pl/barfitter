@@ -1,0 +1,21 @@
+{
+  "barfitterApp": {
+    "dailyOrdersReport": {
+      "home": {
+        "title": "Daily Orders Reports",
+        "createLabel": "Dodaj Daily Orders Report",
+        "createOrEditLabel": "Dodaj lub edytuj: Daily Orders Report"
+      },
+      "created": "Utworzono nowy Daily Orders Report z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono Daily Orders Report z identyfikatorem {{ param }}",
+      "deleted": "Usunięto Daily Orders Report z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Daily Orders Report {{ id }}?"
+      },
+      "detail": {
+        "title": "Daily Orders Report"
+      },
+      "orderClosed": "Order Closed"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "barfitterApp": {
+    "category": {
+      "home": {
+        "title": "Categories",
+        "category": "Category",
+        "createLabel": "Create a new Category",
+        "createSubCategoryLabel": "Create a new subcategory",
+        "createOrEditLabel": "Create or edit a Category",
+        "search": "Search for Category"
+      },
+      "created": "A new Category is created.",
+      "updated": "A Category is updated.",
+      "deleted": "A Category is deleted.",
+      "delete": {
+        "question": "Are you sure you want to delete this Category?",
+        "cantDeleteCategory": "This category can not be deleted because the following products are assigned to it:"
+      },
+      "detail": {
+        "title": "Category"
+      },
+      "name": "Name",
+      "parentId": "Parent Category",
+      "active": "Active",
+      "chooseCategory": "Choose parent category. If you adding new main Category, leave field below empty",
+      "categoryExists": "Category already exists",
+      "productsInCategory": "Products in this category"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "barfitterApp": {
+    "productSold": {
+      "home": {
+        "title": "Product Solds",
+        "createLabel": "Dodaj Product Sold",
+        "createOrEditLabel": "Dodaj lub edytuj: Product Sold",
+        "search": "Szukaj Product Sold"
+      },
+      "created": "Utworzono nowy Product Sold z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono Product Sold z identyfikatorem {{ param }}",
+      "deleted": "Usunięto Product Sold z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Product Sold {{ id }}?"
+      },
+      "detail": {
+        "title": "Product Sold"
+      },
+      "deliveryDate": "Data zakupu",
+      "product": "Produkt",
+      "name": "Nazwa",
+      "purchPriceNet": "Cena zakupu netto",
+      "sellPriceGross": "Cena sprzedaży brutto",
+      "active": "Aktywny",
+      "purchPriceGross": "Cena zakupu brutto",
+      "purchVatValue": "Vat zakupu",
+      "sellPriceNet": "Cena sprzedaży netto",
+      "sellVatValue": "Vat sprzedaży",
+      "productType": "Typ Produktu",
+      "productSoldPurchPriceRate": "Stawka Vatu zakupu",
+      "productSoldSellPriceRate": "Stawka Vatu sprzedaży",
+      "chef": "Kucharz",
+
+      "orderedTime": "Czas zamówienia",
+      "acceptedTime": "Czas przyjęcia na kuchni",
+      "finishedTime": "Czas przygotowania na kuchni",
+      "takenTime": "Czas wydania",
+      "quantity": "Ilość",
+      "comment": "Komentarz",
+      "substitute": "Produkt zastępczy",
+      "substituteAuthorized": "Zautoryzowano produkt zastępczy",
+      "authorize": "Autoryzuj",
+
+      "difference": "Różnica",
+      "order": "Zamówienie",
+      "ProductSoldPurchPriceRate": "Stawka Vatu sprzedaży",
+      "ProductSoldSellPriceRate": "Stawka Vatu zakupu",
+      "Chef": "Kucharz",
+      "chooseAmountOfLastWeeks": "Wybierz liczbę ostatnich tygodni do analizy",
+      "vatDue": "Vat należny",
+      "sendTime": "Czas wysłania na kuchnię",
+      "restaurant": "Restaurant"
+    }
+  }
+}

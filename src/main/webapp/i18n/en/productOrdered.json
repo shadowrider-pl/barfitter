@@ -1,0 +1,72 @@
+{
+  "barfitterApp": {
+    "productOrdered": {
+      "home": {
+        "title": "Product Ordereds",
+        "createLabel": "Create a new Product Ordered",
+        "createOrEditLabel": "Create or edit a Product Ordered",
+        "editLabel": "Edit a Product",
+        "search": "Search for Product Ordered"
+      },
+      "created": "A new product added.",
+      "updated": "A product is updated.",
+      "deleted": "A product is deleted.",
+      "delete": {
+        "question": "Are you sure you want to delete this product?"
+      },
+      "detail": {
+        "title": "Product Ordered"
+      },
+      "orderedTime": "Ordered Time",
+      "sendTime": "Send to kichen",
+      "acceptedTime": "Accepted Time",
+      "finishedTime": "Finished Time",
+      "takenTime": "Taken Time",
+      "quantity": "Quantity",
+      "comment": "Comment",
+      "purchPriceNet": "Purch Price Net",
+      "purchPriceGross": "Purch Price Gross",
+      "purchVatValue": "Purch Vat Value",
+      "sellPriceNet": "Sell Price Net",
+      "sellPriceGross": "Sell Price Gross",
+      "sellVatValue": "Sell Vat Value",
+      "difference": "Difference",
+      "deliveryDate": "Delivery Date",
+
+      "active": "Active",
+      "productType": "Product Type",
+      "substitute": "Substitute",
+      "addSubstitute": "Add substitute",
+      "hideSubstitute": "Hide substitute",
+
+      "orderPosition": "Order Position",
+      "order": "Order",
+      "orderedProductStatus": "Ordered Product Status",
+      "productOrderedPurchPriceRate": "Product Ordered Purch Price Rate",
+      "productOrderedSellPriceRate": "Product Ordered Sell Price Rate",
+      "product": "Product",
+      "name": "Name",
+      "sendToKitchen": "Send to kitchen",
+      "refresh": "Refresh",
+      "accept": "Accept",
+      "reject": "Reject",
+      "ready": "Ready",
+      "deliver": "Deliver",
+      "chef": "Chef",
+      "sendAllToKitchen": "Send All to Kitchen",
+      "acceptAll": "Accept All",
+      "rejectAll": "Reject All",
+      "allReady": "All Ready",
+      "deliverAll": "Deliver All",
+      "chefNotFound": "Warning! No chef logged in!",
+      "barmanNotFound": "Warning! No barman logged in!",
+      "propose": "Propose",
+      "favorities": "Favorities",
+      "times": "Times",
+      "simplePrice": "Price",
+      "restaurant": "Restaurant",
+      "andMore": "and more...",
+      "productsOrderedUpdated": "Products updated."
+    }
+  }
+}

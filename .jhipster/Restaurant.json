@@ -1,0 +1,63 @@
+{
+    "name": "Restaurant",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "country",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "address",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "zipCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "city",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "vatNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "licenceDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "licenceType",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nextLicenceType",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "adsLevel",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "currency",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdDate",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20180730071321",
+    "entityTableName": "restaurant",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

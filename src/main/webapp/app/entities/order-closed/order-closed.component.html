@@ -1,0 +1,102 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="barfitterApp.orderClosed.home.title">Order Closeds</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-order-closed" [routerLink]="['/order-closed/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="barfitterApp.orderClosed.home.createLabel">
+            Create a new Order Closed
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="orderCloseds?.length === 0">
+        <span jhiTranslate="barfitterApp.orderClosed.home.notFound">No orderCloseds found</span>
+    </div>
+    <div class="table-responsive" *ngIf="orderCloseds?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="openingTime"><span jhiTranslate="barfitterApp.orderClosed.openingTime">Opening Time</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="closingTime"><span jhiTranslate="barfitterApp.orderClosed.closingTime">Closing Time</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="total"><span jhiTranslate="barfitterApp.orderClosed.total">Total</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="comment"><span jhiTranslate="barfitterApp.orderClosed.comment">Comment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="orderId"><span jhiTranslate="barfitterApp.orderClosed.orderId">Order Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="cashupDay.id"><span jhiTranslate="barfitterApp.orderClosed.cashupDay">Cashup Day</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="desk.id"><span jhiTranslate="barfitterApp.orderClosed.desk">Desk</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="payment.id"><span jhiTranslate="barfitterApp.orderClosed.payment">Payment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="barman.login"><span jhiTranslate="barfitterApp.orderClosed.barman">Barman</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="restaurant.id"><span jhiTranslate="barfitterApp.orderClosed.restaurant">Restaurant</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let orderClosed of orderCloseds ;trackBy: trackId">
+                <td><a [routerLink]="['/order-closed', orderClosed.id, 'view' ]">{{orderClosed.id}}</a></td>
+                <td>{{orderClosed.openingTime | date:'medium'}}</td>
+                <td>{{orderClosed.closingTime | date:'medium'}}</td>
+                <td>{{orderClosed.total}}</td>
+                <td>{{orderClosed.comment}}</td>
+                <td>{{orderClosed.orderId}}</td>
+                <td>
+                    <div *ngIf="orderClosed.cashupDay">
+                        <a [routerLink]="['/cashup', orderClosed.cashupDay?.id, 'view' ]" >{{orderClosed.cashupDay?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="orderClosed.desk">
+                        <a [routerLink]="['/desk', orderClosed.desk?.id, 'view' ]" >{{orderClosed.desk?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="orderClosed.payment">
+                        <a [routerLink]="['/payment', orderClosed.payment?.id, 'view' ]" >{{orderClosed.payment?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{orderClosed.barman?.login}}
+                </td>
+                <td>
+                    <div *ngIf="orderClosed.restaurant">
+                        <a [routerLink]="['/restaurant', orderClosed.restaurant?.id, 'view' ]" >{{orderClosed.restaurant?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/order-closed', orderClosed.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/order-closed', orderClosed.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/order-closed', { outlets: { popup: orderClosed.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="orderCloseds?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

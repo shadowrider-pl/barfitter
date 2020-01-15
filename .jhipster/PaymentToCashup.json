@@ -1,0 +1,32 @@
+{
+    "name": "PaymentToCashup",
+    "fields": [
+        {
+            "fieldName": "totalPayment",
+            "fieldType": "BigDecimal"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "cashup",
+            "otherEntityName": "cashup",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "payment",
+            "otherEntityName": "payment",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180730071317",
+    "entityTableName": "payment_to_cashup",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

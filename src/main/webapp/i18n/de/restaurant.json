@@ -1,0 +1,33 @@
+{
+  "barfitterApp": {
+    "restaurant": {
+      "home": {
+        "title": "Restaurants",
+        "createLabel": "Restaurant erstellen",
+        "createOrEditLabel": "Restaurant erstellen oder bearbeiten",
+        "notFound": "No Restaurants found"
+      },
+      "created": "Restaurant erstellt mit ID {{ param }}",
+      "updated": "Restaurant aktualisiert mit ID {{ param }}",
+      "deleted": "Restaurant gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Restaurant {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Restaurant"
+      },
+      "name": "Name",
+      "country": "Country",
+      "address": "Address",
+      "zipCode": "Zip Code",
+      "city": "City",
+      "vatNumber": "Vat Number",
+      "licenceDate": "Licence Date",
+      "licenceType": "Licence Type",
+      "nextLicenceType": "Next Licence Type",
+      "adsLevel": "Ads Level",
+      "currency": "Currency",
+      "createdDate": "Created Date"
+    }
+  }
+}

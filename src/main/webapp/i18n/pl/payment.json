@@ -1,0 +1,27 @@
+{
+  "barfitterApp": {
+    "payment": {
+      "home": {
+        "title": "Płatności",
+        "createLabel": "Dodaj Płatność",
+        "createOrEditLabel": "Dodaj lub edytuj: Płatności",
+        "search": "Szukaj Płatności"
+      },
+      "created": "Utworzono nową płatność.",
+      "updated": "Zmieniono płatność.",
+      "deleted": "Usunięto płatność.",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć płatność?"
+      },
+      "detail": {
+        "title": "Płatności"
+      },
+      "description": "Opis",
+      "cash": "Gotówka",
+      "changePayment": "Zmień płatność",
+      "active": "Aktywny",
+      "card": "Karta",
+      "cancelJoinedPayment": "Usuń płatność łączoną"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "barfitterApp": {
+    "paymentToCashup": {
+      "home": {
+        "title": "PaymentToCashups",
+        "createLabel": "Créer un nouveau Payment To Cashup",
+        "createOrEditLabel": "Créer ou éditer un Payment To Cashup",
+        "notFound": "Aucun Payment To Cashup trouvé"
+      },
+      "created": "Un nouveau Payment To Cashup a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Payment To Cashup avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Payment To Cashup avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Payment To Cashup {{ id }} ?"
+      },
+      "detail": {
+        "title": "Payment To Cashup"
+      },
+      "totalPayment": "Total Payment",
+      "cashup": "Cashup",
+      "payment": "Payment"
+    }
+  }
+}

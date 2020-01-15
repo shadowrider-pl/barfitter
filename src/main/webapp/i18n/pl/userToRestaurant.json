@@ -1,0 +1,23 @@
+{
+  "barfitterApp": {
+    "userToRestaurant": {
+      "home": {
+        "title": "User To Restaurants",
+        "createLabel": "Dodaj User To Restaurant",
+        "createOrEditLabel": "Dodaj lub edytuj: User To Restaurant",
+        "search": "Szukaj User To Restaurant"
+      },
+      "created": "Utworzono nowy User To Restaurant z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono User To Restaurant z identyfikatorem {{ param }}",
+      "deleted": "Usunięto User To Restaurant z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć User To Restaurant {{ id }}?"
+      },
+      "detail": {
+        "title": "User To Restaurant"
+      },
+      "restaurant": "Restaurant",
+      "user": "User"
+    }
+  }
+}

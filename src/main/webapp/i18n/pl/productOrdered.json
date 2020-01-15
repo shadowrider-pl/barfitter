@@ -1,0 +1,72 @@
+{
+  "barfitterApp": {
+    "productOrdered": {
+      "home": {
+        "title": "Produkty zamówione",
+        "createLabel": "Dodaj produkt",
+        "createOrEditLabel": "Dodaj lub edytuj produkt",
+        "editLabel": "Edytuj produkt",
+        "search": "Szukaj produktu"
+      },
+      "created": "Dodano nowy produkt.",
+      "updated": "Zmieniono produkt.",
+      "deleted": "Usunięto produkt.",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć ten produkt?"
+      },
+      "detail": {
+        "title": "Produkty zamówione"
+      },
+      "orderedTime": "Czas zamówienia",
+      "sendTime": "Czas wysłania na kuchnię",
+      "acceptedTime": "Czas przyjęcia na kuchni",
+      "finishedTime": "Czas przygotowania na kuchni",
+      "takenTime": "Czas wydania",
+      "quantity": "Ilość",
+      "comment": "Komentarz",
+      "purchPriceNet": "Cena zakupu netto",
+      "purchPriceGross": "Cena zakupu brutto",
+      "purchVatValue": "Vat zakupu",
+      "sellPriceGross": "Cena sprzedaży brutto",
+      "sellPriceNet": "Cena sprzedaży netto",
+      "sellVatValue": "Vat sprzedaży",
+      "difference": "Różnica",
+      "deliveryDate": "Data dostawy",
+
+      "active": "Aktywny",
+      "productType": "Typ Produktu",
+      "substitute": "Produkt zastępczy",
+      "addSubstitute": "Dodaj produkt zastępczy",
+      "hideSubstitute": "Ukryj produkt zastępczy",
+
+      "orderPosition": "Order Position",
+      "order": "Zamówienie",
+      "orderedProductStatus": "Status",
+      "productOrderedPurchPriceRate": "Stawka Vatu zakupu",
+      "productOrderedSellPriceRate": "Stawka Vatu sprzedaży",
+      "product": "Produkt",
+      "name": "Nazwa",
+      "sendToKitchen": "Wyślij na kuchnię",
+      "refresh": "Odśwież",
+      "accept": "Przyjmij",
+      "reject": "Odrzuć",
+      "ready": "Gotowe",
+      "deliver": "Wydaj",
+      "chef": "Kucharz",
+      "sendAllToKitchen": "Wyślij wszystko na kuchnię",
+      "rejectAll": "Odrzuć wszystko",
+      "allReady": "Wszystko gotowe",
+      "deliverAll": "Wydaj wszystko",
+      "acceptAll": "Przyjmij wszystko",
+      "chefNotFound": "Uwaga! Żaden kucharz nie jest zalogowany!",
+      "barmanNotFound": "Uwaga! Żaden barman nie jest zalogowany!",
+      "propose": "Zaproponuj",
+      "favorities": "Ulubione",
+      "times": "Czasy",
+      "simplePrice": "Cena",
+      "restaurant": "Restauracja",
+      "andMore": "i więcej...",
+      "productsOrderedUpdated": "Uaktualniono produkty."
+    }
+  }
+}

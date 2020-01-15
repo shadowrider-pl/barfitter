@@ -1,0 +1,24 @@
+{
+  "barfitterApp": {
+    "favorite": {
+      "home": {
+        "title": "Ulubione",
+        "createLabel": "Dodaj Ulubione",
+        "createOrEditLabel": "Dodaj lub edytuj: Ulubione",
+        "search": "Szukaj Favorite"
+      },
+      "created": "Utworzono nowy produkt Ulubiony",
+      "updated": "Uaktualniono Ulubiony.",
+      "deleted": "Usunięto Ulubiony",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć ten Ulubiony?"
+      },
+      "detail": {
+        "title": "Ulubione"
+      },
+      "product": "Produkt",
+      "restaurant": "Restauracja",
+      "noFavoritiesFound": "Nie znaleziono ulubionych"
+    }
+  }
+}

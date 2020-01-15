@@ -1,0 +1,45 @@
+{
+  "barfitterApp": {
+    "cashup": {
+      "home": {
+        "title": "Zamknięcie dnia",
+        "monthlyReport": "Raport miesięczny",
+        "createLabel": "Rozpocznij nowy dzień",
+        "createOrEditLabel": "Dodaj lub edytuj: Cashup",
+        "takeCash": "Zabierz gotówkę",
+        "openedOrders": "Są jeszcze otwarte zamówienia. <br>&nbsp Na pewno chcesz kontynuować?",
+        "cashError": "Na pewno? Napisz komentarz.",
+        "reportMonth": "Miesiąc",
+        "chooseMonth": "Wybierz miesiąc",
+        "chooseDay": "Wybierz datę",
+        "cashupFirst": "Zamknij najpierw poprzedni dzień!",
+        "cashup": "Zamknij kasę",
+        "lastCashup": "Kwota na zamknięciu poprzedniego dnia",
+        "search": "Search for Cashup"
+      },
+      "created": "Zarejestrowano otwarcie nowego dnia.",
+      "updated": "Zamknięcie dnia zarejestrowane.",
+      "deleted": "A Cashup is deleted with identifier {{ param }}",
+      "cashTaken": "Zabrano gotówkę",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Cashup {{ id }}?"
+      },
+      "detail": {
+        "title": "Zamknięcie dnia"
+      },
+      "barmanLoginTime": "Czas logowania barmana",
+      "cashupTime": "Czas zakończenia",
+      "startCash": "Gotówka początkowa",
+      "endCash": "Gotówka końcowa",
+      "totalSale": "Sprzedaż całkowita",
+      "cashTakenByManager": "Gotówka zabrana przez menadżera",
+      "cashTakenByBoss": "Gotówka zabrana przez szefa",
+      "comment": "Komentarz",
+      "cashupUser": "Użytkownik kończący",
+      "openingUser": "Użytkownik otwierający",
+      "confirm": "Czy na pewno? Napisz komentarz.",
+      "restaurant": "Restauracja",
+      "nothingToView": "Brak danych do wyświetlenia."
+    }
+  }
+}

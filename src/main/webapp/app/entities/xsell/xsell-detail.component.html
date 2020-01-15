@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="xsell">
+            <h2><span jhiTranslate="barfitterApp.xsell.detail.title">Xsell</span> {{xsell.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="barfitterApp.xsell.fromCategory">From Category</span></dt>
+                <dd>
+                    <div *ngIf="xsell.fromCategory">
+                        <a [routerLink]="['/category', xsell.fromCategory?.id, 'view']">{{xsell.fromCategory?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.xsell.toCategory">To Category</span></dt>
+                <dd>
+                    <div *ngIf="xsell.toCategory">
+                        <a [routerLink]="['/category', xsell.toCategory?.id, 'view']">{{xsell.toCategory?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.xsell.restaurant">Restaurant</span></dt>
+                <dd>
+                    <div *ngIf="xsell.restaurant">
+                        <a [routerLink]="['/restaurant', xsell.restaurant?.id, 'view']">{{xsell.restaurant?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/xsell', xsell.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

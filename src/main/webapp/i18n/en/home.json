@@ -1,0 +1,98 @@
+{
+  "home": {
+    "title": "Barfitter",
+    "subtitle": "This is your homepage",
+    "logged": {
+      "message": "You are logged in as user \"{{username}}\"."
+    },
+    "question": "If you have any question on JHipster:",
+    "link": {
+      "homepage": "JHipster homepage",
+      "stackoverflow": "JHipster on Stack Overflow",
+      "bugtracker": "JHipster bug tracker",
+      "chat": "JHipster public chat room",
+      "follow": "follow @java_hipster on Twitter"
+    },
+    "like": "If you like JHipster, don't forget to give us a star on",
+    "github": "GitHub",
+    "products": "Products",
+    "authorization": "Authorization",
+    "stocktaking": "Stocktaking",
+    "monthlyReport": "Monthly Reports",
+    "dailyReport": "Daily Reports",
+    "takecash": "Take cash",
+    "restaurant": "Restaurant",
+    "delivery": "Delivery",
+    "stock": "Stock",
+    "substitute": "Substitute",
+    "saleAnalysis": "Sale Analysis",
+    "favorite": "Favorite",
+    "desks": "Desks",
+    "categories": "Categories",
+    "payments": "Payments",
+    "orders": "Orders",
+    "newOrder": "New Order",
+    "fastOrder": "Fast Order",
+    "newDay": "Open new day",
+    "cashup": "Cashup",
+    "todaysOrders": "Today's Orders",
+    "dailyOrders": "Daily Orders",
+    "noOrders": "No orders",
+    "todaysSale": "Today's Sales",
+    "productsReady": "Products Ready",
+    "ordersNotReady": "Pending orders",
+    "vatRates": "VAT Rates",
+    "users": "Users",
+    "login": "Login",
+    "xsell": "Cross sell",
+    "productsForChef": "Ordered Products",
+    "layout": {
+      "about": {
+        "header": "Darmowy Program do Gastronomii, Restauracji, Baru - BARFITTER",
+        "aboutHeader": "Darmowy system sprzedażowo-magazynowy online do restauracji i barów.",
+        "col1H2": "Twój cel",
+        "col1": "Przejdź na wyższy poziom zarządzania swoją restauracją.",
+        "col2H2": "Nowy wymiar kontroli",
+        "col2": "Zapewnij sobie kontrolę nad zamówieniami, sprzedażą i magazynem z dowolnego miejsca.",
+        "col3H2": "Technologia",
+        "col3": "Wykorzystaj nowoczesne i darmowe narzędzia informatyczne w swoim biznesie."
+      },
+      "services": {
+        "header": "Korzyści",
+        "headerContent": "Przekaż swoim pracownikom dostęp do aplikacji i skończ z bonami i karteczkami z zamówieniami rozsypanymi po całej kuchni i na barze. Wszystko będą mieli w swoich telefonach lub daj im tablety. Jeśli uważasz, że na barze potrzebny jest duży terminal dotykowy – nie ma problemu – po prostu podłącz go do Internetu i otwórz przeglądarkę WWW.",
+        "c1": "System",
+        "c1Content": "Nie potrzebujesz instalować żadnych programów – wystarczy przeglądarka WWW na Twoim telefonie. Zapomnij o kopiach zapasowych i aktualizacjach. Zadbaj tylko o stabilne połączenie z Internetem.",
+        "c2": "Czas to pieniądz",
+        "c2Content": "Nie daj klientom zbyt długo czekać na zamówione posiłki. Kontroluj czasy przygotowywania dań i produktów na kuchni.",
+        "c3": "Statystyki",
+        "c3Content": "Analizuj statystyki sprzedaży. Możesz to robić w ujęciu dziennym i miesięcznym. Dodatkowo możesz przeanalizować ostatnie 1, 4 lub 6 tygodniu. Dla każdego okresu możesz przebadać określoną kategorię produktową.",
+        "c4": "Powiadomienia",
+        "c4Content": "Zapewnij automatyczną komunikację pomiędzy kelnerem, barem a kuchnią. Wysyłaj zamówienia na kuchnię jeszcze przy stoliku klienta.",
+        "c5": "Użytkownicy",
+        "c5Content": "Przypisz użytkownikom odpowiadające im role: manager, barman lub kucharz. Zapewnij im dostęp tylko do koniecznych zasobów.",
+        "c6": "Płatności",
+        "c6Content": "Dodawaj nowe formy płatności. Możesz też wykorzystać płatności łączone."
+      },
+      "funkcje": {
+        "header": "Darmowy Program do Gastronomii, Restauracji, Baru - Funkcje",
+        "headerContent": "",
+        "f1": "Rejestracja czasu pracy restauracji",
+        "f2": "Rejestracja zamówień klientów",
+        "f3": "Rejestracja czasów poszczególnych etapów wykonywania zamówionych posiłków",
+        "f4": "Kontrola gotówki",
+        "f5": "Komunikacja na linii bar – kuchnia",
+        "f6": "Dzienne i miesięczne statystyki sprzedaży",
+        "f7": "Analiza sprzedaży według kategorii",
+        "f8": "Wprowadzanie dostaw produktów gotowych ze sprawdzeniem",
+        "f9": "Dostęp online z każdego miejsca"
+      },
+      "callToAction": {
+        "header": "Zacznij już dziś",
+        "content1": "Zapoznaj się z ",
+        "manualLink": "podręcznikiem użytkownika ",
+        "content2": " i pracuj wykorzystując innowacyjne technologie.",
+        "button": "Zarejestruj swoją restaurację"
+      }
+    }
+  }
+}

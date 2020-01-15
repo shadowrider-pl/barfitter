@@ -1,0 +1,118 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="barfitterApp.productDelivered.home.title">Product Delivereds</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-product-delivered" [routerLink]="['/product-delivered/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="barfitterApp.productDelivered.home.createLabel">
+            Create a new Product Delivered
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="productDelivereds?.length === 0">
+        <span jhiTranslate="barfitterApp.productDelivered.home.notFound">No productDelivereds found</span>
+    </div>
+    <div class="table-responsive" *ngIf="productDelivereds?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="name"><span jhiTranslate="barfitterApp.productDelivered.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="deliveryDate"><span jhiTranslate="barfitterApp.productDelivered.deliveryDate">Delivery Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="quantity"><span jhiTranslate="barfitterApp.productDelivered.quantity">Quantity</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="purchPriceGross"><span jhiTranslate="barfitterApp.productDelivered.purchPriceGross">Purch Price Gross</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="sellPriceGross"><span jhiTranslate="barfitterApp.productDelivered.sellPriceGross">Sell Price Gross</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="purchPriceNet"><span jhiTranslate="barfitterApp.productDelivered.purchPriceNet">Purch Price Net</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="purchVatValue"><span jhiTranslate="barfitterApp.productDelivered.purchVatValue">Purch Vat Value</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="sellPriceNet"><span jhiTranslate="barfitterApp.productDelivered.sellPriceNet">Sell Price Net</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="sellVatValue"><span jhiTranslate="barfitterApp.productDelivered.sellVatValue">Sell Vat Value</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="product.id"><span jhiTranslate="barfitterApp.productDelivered.product">Product</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="category.id"><span jhiTranslate="barfitterApp.productDelivered.category">Category</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="productDeliveredPurchPriceRate.id"><span jhiTranslate="barfitterApp.productDelivered.productDeliveredPurchPriceRate">Product Delivered Purch Price Rate</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="productDeliveredSellPriceRate.id"><span jhiTranslate="barfitterApp.productDelivered.productDeliveredSellPriceRate">Product Delivered Sell Price Rate</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="productType.id"><span jhiTranslate="barfitterApp.productDelivered.productType">Product Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="restaurant.id"><span jhiTranslate="barfitterApp.productDelivered.restaurant">Restaurant</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let productDelivered of productDelivereds ;trackBy: trackId">
+                <td><a [routerLink]="['/product-delivered', productDelivered.id, 'view' ]">{{productDelivered.id}}</a></td>
+                <td>{{productDelivered.name}}</td>
+                <td>{{productDelivered.deliveryDate | date:'mediumDate'}}</td>
+                <td>{{productDelivered.quantity}}</td>
+                <td>{{productDelivered.purchPriceGross}}</td>
+                <td>{{productDelivered.sellPriceGross}}</td>
+                <td>{{productDelivered.purchPriceNet}}</td>
+                <td>{{productDelivered.purchVatValue}}</td>
+                <td>{{productDelivered.sellPriceNet}}</td>
+                <td>{{productDelivered.sellVatValue}}</td>
+                <td>
+                    <div *ngIf="productDelivered.product">
+                        <a [routerLink]="['/product', productDelivered.product?.id, 'view' ]" >{{productDelivered.product?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="productDelivered.category">
+                        <a [routerLink]="['/category', productDelivered.category?.id, 'view' ]" >{{productDelivered.category?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="productDelivered.productDeliveredPurchPriceRate">
+                        <a [routerLink]="['/vat', productDelivered.productDeliveredPurchPriceRate?.id, 'view' ]" >{{productDelivered.productDeliveredPurchPriceRate?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="productDelivered.productDeliveredSellPriceRate">
+                        <a [routerLink]="['/vat', productDelivered.productDeliveredSellPriceRate?.id, 'view' ]" >{{productDelivered.productDeliveredSellPriceRate?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="productDelivered.productType">
+                        <a [routerLink]="['/product-type', productDelivered.productType?.id, 'view' ]" >{{productDelivered.productType?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="productDelivered.restaurant">
+                        <a [routerLink]="['/restaurant', productDelivered.restaurant?.id, 'view' ]" >{{productDelivered.restaurant?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/product-delivered', productDelivered.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/product-delivered', productDelivered.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/product-delivered', { outlets: { popup: productDelivered.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="productDelivereds?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

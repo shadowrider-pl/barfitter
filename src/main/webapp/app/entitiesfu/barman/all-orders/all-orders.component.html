@@ -1,0 +1,45 @@
+<button type="submit" (click)="scrollUp()" class="btn btn-info"
+	id="upButton">
+	<fa-icon [icon]="'arrow-up'" [fixedWidth]="true"></fa-icon>
+</button>
+<button type="submit" (click)="scrollDown()" class="btn btn-info"
+	id="downButton">
+	<fa-icon [icon]="'arrow-down'" [fixedWidth]="true"></fa-icon>
+</button>
+<div>
+    <jhi-alert></jhi-alert>    <br/>
+	<div class="text-center" *ngIf="spinner">
+		<fa-icon [icon]="'sync'" [fixedWidth]="true" [spin]="true"></fa-icon>
+		<br>
+		<br>
+		<br>
+		<br>
+	</div>
+    <div *ngFor="let room of desksInRoom">
+    	<div *ngIf="room.count>0">
+			<button type="button" class="btn-lg btn-block btn-success "
+				[routerLink]="['../orders-in-room', room.room.id ]">
+				<fa-icon [icon]="'th-large'" [fixedWidth]="true"></fa-icon>&nbsp; {{ room.room.description
+				}} ({{room.count}})
+			</button><BR>
+    	</div>
+    </div>
+	<div>
+		<button type="button" class="btn-lg btn-block btn-info "
+			[routerLink]="['../orders' ]">
+			<fa-icon [icon]="'th-large'" [fixedWidth]="true"></fa-icon>&nbsp; <span
+				jhiTranslate="barfitterApp.orderOpened.showAllOrders"></span>
+			({{countAll}})
+		</button>
+	</div>
+<BR>
+	<button type="submit" routerLink="/panel"
+		*jhiHasAnyAuthority="'ROLE_BARMAN'" class="btn btn-outline-secondary">
+		<fa-icon [icon]="'arrow-left'" [fixedWidth]="true"></fa-icon>&nbsp;<span
+			jhiTranslate="entity.action.back"> Back</span>
+	</button>
+	<button type="button" (click)="loadAll()" class="btn btn-outline-secondary">
+		<fa-icon [icon]="'sync'" [fixedWidth]="true"></fa-icon> <span class="hidden-xs hidden-sm"
+			jhiTranslate="barfitterApp.productOrdered.refresh">Refresh</span>
+	</button>
+</div>

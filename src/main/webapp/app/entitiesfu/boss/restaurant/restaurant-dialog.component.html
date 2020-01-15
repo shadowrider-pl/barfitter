@@ -1,0 +1,93 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myRestaurantLabel" jhiTranslate="barfitterApp.restaurant.home.createOrEditLabel">Create or edit a Restaurant</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="restaurant.name" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.country" for="field_country">Country</label>
+            <select class="form-control" id="cashup" name="cashup"
+			[(ngModel)]="countryX" (ngModelChange)="changeCountry($event)" required>
+			<option *ngFor="let country of countries;"
+				[value]="country.countryCode">{{country.countryName}}</option>
+		</select>
+        </div>
+        <div class="form-group">	
+        <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.currency" for="field_currency">Currency</label>
+		<select class="form-control" id="currency" name="currency"
+			[(ngModel)]="currencyX" (ngModelChange)="changeCurrency($event)" required>
+			<option *ngFor="let country of countries;"
+				[value]="country.currency">{{country.currency}}</option>
+		</select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.address" for="field_address">Address</label>
+            <input type="text" class="form-control" name="address" id="field_address"
+                [(ngModel)]="restaurant.address" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.zipCode" for="field_zipCode">Zip Code</label>
+            <input type="text" class="form-control" name="zipCode" id="field_zipCode"
+                [(ngModel)]="restaurant.zipCode" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.city" for="field_city">City</label>
+            <input type="text" class="form-control" name="city" id="field_city"
+                [(ngModel)]="restaurant.city" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.vatNumber" for="field_vatNumber">Vat Number</label>
+            <input type="text" class="form-control" name="vatNumber" id="field_vatNumber"
+                [(ngModel)]="restaurant.vatNumber" />
+        </div>
+       <!--  <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.licenceDate" for="field_licenceDate">Licence Date</label>
+            <div class="input-group">
+                <input id="field_licenceDate" type="text" class="form-control" name="licenceDate" [(ngModel)]="restaurant.licenceDate"
+                readonly/>
+            </div>
+        </div>
+       <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.licenceType" for="field_licenceType">Licence Type</label>
+            <input type="text" class="form-control" name="licenceType" id="field_licenceType"
+                [(ngModel)]="restaurant.licenceType" />
+        </div>  
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.nextLicenceType" for="field_nextLicenceType">Next Licence Type</label>
+            <input type="text" class="form-control" name="nextLicenceType" id="field_nextLicenceType"
+                [(ngModel)]="restaurant.nextLicenceType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.adsLevel" for="field_adsLevel">Ads Level</label>
+            <input type="number" class="form-control" name="adsLevel" id="field_adsLevel"
+                [(ngModel)]="restaurant.adsLevel" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="barfitterApp.restaurant.createdDate" for="field_createdDate">Created Date</label>
+            <div class="input-group">
+                <input id="field_createdDate" type="text" class="form-control" name="createdDate" ngbDatepicker  #createdDateDp="ngbDatepicker" [(ngModel)]="restaurant.createdDate"
+                />
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="createdDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>-->
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

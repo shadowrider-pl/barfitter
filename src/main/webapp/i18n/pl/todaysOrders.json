@@ -1,0 +1,22 @@
+{
+  "barfitterApp": {
+    "todaysOrders": {
+      "home": {
+        "title": "Todays Orders",
+        "createLabel": "Dodaj Todays Orders",
+        "createOrEditLabel": "Dodaj lub edytuj: Todays Orders",
+        "search": "Szukaj Todays Orders"
+      },
+      "created": "Utworzono nowy Todays Orders z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono Todays Orders z identyfikatorem {{ param }}",
+      "deleted": "Usunięto Todays Orders z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Todays Orders {{ id }}?"
+      },
+      "detail": {
+        "title": "Todays Orders"
+      },
+      "orderClosed": "Order Closed"
+    }
+  }
+}

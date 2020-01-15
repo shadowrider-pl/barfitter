@@ -1,0 +1,164 @@
+
+<div *ngIf="orderOpened">
+	<h2>
+		<span jhiTranslate="barfitterApp.orderOpened.splitOrder">Order
+			Opened</span> {{orderOpened.orderId}}
+	</h2>
+	<hr>
+	<jhi-alert-error></jhi-alert-error>
+	<table class="jh-table table table-striped table-hover table-bordered">
+		<thead>
+			<tr>
+				<th class="align-top">
+					<dl class="row" style="margin-left: 1px">
+						<dt class="col-sm-4 text-right">
+							<span jhiTranslate="barfitterApp.orderOpened.total">Total</span>
+						</dt>
+						<dd class="col-sm-8">
+							<span>{{orderOpened.total | localizedCurrency}}</span>
+						</dd>
+						<dt class="col-sm-4 text-right" *ngIf="orderOpened.comment">
+							<span jhiTranslate="barfitterApp.orderOpened.comment">Comment</span>
+						</dt>
+						<dd class="col-sm-8" *ngIf="orderOpened.comment">
+							<span>{{orderOpened.comment}}</span>
+						</dd>
+						<dt class="col-sm-4 text-right">
+							<span jhiTranslate="barfitterApp.orderOpened.openingTime">Opening
+								Time</span>
+						</dt>
+						<dd class="col-sm-8">
+							<span>{{orderOpened.openingTime |
+								localizedDate:'shortTime'}}</span>
+						</dd>
+						<dt class="col-sm-4 text-right">
+							<span jhiTranslate="barfitterApp.orderOpened.desk">Desk</span>
+						</dt>
+						<dd class="col-sm-8">
+							<div *ngIf="orderOpened.desk">{{orderOpened.desk?.description}}
+							</div>
+						</dd>
+						<dt class="col-sm-4 text-right">
+							<span jhiTranslate="barfitterApp.orderOpened.barman">Barman</span>
+						</dt>
+						<dd class="col-sm-8">{{orderOpened.barman?.login}}</dd>
+					</dl>
+					<hr>
+					<table
+						class="jh-table table table-striped table-hover table-bordered">
+						<thead>
+							<tr>
+								<th><span jhiTranslate="global.field.index">#</span></th>
+								<th><span
+									jhiTranslate="barfitterApp.productOrdered.product">Product</span></th>
+								<th><span
+									jhiTranslate="barfitterApp.productOrdered.sellPriceGross">Price</span></th>
+								<th><span
+									jhiTranslate="barfitterApp.productOrdered.quantity">Quantity</span></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody *ngIf="orderOpened.productsToOrder.length>0">
+							<tr
+								*ngFor="let productOrdered of orderOpened.productsToOrder; 
+								let ii = index"
+								[attr.data-index]="ii">
+								<td>{{ii+1}}.</td>
+								<td>{{productOrdered.product.name}}</td>
+								<td class="text-right">{{productOrdered.sellPriceGross |
+									localizedCurrency}}</td>
+								<td>{{productOrdered.quantity}}</td>
+								<td class="text-right">
+									<div class="btn-group flex-btn-group-container">
+										<button type="button"
+											[disabled]="isSaving 
+										|| (orderOpened.productsToOrder.length < 2 && productOrdered.quantity < 2)"
+											(click)="pushToNewOrder(ii)" class="btn btn-info btn-sm">
+											<fa-icon [icon]="'hand-point-right'" [fixedWidth]="true"></fa-icon>
+										</button>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</th>
+
+
+
+				<th *ngIf="newOrderOpened != undefined" class="align-top">
+					<dl class="row" style="margin-left: 1px">
+						<dt class="col-sm-4 text-right">
+							<span jhiTranslate="barfitterApp.orderOpened.total">Total</span>
+						</dt>
+						<dd class="col-sm-8">
+							<span>{{newOrderOpened.total | localizedCurrency}}</span>
+						</dd>
+						<dt class="col-sm-4 text-right">
+							<span jhiTranslate="barfitterApp.orderOpened.openingTime">Opening
+								Time</span>
+						</dt>
+						<dd class="col-sm-8">
+							<span>{{newOrderOpened.openingTime |
+								localizedDate:'shortTime'}}</span>
+						</dd>
+						<dt class="col-sm-4 text-right" *ngIf="newOrderOpened.comment">
+							<span jhiTranslate="barfitterApp.orderOpened.comment">Comment</span>
+						</dt>
+						<dd class="col-sm-8" *ngIf="newOrderOpened.comment">
+							<span>{{newOrderOpened.comment}}</span>
+						</dd>
+						<dt class="col-sm-4 text-right">
+							<span jhiTranslate="barfitterApp.orderOpened.desk">Desk</span>
+						</dt>
+						<dd class="col-sm-8">
+							<div *ngIf="newOrderOpened.desk">{{newOrderOpened.desk?.description}}
+							</div>
+						</dd>
+						<dt class="col-sm-4 text-right">
+							<span jhiTranslate="barfitterApp.orderOpened.barman">Barman</span>
+						</dt>
+						<dd class="col-sm-8">{{newOrderOpened.barman?.login}}</dd>
+					</dl>
+					<hr>
+					<table
+						class="jh-table table table-striped table-hover table-bordered">
+						<thead>
+							<tr>
+								<th><span jhiTranslate="global.field.index">#</span></th>
+								<th><span
+									jhiTranslate="barfitterApp.productOrdered.product">Product</span></th>
+								<th><span
+									jhiTranslate="barfitterApp.productOrdered.sellPriceGross">Price</span></th>
+								<th><span
+									jhiTranslate="barfitterApp.productOrdered.quantity">Quantity</span></th>
+							</tr>
+						</thead>
+						<tbody *ngIf="newOrderOpened.productsToOrder.length>0">
+							<tr
+								*ngFor="let productOrdered of newOrderOpened.productsToOrder; 
+								let jj = index"
+								[attr.data-index]="jj">
+								<td>{{jj+1}}.</td>
+								<td>{{productOrdered.product.name}}</td>
+								<td class="text-right">{{productOrdered.sellPriceGross |
+									localizedCurrency}}</td>
+								<td>{{productOrdered.quantity}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</th>
+			</tr>
+		</thead>
+	</table>
+
+	<button type="submit" (click)="previousState()" [disabled]="isSaving"
+		class="btn btn-info">
+		<fa-icon [icon]="'arrow-left'" [fixedWidth]="true"></fa-icon>&nbsp;<span
+			jhiTranslate="entity.action.back"> Back</span>
+	</button>
+	<button type="button" *ngIf="this.newOrderOpened.total>0"
+		(click)="save()" [disabled]="isSaving" class="btn btn-success">
+		<fa-icon [icon]="'save'" [fixedWidth]="true"></fa-icon>&nbsp;<span
+			jhiTranslate="entity.action.save">Save</span>
+	</button>
+</div>

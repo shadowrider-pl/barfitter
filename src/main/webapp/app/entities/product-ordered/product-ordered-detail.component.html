@@ -1,0 +1,127 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="productOrdered">
+            <h2><span jhiTranslate="barfitterApp.productOrdered.detail.title">Product Ordered</span> {{productOrdered.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="barfitterApp.productOrdered.orderedTime">Ordered Time</span></dt>
+                <dd>
+                    <span>{{productOrdered.orderedTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOrdered.acceptedTime">Accepted Time</span></dt>
+                <dd>
+                    <span>{{productOrdered.acceptedTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOrdered.finishedTime">Finished Time</span></dt>
+                <dd>
+                    <span>{{productOrdered.finishedTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOrdered.takenTime">Taken Time</span></dt>
+                <dd>
+                    <span>{{productOrdered.takenTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOrdered.quantity">Quantity</span></dt>
+                <dd>
+                    <span>{{productOrdered.quantity}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOrdered.comment">Comment</span></dt>
+                <dd>
+                    <span>{{productOrdered.comment}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOrdered.purchPriceNet">Purch Price Net</span></dt>
+                <dd>
+                    <span>{{productOrdered.purchPriceNet}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOrdered.purchPriceGross">Purch Price Gross</span></dt>
+                <dd>
+                    <span>{{productOrdered.purchPriceGross}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOrdered.purchVatValue">Purch Vat Value</span></dt>
+                <dd>
+                    <span>{{productOrdered.purchVatValue}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOrdered.sellPriceNet">Sell Price Net</span></dt>
+                <dd>
+                    <span>{{productOrdered.sellPriceNet}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOrdered.sellPriceGross">Sell Price Gross</span></dt>
+                <dd>
+                    <span>{{productOrdered.sellPriceGross}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOrdered.sellVatValue">Sell Vat Value</span></dt>
+                <dd>
+                    <span>{{productOrdered.sellVatValue}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOrdered.difference">Difference</span></dt>
+                <dd>
+                    <span>{{productOrdered.difference}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOrdered.deliveryDate">Delivery Date</span></dt>
+                <dd>
+                    <span>{{productOrdered.deliveryDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOrdered.orderPosition">Order Position</span></dt>
+                <dd>
+                    <span>{{productOrdered.orderPosition}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOrdered.sendTime">Send Time</span></dt>
+                <dd>
+                    <span>{{productOrdered.sendTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOrdered.order">Order</span></dt>
+                <dd>
+                    <div *ngIf="productOrdered.order">
+                        <a [routerLink]="['/order-opened', productOrdered.order?.id, 'view']">{{productOrdered.order?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOrdered.orderedProductStatus">Ordered Product Status</span></dt>
+                <dd>
+                    <div *ngIf="productOrdered.orderedProductStatus">
+                        <a [routerLink]="['/ordered-product-status', productOrdered.orderedProductStatus?.id, 'view']">{{productOrdered.orderedProductStatus?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOrdered.productOrderedPurchPriceRate">Product Ordered Purch Price Rate</span></dt>
+                <dd>
+                    <div *ngIf="productOrdered.productOrderedPurchPriceRate">
+                        <a [routerLink]="['/vat', productOrdered.productOrderedPurchPriceRate?.id, 'view']">{{productOrdered.productOrderedPurchPriceRate?.description}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOrdered.productOrderedSellPriceRate">Product Ordered Sell Price Rate</span></dt>
+                <dd>
+                    <div *ngIf="productOrdered.productOrderedSellPriceRate">
+                        <a [routerLink]="['/vat', productOrdered.productOrderedSellPriceRate?.id, 'view']">{{productOrdered.productOrderedSellPriceRate?.description}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOrdered.product">Product</span></dt>
+                <dd>
+                    <div *ngIf="productOrdered.product">
+                        <a [routerLink]="['/product', productOrdered.product?.id, 'view']">{{productOrdered.product?.name}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOrdered.chef">Chef</span></dt>
+                <dd>
+                    {{productOrdered.chef?.login}}
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.productOrdered.restaurant">Restaurant</span></dt>
+                <dd>
+                    <div *ngIf="productOrdered.restaurant">
+                        <a [routerLink]="['/restaurant', productOrdered.restaurant?.id, 'view']">{{productOrdered.restaurant?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/product-ordered', productOrdered.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

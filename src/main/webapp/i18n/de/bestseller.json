@@ -1,0 +1,23 @@
+{
+  "barfitterApp": {
+    "bestseller": {
+      "home": {
+        "title": "Bestsellers",
+        "createLabel": "Bestseller erstellen",
+        "createOrEditLabel": "Bestseller erstellen oder bearbeiten",
+        "notFound": "No Bestsellers found"
+      },
+      "created": "Bestseller erstellt mit ID {{ param }}",
+      "updated": "Bestseller aktualisiert mit ID {{ param }}",
+      "deleted": "Bestseller gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Bestseller {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Bestseller"
+      },
+      "product": "Product",
+      "restaurant": "Restaurant"
+    }
+  }
+}

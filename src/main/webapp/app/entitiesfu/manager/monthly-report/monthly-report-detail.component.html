@@ -1,0 +1,71 @@
+
+<div *ngIf="cashup">
+    <h2><span jhiTranslate="barfitterApp.cashup.detail.title">Cashup</span> {{cashup.cashup.barmanLoginTime | localizedDate:'shortDate'}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="barfitterApp.cashup.openingUser">Opening User</span></dt>
+        <dd>
+            {{cashup.cashup.openingUser?.login}}
+        </dd>
+        <dt><span jhiTranslate="barfitterApp.cashup.barmanLoginTime">Barman Login Time</span></dt>
+        <dd>
+            <span>{{cashup.cashup.barmanLoginTime | localizedDate:'shortTime'}}</span>
+        </dd>
+        <dt><span jhiTranslate="barfitterApp.cashup.cashupUser">Cashup User</span></dt>
+        <dd>
+            {{cashup.cashup.cashupUser?.login}}
+        </dd>
+        <dt><span jhiTranslate="barfitterApp.cashup.cashupTime">Cashup Time</span></dt>
+        <dd>
+            <span>{{cashup.cashup.cashupTime | localizedDate:'shortTime'}}</span>
+        </dd>
+        <dt><span jhiTranslate="barfitterApp.cashup.startCash">Start Cash</span></dt>
+        <dd>
+            <span>{{cashup.cashup.startCash | localizedCurrency}}</span>
+        </dd>
+        <dt><span jhiTranslate="barfitterApp.cashup.endCash">End Cash</span></dt>
+        <dd>
+            <span>{{cashup.cashup.endCash | localizedCurrency}}</span>
+        </dd>
+        <dt><span jhiTranslate="barfitterApp.cashup.totalSale">Total Sale</span></dt>
+        <dd>
+            <span>{{cashup.cashup.totalSale | localizedCurrency}}</span>
+        </dd>
+        
+        
+        <dt><span jhiTranslate="barfitterApp.orderClosed.payment">Payment</span></dt>
+        <dd>
+            <span>
+                    	<table class="jh-table table table-striped">
+                    	<tr *ngFor="let payment of cashup.paymentsToCashup">
+                    	<td *ngIf="payment.payment.id!=1 && payment.payment.id!=2">{{payment.payment.description}}: {{payment.totalPayment | currency}}</td>
+                    	<td *ngIf="payment.payment.id==1">
+                    	<span jhiTranslate="barfitterApp.payment.cash"></span>: {{payment.totalPayment | currency}}</td>
+                    	<td *ngIf="payment.payment.id==2"><span jhiTranslate="barfitterApp.payment.card"></span>: {{payment.totalPayment | currency}}</td>
+                    	</tr>
+                    	</table>
+                    	</span>
+        </dd>
+        
+        
+        <dt *ngIf="cashup.cashup.cashTakenByManager"><span jhiTranslate="barfitterApp.cashup.cashTakenByManager">Cash Taken By Manager</span></dt>
+        <dd *ngIf="cashup.cashup.cashTakenByManager">
+            <span>{{cashup.cashup.cashTakenByManager | localizedCurrency}}</span>
+        </dd>
+        <dt *ngIf="cashup.cashup.cashTakenByBoss"><span jhiTranslate="barfitterApp.cashup.cashTakenByBoss">Cash Taken By Boss</span></dt>
+        <dd>
+            <span>{{cashup.cashup.cashTakenByBoss | localizedCurrency}}</span>
+        </dd>
+        <dt *ngIf="cashup.cashup.comment"><span jhiTranslate="barfitterApp.cashup.comment">Comment</span></dt>
+        <dd>
+            <span>{{cashup.cashup.comment}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+</div>

@@ -1,0 +1,25 @@
+{
+  "barfitterApp": {
+    "desk": {
+      "home": {
+        "title": "Desks",
+        "createLabel": "Создать новый Desk",
+        "createOrEditLabel": "Создать или отредактировать Desk",
+        "notFound": "No Desks found"
+      },
+      "created": "Новый Desk создан с идентификатором {{ param }}",
+      "updated": "Desk обновлен с идентификатором {{ param }}",
+      "deleted": "Desk удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Desk {{ id }}?"
+      },
+      "detail": {
+        "title": "Desk"
+      },
+      "description": "Description",
+      "active": "Active",
+      "parentId": "Parent Id",
+      "restaurant": "Restaurant"
+    }
+  }
+}

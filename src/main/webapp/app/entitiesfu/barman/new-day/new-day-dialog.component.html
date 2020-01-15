@@ -1,0 +1,64 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myCashupLabel" jhiTranslate="barfitterApp.cashup.home.createLabel">Create or edit a Cashup</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+	<div class="modal-body">
+		<jhi-alert-error></jhi-alert-error>
+		<div *ngIf="lastCashup !== undefined && !firstDay ">
+			<div *ngIf="lastCashup.endCash==null">
+				<label class="control-label"><span
+					jhiTranslate="barfitterApp.cashup.home.cashupFirst">Cashup
+						first</span></label>
+			</div>
+			<div class="form-group" *ngIf="lastCashup.endCash!=null">
+				<label class="control-label"><span
+					jhiTranslate="barfitterApp.cashup.home.lastCashup"></span>:
+					{{lastCashup.endCash | localizedCurrency}}</label><br> <br> <label
+					class="control-label" jhiTranslate="barfitterApp.cashup.startCash"
+					for="field_startCash">Start Cash</label> 
+					<input type="number" #myStartCash="ngModel"
+					class="form-control" name="startCash" id="field_startCash"
+					[(ngModel)]="cashup.startCash" />
+				<div
+					*ngIf="myStartCash.touched && lastCashup.endCash!=cashup.startCash"
+					class="badge badge-danger">
+					<span jhiTranslate="barfitterApp.cashup.confirm"></span></span>
+				</div>
+				<div class="form-group">
+					<label class="form-control-label"
+						jhiTranslate="barfitterApp.cashup.comment" for="field_comment">Comment</label>
+					<input type="text" class="form-control" name="comment"
+						id="field_comment" [(ngModel)]="cashup.comment" />
+				</div>
+			</div>
+
+		</div>
+
+		<div *ngIf="firstDay">
+			<div class="form-group">
+				<label class="control-label"
+					jhiTranslate="barfitterApp.cashup.startCash" for="field_startCash">Start
+					Cash</label> <input type="number" class="form-control" name="startCash"
+					id="field_startCash" [(ngModel)]="cashup.startCash" />
+			</div>
+
+			<div class="form-group">
+				<label class="control-label"
+					jhiTranslate="barfitterApp.cashup.comment" for="field_comment">Comment</label>
+				<input type="text" class="form-control" name="comment"
+					id="field_comment" [(ngModel)]="cashup.comment" />
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

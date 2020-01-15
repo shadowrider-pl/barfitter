@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="vat">
+            <h2><span jhiTranslate="barfitterApp.vat.detail.title">Vat</span> {{vat.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="barfitterApp.vat.description">Description</span></dt>
+                <dd>
+                    <span>{{vat.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.vat.rate">Rate</span></dt>
+                <dd>
+                    <span>{{vat.rate}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.vat.active">Active</span></dt>
+                <dd>
+                    <span>{{vat.active}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.vat.restaurant">Restaurant</span></dt>
+                <dd>
+                    <div *ngIf="vat.restaurant">
+                        <a [routerLink]="['/restaurant', vat.restaurant?.id, 'view']">{{vat.restaurant?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/vat', vat.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

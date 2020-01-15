@@ -1,0 +1,27 @@
+{
+    "name": "Bestseller",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "product",
+            "otherEntityName": "product",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "restaurant",
+            "otherEntityName": "restaurant",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180730071319",
+    "entityTableName": "bestseller",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

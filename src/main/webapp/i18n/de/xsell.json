@@ -1,0 +1,24 @@
+{
+  "barfitterApp": {
+    "xsell": {
+      "home": {
+        "title": "Xsells",
+        "createLabel": "Xsell erstellen",
+        "createOrEditLabel": "Xsell erstellen oder bearbeiten",
+        "notFound": "No Xsells found"
+      },
+      "created": "Xsell erstellt mit ID {{ param }}",
+      "updated": "Xsell aktualisiert mit ID {{ param }}",
+      "deleted": "Xsell gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Xsell {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Xsell"
+      },
+      "fromCategory": "From Category",
+      "toCategory": "To Category",
+      "restaurant": "Restaurant"
+    }
+  }
+}

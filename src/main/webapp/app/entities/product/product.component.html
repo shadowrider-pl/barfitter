@@ -1,0 +1,110 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="barfitterApp.product.home.title">Products</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-product" [routerLink]="['/product/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="barfitterApp.product.home.createLabel">
+            Create a new Product
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="products?.length === 0">
+        <span jhiTranslate="barfitterApp.product.home.notFound">No products found</span>
+    </div>
+    <div class="table-responsive" *ngIf="products?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="name"><span jhiTranslate="barfitterApp.product.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="purchPriceNet"><span jhiTranslate="barfitterApp.product.purchPriceNet">Purch Price Net</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="sellPriceGross"><span jhiTranslate="barfitterApp.product.sellPriceGross">Sell Price Gross</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="active"><span jhiTranslate="barfitterApp.product.active">Active</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="purchPriceGross"><span jhiTranslate="barfitterApp.product.purchPriceGross">Purch Price Gross</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="purchVatValue"><span jhiTranslate="barfitterApp.product.purchVatValue">Purch Vat Value</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="sellPriceNet"><span jhiTranslate="barfitterApp.product.sellPriceNet">Sell Price Net</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="sellVatValue"><span jhiTranslate="barfitterApp.product.sellVatValue">Sell Vat Value</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="productSellPriceRate.id"><span jhiTranslate="barfitterApp.product.productSellPriceRate">Product Sell Price Rate</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="productPurchPriceRate.id"><span jhiTranslate="barfitterApp.product.productPurchPriceRate">Product Purch Price Rate</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="productType.id"><span jhiTranslate="barfitterApp.product.productType">Product Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="category.id"><span jhiTranslate="barfitterApp.product.category">Category</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="restaurant.id"><span jhiTranslate="barfitterApp.product.restaurant">Restaurant</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let product of products ;trackBy: trackId">
+                <td><a [routerLink]="['/product', product.id, 'view' ]">{{product.id}}</a></td>
+                <td>{{product.name}}</td>
+                <td>{{product.purchPriceNet}}</td>
+                <td>{{product.sellPriceGross}}</td>
+                <td>{{product.active}}</td>
+                <td>{{product.purchPriceGross}}</td>
+                <td>{{product.purchVatValue}}</td>
+                <td>{{product.sellPriceNet}}</td>
+                <td>{{product.sellVatValue}}</td>
+                <td>
+                    <div *ngIf="product.productSellPriceRate">
+                        <a [routerLink]="['/vat', product.productSellPriceRate?.id, 'view' ]" >{{product.productSellPriceRate?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="product.productPurchPriceRate">
+                        <a [routerLink]="['/vat', product.productPurchPriceRate?.id, 'view' ]" >{{product.productPurchPriceRate?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="product.productType">
+                        <a [routerLink]="['/product-type', product.productType?.id, 'view' ]" >{{product.productType?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="product.category">
+                        <a [routerLink]="['/category', product.category?.id, 'view' ]" >{{product.category?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="product.restaurant">
+                        <a [routerLink]="['/restaurant', product.restaurant?.id, 'view' ]" >{{product.restaurant?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/product', product.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/product', product.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/product', { outlets: { popup: product.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="products?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

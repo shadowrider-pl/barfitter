@@ -1,0 +1,25 @@
+{
+  "barfitterApp": {
+    "vat": {
+      "home": {
+        "title": "Vats",
+        "createLabel": "Criar novo Vat",
+        "createOrEditLabel": "Criar ou editar Vat",
+        "notFound": "Nenhum Vat encontrado"
+      },
+      "created": "Um novo Vat foi criado com o identificador {{ param }}",
+      "updated": "Um Vat foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Vat foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Vat {{ id }}?"
+      },
+      "detail": {
+        "title": "Vat"
+      },
+      "description": "Description",
+      "rate": "Rate",
+      "active": "Active",
+      "restaurant": "Restaurant"
+    }
+  }
+}

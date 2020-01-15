@@ -1,0 +1,98 @@
+{
+  "home": {
+    "title": "Barfitter",
+    "subtitle": "To jest twoja strona domowa",
+    "logged": {
+      "message": "Jesteś zalogowany jako użytkownik \"{{username}}\"."
+    },
+    "question": "Jeśli masz jakiekolwiek pytania na temat JHipster:",
+    "link": {
+      "homepage": "Strona domowa JHipster",
+      "stackoverflow": "JHipster na Stack Overflow",
+      "bugtracker": "JHipster bug tracker",
+      "chat": "Publiczny chat room JHipster",
+      "follow": "skontaktuj się z @java_hipster na Twitterze"
+    },
+    "like": "Jeśli lubisz JHipster, nie zapomnij dać nam gwiazdki na",
+    "github": "GitHubie",
+    "products": "Produkty",
+    "authorization": "Autoryzacja",
+    "stocktaking": "Remanent",
+    "monthlyReport": "Raporty miesięczne",
+    "dailyReport": "Raporty dzienne",
+    "takecash": "Zabierz gotówkę",
+    "restaurant": "Restauracja",
+    "delivery": "Dostawa",
+    "stock": "Magazyn",
+    "substitute": "Produkty zastępcze",
+    "saleAnalysis": "Analiza sprzedaży",
+    "favorite": "Ulubione",
+    "desks": "Stoliki",
+    "categories": "Kategorie",
+    "payments": "Płatności",
+    "orders": "Zamówienia",
+    "newOrder": "Nowe zamówienie",
+    "fastOrder": "Szybkie zamówienie",
+    "newDay": "Rozpocznij nowy dzień",
+    "cashup": "Zamknij kasę",
+    "todaysOrders": "Dzisiejsze zamówienia",
+    "todaysSale": "Dzisiejsza sprzedaż",
+    "dailyOrders": "Dzienna sprzedaż",
+    "noOrders": "Brak zamówień",
+    "productsReady": "Produkty do wydania",
+    "ordersNotReady": "Zamówienia niegotowe",
+    "vatRates": "Stawki VAT",
+    "users": "Użytkownicy",
+    "login": "Zaloguj",
+    "xsell": "Sprzedaż krzyżowa",
+    "productsForChef": "Produkty zamówione",
+    "layout": {
+      "about": {
+        "header": "Darmowy Program do Gastronomii, Restauracji, Baru - BARFITTER",
+        "aboutHeader": "Barfitter to pełna aplikacja on-line stworzona do zarządzania barem i restauracją. Jest niezbędnym narzędziem dla właścicieli i menadżerów, którzy chcą mieć pełną kontrolę nad produktami, zapasami, daniami oraz procesem obsługi klienta. Pozwala ona w łatwy sposób połączyć pracę barmana i  kucharza, między którymi wymieniane są powiadomienia o etapach przygotowywania zamówień składanych przez klientów. Posiada też zintegrowany moduł magazynowy, pozwalający na bieżąco kontrolować stany magazynowe i sprawdzać luki w produktach. ",
+        "col1H2": "Twój cel",
+        "col1": "Przejdź na wyższy poziom zarządzania swoją restauracją.",
+        "col2H2": "Nowy wymiar kontroli",
+        "col2": "Zapewnij sobie kontrolę nad zamówieniami, sprzedażą i magazynem z dowolnego miejsca.",
+        "col3H2": "Technologia",
+        "col3": "Wykorzystaj nowoczesne i darmowe narzędzia informatyczne w swoim biznesie."
+      },
+      "services": {
+        "header": "Darmowy Program do Gastronomii, Restauracji, Baru - Korzyści",
+        "headerContent": "Barfitter to program do gastronomii darmowy – w najprostszym wydaniu pozwala wykorzystać już istniejącą infrastrukturę. Przekaż swoim pracownikom dostęp do aplikacji i skończ z bonami i karteczkami z zamówieniami rozsypanymi po całej kuchni i na barze. Wszystko będą mieli w swoich telefonach lub daj im tablety. Jeśli uważasz, że na barze potrzebny jest duży terminal dotykowy – nie ma problemu – po prostu podłącz go do Internetu i otwórz przeglądarkę WWW. Barfitter - program do restauracji za darmo.",
+        "c1": "System",
+        "c1Content": "Nie potrzebujesz instalować żadnych programów – wystarczy przeglądarka WWW na Twoim telefonie. Zapomnij o kopiach zapasowych i aktualizacjach. Zadbaj tylko o stabilne połączenie z Internetem.",
+        "c2": "Czas to pieniądz",
+        "c2Content": "Nie daj klientom zbyt długo czekać na zamówione posiłki. Kontroluj czasy przygotowywania dań i produktów na kuchni.",
+        "c3": "Statystyki",
+        "c3Content": "Analizuj statystyki sprzedaży. Możesz to robić w ujęciu dziennym i miesięcznym. Dodatkowo możesz przeanalizować ostatnie 1, 4 lub 6 tygodniu. Dla każdego okresu możesz przebadać określoną kategorię produktową.",
+        "c4": "Powiadomienia",
+        "c4Content": "Zapewnij automatyczną komunikację pomiędzy kelnerem, barem a kuchnią. Wysyłaj zamówienia na kuchnię jeszcze przy stoliku klienta.",
+        "c5": "Użytkownicy",
+        "c5Content": "Przypisz użytkownikom odpowiadające im role: manager, barman lub kucharz. Zapewnij im dostęp tylko do koniecznych zasobów.",
+        "c6": "Płatności",
+        "c6Content": "Dodawaj nowe formy płatności. Możesz też wykorzystać płatności łączone."
+      },
+      "funkcje": {
+        "header": "Darmowy Program do Gastronomii, Restauracji, Baru - Funkcje",
+        "headerContent": "",
+        "f1": "Rejestracja czasu pracy restauracji",
+        "f2": "Rejestracja zamówień klientów",
+        "f3": "Rejestracja czasów poszczególnych etapów wykonywania zamówionych posiłków",
+        "f4": "Kontrola gotówki",
+        "f5": "Komunikacja na linii bar – kuchnia",
+        "f6": "Dzienne i miesięczne statystyki sprzedaży",
+        "f7": "Analiza sprzedaży według kategorii",
+        "f8": "Wprowadzanie dostaw produktów gotowych ze sprawdzeniem",
+        "f9": "Dostęp online z każdego miejsca"
+      },
+      "callToAction": {
+        "header": "Zacznij już dziś",
+        "content1": "Zapoznaj się z ",
+        "manualLink": "podręcznikiem użytkownika ",
+        "content2": " i pracuj wykorzystując innowacyjne technologie.",
+        "button": "Zarejestruj swoją restaurację"
+      }
+    }
+  }
+}

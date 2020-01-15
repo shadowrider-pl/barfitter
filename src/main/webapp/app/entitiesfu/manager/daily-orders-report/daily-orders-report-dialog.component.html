@@ -1,0 +1,105 @@
+
+<div class="modal-header">
+	<h4 class="modal-title" id="mydailyOrdersReportLabel"
+		jhiTranslate="barfitterApp.orderClosed.detail.title">Todays Order</h4>
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+</div>
+<div class="modal-body">
+	<jhi-alert-error></jhi-alert-error>
+	<dl class="row">
+		<dt class="col-sm-6 text-right">
+			<span jhiTranslate="barfitterApp.orderOpened.openingTime">Opening
+				Time</span>
+		</dt>
+		<dd class="col-sm-6">
+			<span>{{dailyOrdersReport.openingTime | localizedDate:'medium'}}</span>
+		</dd>
+		<dt class="col-sm-6 text-right">
+			<span jhiTranslate="barfitterApp.orderOpened.closingTime">Closing
+				Time</span>
+		</dt>
+		<dd class="col-sm-6">
+			<span>{{dailyOrdersReport.closingTime | localizedDate:'medium'}}</span>
+		</dd>
+		<dt class="col-sm-6 text-right">
+			<span jhiTranslate="barfitterApp.orderClosed.desk">Desk</span>
+		</dt>
+		<dd class="col-sm-6" *ngIf="dailyOrdersReport.desk">{{dailyOrdersReport.desk.description}}</dd>
+		<dd class="col-sm-6" *ngIf="!dailyOrdersReport.desk"> - </dd>
+		<dt class="col-sm-6 text-right">
+			<span jhiTranslate="barfitterApp.orderClosed.total">Total</span>
+		</dt>
+		<dd class="col-sm-6">
+			<span>{{dailyOrdersReport.total | localizedCurrency}}</span>
+		</dd>
+		<dt class="col-sm-6 text-right">
+			<span jhiTranslate="barfitterApp.orderClosed.payment">Payment</span>
+		</dt>
+		<dd class="col-sm-6"> 
+			<div *ngIf="dailyOrdersReport.payment.id==1">
+				<span jhiTranslate="barfitterApp.payment.cash"></span>
+			</div>
+			<div *ngIf="dailyOrdersReport.payment.id==2">
+				<span jhiTranslate="barfitterApp.payment.card"></span>
+			</div>
+			<div *ngIf="dailyOrdersReport.payment.id!=1 && dailyOrdersReport.payment.id!=2 && dailyOrdersReport.payment.description==null">
+				{{dailyOrdersReport.payment.description}}</div>
+		</dd>
+		<dt class="col-sm-6 text-right">
+			<span jhiTranslate="barfitterApp.orderClosed.comment">comment</span>
+		</dt>
+		<dd class="col-sm-6">{{dailyOrdersReport.comment}}</dd>
+		<dt class="col-sm-6 text-right">
+			<span jhiTranslate="barfitterApp.orderClosed.cashupDay">Cashup
+				Day</span>
+		</dt>
+		<dd class="col-sm-6">{{dailyOrdersReport.cashupDay.barmanLoginTime |
+			localizedDate:'shortDate'}}</dd>
+	</dl>
+	<div class="table-responsive">
+		<table class="jh-table table table-striped table-hover">
+			<thead>
+				<tr>
+					<th><span jhiTranslate="global.field.index">#</span></th>
+					<th><span jhiTranslate="barfitterApp.productOrdered.product">Product</span></th>
+					<th><span
+						jhiTranslate="barfitterApp.productOrdered.sellPriceGross">Price</span></th>
+					<th><span jhiTranslate="barfitterApp.productOrdered.quantity">Quantity</span></th>
+					<th><span jhiTranslate="barfitterApp.productOrdered.comment">Comment</span></th>
+					<!-- <th></th> -->
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					*ngFor="let productSold of dailyOrdersReport.productsSold; 
+							let i = index"
+					[attr.data-index]="i"">
+					<td>{{i+1}}.</td>
+					<td>{{productSold.product.name}}</td>
+					<td>{{productSold.sellPriceGross | localizedCurrency}}</td>
+					<td>{{productSold.quantity}}</td>
+					<td>{{productSold.comment}}</td>
+
+					<!-- <td class="text-right">
+						<div class="btn-group flex-btn-group-container">
+							<button type="submit"
+								ui-sref="todays-orders-detail.product-detail({id:orderClosed.id, productId:productSold.id})"
+								class="btn btn-info btn-sm">
+								<span class="fa fa-eye-open"></span> <span
+									class="hidden-xs hidden-sm" jhiTranslate="entity.action.view"></span>
+							</button>
+						</div>
+					</td> -->
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-dismiss="modal"
+		(click)="clear()">
+		<fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span
+			jhiTranslate="entity.action.cancel">Cancel</span>
+	</button>
+</div>

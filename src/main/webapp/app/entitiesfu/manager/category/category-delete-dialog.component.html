@@ -1,0 +1,50 @@
+<form name="deleteForm" (ngSubmit)="confirmDelete(category.id)">
+	<div class="modal-header">
+		<h4 class="modal-title" jhiTranslate="entity.delete.title">Confirm
+			delete operation</h4>
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true" (click)="clear()">&times;</button>
+	</div>
+	<div class="modal-body">
+		<jhi-alert-error></jhi-alert-error>
+		<p *ngIf="noProductsFound"
+			jhiTranslate="barfitterApp.category.delete.question"
+			translateValues="{id: '{{category.id}}'}">Are you sure you want
+			to delete this Category?</p>
+		<p *ngIf="!noProductsFound && !spinner"
+			jhiTranslate="barfitterApp.category.delete.cantDeleteCategory"
+			translateValues="{id: '{{category.id}}'}">This category can not
+			be deleted because the following products are assigned to it:</p>
+		<div class="text-center" *ngIf="spinner">
+			<fa-icon [icon]="'sync'" [fixedWidth]="true" [spin]="true"></fa-icon>
+			<br> <br> <br> <br>
+		</div>
+		<div class="text-center" *ngIf="!noProductsFound">
+			<table
+				class="jh-table table table-striped table-hover table-bordered">
+				<tbody
+					*ngIf="productsFoundInCategory !== undefined && productsFoundInCategory.length>0">
+					<tr
+						*ngFor="let product of productsFoundInCategory; 
+			let ii = index"
+						[attr.data-index]="ii">
+						<td>{{ii+1}}.</td>
+						<td>{{product.product.name}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal"
+			(click)="clear()">
+			<fa-icon [icon]="'ban'"></fa-icon>
+			&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+		</button>
+		<button type="submit" class="btn btn-danger"
+			[disabled]="!noProductsFound">
+			<fa-icon [icon]="'times'"></fa-icon>
+			&nbsp;<span jhiTranslate="entity.action.delete">Delete</span>
+		</button>
+	</div>
+</form>

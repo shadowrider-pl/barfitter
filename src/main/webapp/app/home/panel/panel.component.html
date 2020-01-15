@@ -1,0 +1,121 @@
+<div class="row">
+    <!-- <div class="col-md-3">
+        <span class="hipster img-fluid rounded"></span>
+    </div>
+    <div class="col-md-9"> -->
+    <div class="col-md-12">
+		<jhi-alert-error></jhi-alert-error>
+    	<jhi-alert></jhi-alert>
+        <div [ngSwitch]="isAuthenticated()">
+			<button *jhiHasAnyAuthority="'ROLE_BOSS', 'ROLE_MANAGER'"
+				[routerLink]="['/', { outlets: { popup: ['take-cash'] } }]"
+				class="btn-block btn-info btn-lg">
+				<fa-icon [icon]="'key'"></fa-icon> <span
+					jhiTranslate="home.takecash">Take cash</span>
+			</button>
+			<button *ngIf="role == 'boss'"
+				[routerLink]="['../authorization' ]"
+				class="btn-block btn-primary btn-lg">
+				<fa-icon [icon]="'gavel'"></fa-icon> <span
+					jhiTranslate="home.authorization"></span>
+			</button>
+			<button *ngIf="role == 'boss'"
+				[routerLink]="['../user' ]" class="btn-block btn-success btn-lg">
+				<fa-icon [icon]="'user'"></fa-icon> <span
+					jhiTranslate="home.users">Users</span>
+			</button>
+			<button *ngIf="role == 'boss'"
+				[routerLink]="['../barfitter-vat' ]"
+				class="btn-block btn-outline-secondary btn-lg">
+				<fa-icon [icon]="'tags'"></fa-icon> <span
+					jhiTranslate="home.vatRates">Vat</span>
+			</button>
+			<button *ngIf="role == 'boss'"
+				[routerLink]="['/', { outlets: { popup: ['boss-restaurant'] } }]"
+				class="btn-block btn-outline-secondary btn-lg">
+				<fa-icon [icon]="'university'"></fa-icon>  <span
+					jhiTranslate="barfitterApp.restaurant.myRestaurant">Restaurant</span>
+			</button>
+
+			<!-- ----------------------------------------------------------------- -->
+			<button *ngIf="role == 'manager' || role == 'boss'"
+				[routerLink]="['../delivery' ]" class="btn-block btn-success btn-lg">
+				<fa-icon [icon]="'truck'"></fa-icon> <span
+					jhiTranslate="home.delivery"></span>
+			</button>
+			<button [routerLink]="['../substitutes' ]"
+				*ngIf="role == 'manager' || role == 'boss'"
+				class="btn-block btn-outline-secondary btn-lg" type="button"
+				title="Substitute">
+				<fa-icon [icon]="'comment'"></fa-icon>  <span
+					jhiTranslate="home.substitute"></span>
+			</button>
+			<button [routerLink]="['../stock']"
+				*ngIf="role == 'manager' || role == 'boss'"
+				class="btn-block btn-primary btn-lg" type="button" title="Stock">
+				<fa-icon [icon]="'list-alt'"></fa-icon>  <span
+					 jhiTranslate="home.stock"></span>
+			</button>
+			<button *ngIf="role == 'manager' || role == 'boss'"
+				[routerLink]="['../barfitter-desk' ]"
+				class="btn-block btn-info btn-lg">
+				<fa-icon [icon]="'th-large'"></fa-icon>  <span
+					 jhiTranslate="home.desks">Desks</span>
+			</button>
+			<button *ngIf="role == 'manager' || role == 'boss'"
+				[routerLink]="['../barfitter-category' ]"
+				class="btn-block btn-info btn-lg">
+				<fa-icon [icon]="'list-alt'"></fa-icon> <span class="fa fa-list-alt"></span> <span
+					 jhiTranslate="home.categories"></span>
+			</button>
+			<button *ngIf="role == 'manager' || role == 'boss'"
+				[routerLink]="['../m-payment' ]"
+				class="btn-block btn-info btn-lg">
+				<fa-icon [icon]="'dollar-sign'"></fa-icon>   <span
+					jhiTranslate="home.payments"></span>
+			</button>
+			<button *ngIf="role == 'manager' || role == 'boss'"
+				[routerLink]="['../m-xsell' ]" class="btn-block btn-success btn-lg">
+				<fa-icon [icon]="'random'"></fa-icon>  <span
+					jhiTranslate="home.xsell"></span>
+			</button>
+			<button *ngIf="role == 'manager' || role == 'boss'"
+				[routerLink]="['../m-favorites' ]" class="btn-block btn-success btn-lg">
+				<fa-icon [icon]="'heart'"></fa-icon>  <span
+					jhiTranslate="home.favorite"></span>
+			</button>
+				<button [routerLink]="['../monthly-report' ]"  *ngIf="role == 'manager' || role == 'boss'"
+					class="btn-block btn-warning btn-lg" type="button" title="Monthly Report">
+					<fa-icon [icon]="'chart-bar'"></fa-icon>  
+					<span jhiTranslate="home.monthlyReport"></span>
+				</button>
+				<button [routerLink]="['../daily-orders-report' ]"  *ngIf="role == 'manager' || role == 'boss'"
+					class="btn-block btn-warning btn-lg" type="button" title="Daily Orders Report">
+					<fa-icon [icon]="'chart-area'"></fa-icon>  
+					<span jhiTranslate="home.dailyReport"></span>
+				</button>
+				<button [routerLink]="['../sale-analysis' ]"  *ngIf="role == 'manager' || role == 'boss'"
+					class="btn-block btn-success btn-lg" type="button" title="Sale Analysis">
+					<fa-icon [icon]="'chart-line'"></fa-icon> 
+					<span jhiTranslate="home.saleAnalysis"></span>
+				</button> 
+			<hr *jhiHasAnyAuthority="'ROLE_MANAGER'">
+
+			<!-- ----------------------------------------------------------------- -->
+			<br>
+
+			
+	<div [ngSwitch]="isAuthenticated()">
+		<div class="alert alert-success" *ngSwitchCase="true">
+			<span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
+				[translateValues]="{username: account.login}"> You are logged in as user "{{account.login}}". </span>
+		</div>
+		</div>
+        </div>
+
+    </div>
+</div>
+
+
+
+

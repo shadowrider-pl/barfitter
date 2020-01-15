@@ -1,0 +1,25 @@
+{
+  "barfitterApp": {
+    "vat": {
+      "home": {
+        "title": "Vats",
+        "createLabel": "Vat erstellen",
+        "createOrEditLabel": "Vat erstellen oder bearbeiten",
+        "notFound": "No Vats found"
+      },
+      "created": "Vat erstellt mit ID {{ param }}",
+      "updated": "Vat aktualisiert mit ID {{ param }}",
+      "deleted": "Vat gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Vat {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Vat"
+      },
+      "description": "Description",
+      "rate": "Rate",
+      "active": "Active",
+      "restaurant": "Restaurant"
+    }
+  }
+}

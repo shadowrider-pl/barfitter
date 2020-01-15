@@ -1,0 +1,31 @@
+{
+  "barfitterApp": {
+    "orderClosed": {
+      "home": {
+        "title": "OrderCloseds",
+        "createLabel": "Genera un nuovo Order Closed",
+        "createOrEditLabel": "Genera o modifica un Order Closed",
+        "notFound": "No Order Closeds found"
+      },
+      "created": "&Egrave; stato generato un nuovo Order Closed con identificatore {{ param }}",
+      "updated": "&Egrave; stato aggiornato Order Closed identificato da {{ param }}",
+      "deleted": "&Egrave; stato eliminato Order Closed con identificatore {{ param }}",
+      "delete": {
+        "question": "Sei sicuro di volere eliminare Order Closed {{ id }}?"
+      },
+      "detail": {
+        "title": "Order Closed"
+      },
+      "openingTime": "Opening Time",
+      "closingTime": "Closing Time",
+      "total": "Total",
+      "comment": "Comment",
+      "orderId": "Order Id",
+      "cashupDay": "Cashup Day",
+      "desk": "Desk",
+      "payment": "Payment",
+      "barman": "Barman",
+      "restaurant": "Restaurant"
+    }
+  }
+}

@@ -1,0 +1,128 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="barfitterApp.productSold.home.title">Product Solds</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-product-sold" [routerLink]="['/product-sold/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="barfitterApp.productSold.home.createLabel">
+            Create a new Product Sold
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="productSolds?.length === 0">
+        <span jhiTranslate="barfitterApp.productSold.home.notFound">No productSolds found</span>
+    </div>
+    <div class="table-responsive" *ngIf="productSolds?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="orderedTime"><span jhiTranslate="barfitterApp.productSold.orderedTime">Ordered Time</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="acceptedTime"><span jhiTranslate="barfitterApp.productSold.acceptedTime">Accepted Time</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="finishedTime"><span jhiTranslate="barfitterApp.productSold.finishedTime">Finished Time</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="takenTime"><span jhiTranslate="barfitterApp.productSold.takenTime">Taken Time</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="quantity"><span jhiTranslate="barfitterApp.productSold.quantity">Quantity</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="comment"><span jhiTranslate="barfitterApp.productSold.comment">Comment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="purchPriceNet"><span jhiTranslate="barfitterApp.productSold.purchPriceNet">Purch Price Net</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="purchPriceGross"><span jhiTranslate="barfitterApp.productSold.purchPriceGross">Purch Price Gross</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="purchVatValue"><span jhiTranslate="barfitterApp.productSold.purchVatValue">Purch Vat Value</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="sellPriceNet"><span jhiTranslate="barfitterApp.productSold.sellPriceNet">Sell Price Net</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="sellPriceGross"><span jhiTranslate="barfitterApp.productSold.sellPriceGross">Sell Price Gross</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="sellVatValue"><span jhiTranslate="barfitterApp.productSold.sellVatValue">Sell Vat Value</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="difference"><span jhiTranslate="barfitterApp.productSold.difference">Difference</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="deliveryDate"><span jhiTranslate="barfitterApp.productSold.deliveryDate">Delivery Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="sendTime"><span jhiTranslate="barfitterApp.productSold.sendTime">Send Time</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="product.id"><span jhiTranslate="barfitterApp.productSold.product">Product</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="order.id"><span jhiTranslate="barfitterApp.productSold.order">Order</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="productSoldPurchPriceRate.description"><span jhiTranslate="barfitterApp.productSold.productSoldPurchPriceRate">Product Sold Purch Price Rate</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="productSoldSellPriceRate.description"><span jhiTranslate="barfitterApp.productSold.productSoldSellPriceRate">Product Sold Sell Price Rate</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="chef.login"><span jhiTranslate="barfitterApp.productSold.chef">Chef</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="restaurant.id"><span jhiTranslate="barfitterApp.productSold.restaurant">Restaurant</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let productSold of productSolds ;trackBy: trackId">
+                <td><a [routerLink]="['/product-sold', productSold.id, 'view' ]">{{productSold.id}}</a></td>
+                <td>{{productSold.orderedTime | date:'medium'}}</td>
+                <td>{{productSold.acceptedTime | date:'medium'}}</td>
+                <td>{{productSold.finishedTime | date:'medium'}}</td>
+                <td>{{productSold.takenTime | date:'medium'}}</td>
+                <td>{{productSold.quantity}}</td>
+                <td>{{productSold.comment}}</td>
+                <td>{{productSold.purchPriceNet}}</td>
+                <td>{{productSold.purchPriceGross}}</td>
+                <td>{{productSold.purchVatValue}}</td>
+                <td>{{productSold.sellPriceNet}}</td>
+                <td>{{productSold.sellPriceGross}}</td>
+                <td>{{productSold.sellVatValue}}</td>
+                <td>{{productSold.difference}}</td>
+                <td>{{productSold.deliveryDate | date:'mediumDate'}}</td>
+                <td>{{productSold.sendTime | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="productSold.product">
+                        <a [routerLink]="['/product', productSold.product?.id, 'view' ]" >{{productSold.product?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="productSold.order">
+                        <a [routerLink]="['/order-closed', productSold.order?.id, 'view' ]" >{{productSold.order?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="productSold.productSoldPurchPriceRate">
+                        <a [routerLink]="['/vat', productSold.productSoldPurchPriceRate?.id, 'view' ]" >{{productSold.productSoldPurchPriceRate?.description}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="productSold.productSoldSellPriceRate">
+                        <a [routerLink]="['/vat', productSold.productSoldSellPriceRate?.id, 'view' ]" >{{productSold.productSoldSellPriceRate?.description}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{productSold.chef?.login}}
+                </td>
+                <td>
+                    <div *ngIf="productSold.restaurant">
+                        <a [routerLink]="['/restaurant', productSold.restaurant?.id, 'view' ]" >{{productSold.restaurant?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/product-sold', productSold.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/product-sold', productSold.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/product-sold', { outlets: { popup: productSold.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="productSolds?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

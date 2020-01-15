@@ -1,0 +1,72 @@
+<div>
+    <h2>
+        <span jhiTranslate="barfitterApp.xsell.home.title">Xsells</span>
+        <button class="btn btn-primary float-right jh-create-entity create-xsell" [routerLink]="['/', { outlets: { popup: ['m-xsell-new'] } }]">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="barfitterApp.xsell.home.createLabel">
+            Create new Xsell
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="xsells">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="fromCategory.id"><span jhiTranslate="barfitterApp.xsell.fromCategory">From Category</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="toCategory.id"><span jhiTranslate="barfitterApp.xsell.toCategory">To Category</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let xsell of xsells ;trackBy: trackId">
+                <td>
+                    <div *ngIf="xsell.fromCategory">
+                        {{xsell.fromCategory?.name}}
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="xsell.toCategory">
+                        {{xsell.toCategory?.name}}
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../m-xsell', xsell.id ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'm-xsell/'+ xsell.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'm-xsell/'+ xsell.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="xsells && xsells.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

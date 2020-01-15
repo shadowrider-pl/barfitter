@@ -1,0 +1,26 @@
+{
+  "barfitterApp": {
+    "productsForChef": {
+      "home": {
+        "title": "Products For Chefs",
+        "createLabel": "Dodaj Products For Chef",
+        "createOrEditLabel": "Dodaj lub edytuj: Products For Chef",
+        "search": "Szukaj Products For Chef"
+      },
+      "created": "Utworzono nowy Products For Chef z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono Products For Chef z identyfikatorem {{ param }}",
+      "deleted": "Usunięto Products For Chef z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Products For Chef {{ id }}?"
+      },
+      "detail": {
+        "title": "Products For Chef"
+      },
+      "comment": "Comment",
+      "quantity": "Quantity",
+      "productOrdered": "Product Ordered",
+      "orderOpened": "Order Opened",
+      "orderedProductStatus": "Ordered Product Status"
+    }
+  }
+}

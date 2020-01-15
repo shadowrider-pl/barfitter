@@ -1,0 +1,60 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="barfitterApp.orderedProductStatus.home.title">Ordered Product Statuses</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-ordered-product-status" [routerLink]="['/ordered-product-status/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="barfitterApp.orderedProductStatus.home.createLabel">
+            Create a new Ordered Product Status
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="orderedProductStatuses?.length === 0">
+        <span jhiTranslate="barfitterApp.orderedProductStatus.home.notFound">No orderedProductStatuses found</span>
+    </div>
+    <div class="table-responsive" *ngIf="orderedProductStatuses?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="barfitterApp.orderedProductStatus.description">Description</span></th>
+            <th scope="col" ><span jhiTranslate="barfitterApp.orderedProductStatus.active">Active</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let orderedProductStatus of orderedProductStatuses ;trackBy: trackId">
+                <td><a [routerLink]="['/ordered-product-status', orderedProductStatus.id, 'view' ]">{{orderedProductStatus.id}}</a></td>
+                <td>{{orderedProductStatus.description}}</td>
+                <td>{{orderedProductStatus.active}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/ordered-product-status', orderedProductStatus.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/ordered-product-status', orderedProductStatus.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/ordered-product-status', { outlets: { popup: orderedProductStatus.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

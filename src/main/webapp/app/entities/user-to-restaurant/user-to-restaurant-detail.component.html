@@ -1,0 +1,33 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="userToRestaurant">
+            <h2><span jhiTranslate="barfitterApp.userToRestaurant.detail.title">User To Restaurant</span> {{userToRestaurant.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="barfitterApp.userToRestaurant.restaurant">Restaurant</span></dt>
+                <dd>
+                    <div *ngIf="userToRestaurant.restaurant">
+                        <a [routerLink]="['/restaurant', userToRestaurant.restaurant?.id, 'view']">{{userToRestaurant.restaurant?.name}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.userToRestaurant.user">User</span></dt>
+                <dd>
+                    {{userToRestaurant.user?.login}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/user-to-restaurant', userToRestaurant.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

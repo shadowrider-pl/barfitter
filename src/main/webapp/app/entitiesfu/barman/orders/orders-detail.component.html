@@ -1,0 +1,146 @@
+<button type="submit" (click)="scrollUp()" class="btn btn-info"
+	id="upButton">
+	<fa-icon [icon]="'arrow-up'" [fixedWidth]="true"></fa-icon>
+</button>
+<button type="submit" (click)="scrollDown()" class="btn btn-info"
+	id="downButton">
+	<fa-icon [icon]="'arrow-down'" [fixedWidth]="true"></fa-icon>
+</button>
+<div *ngIf="orderOpened">
+	<h2>
+		<span jhiTranslate="barfitterApp.orderOpened.orderId">Order
+			Opened</span> {{orderOpened.orderId}}
+	</h2>
+	<hr>
+	<jhi-alert-error></jhi-alert-error>
+	<dl class="row" style="margin-left: 1px">
+		<dt class="col-sm-4 text-right">
+			<span jhiTranslate="barfitterApp.orderOpened.total">Total</span>
+		</dt>
+		<dd class="col-sm-8">
+			<span>{{orderOpened.total | localizedCurrency}}</span>
+		</dd>
+		<dt class="col-sm-4 text-right" *ngIf="orderOpened.comment">
+			<span jhiTranslate="barfitterApp.orderOpened.comment">Comment</span>
+		</dt>
+		<dd class="col-sm-8" *ngIf="orderOpened.comment">
+			<span>{{orderOpened.comment}}</span>
+		</dd>
+		<dt class="col-sm-4 text-right">
+			<span jhiTranslate="barfitterApp.orderOpened.openingTime">Opening
+				Time</span>
+		</dt>
+		<dd class="col-sm-8">
+			<span>{{orderOpened.openingTime | localizedDate:'shortTime'}}</span>
+		</dd>
+		<dt class="col-sm-4 text-right">
+			<span jhiTranslate="barfitterApp.orderOpened.desk">Desk</span>
+		</dt>
+		<dd class="col-sm-8">
+			<div *ngIf="orderOpened.desk">{{orderOpened.desk?.description}}
+			</div>
+		</dd>
+		<dt class="col-sm-4 text-right">
+			<span jhiTranslate="barfitterApp.orderOpened.barman">Barman</span>
+		</dt>
+		<dd class="col-sm-8">{{orderOpened.barman?.login}}</dd>
+	</dl>
+
+	<button type="submit" (click)="previousState()" class="btn btn-info">
+		<fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span
+			jhiTranslate="entity.action.back"> Back</span>
+	</button>
+
+	<button type="button"
+		[routerLink]="['/', { outlets: { popup: 'orders/'+ orderOpened.id + '/edit'} }]"
+		replaceUrl="true" queryParamsHandling="merge" class="btn btn-primary">
+		<fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span
+			jhiTranslate="entity.action.edit"> Edit</span>
+	</button>
+	<hr>
+	<table class="jh-table table table-striped table-hover table-bordered">
+		<thead>
+			<tr>
+				<th><span jhiTranslate="global.field.index">#</span></th>
+				<th><span jhiTranslate="barfitterApp.productOrdered.product">Product</span></th>
+				<th><span
+					jhiTranslate="barfitterApp.productOrdered.sellPriceGross">Price</span></th>
+				<th><span jhiTranslate="barfitterApp.productOrdered.quantity">Quantity</span></th>
+				<th><span jhiTranslate="barfitterApp.productOrdered.comment">Comment</span></th>
+				<th><span
+					jhiTranslate="barfitterApp.productOrdered.orderedProductStatus">Ordered
+						Product Status</span></th>
+				<th><span
+					jhiTranslate="barfitterApp.productOrdered.orderedTime">Ordered
+						Time</span></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody *ngIf="orderOpened.productsToOrder.length>0">
+			<tr
+				*ngFor="let productOrdered of orderOpened.productsToOrder; 
+			let ii = index"
+				[attr.data-index]="ii">
+				<td>{{ii+1}}.</td>
+				<td>{{productOrdered.product.name}}</td>
+				<td class="text-right">{{productOrdered.sellPriceGross | localizedCurrency}}</td>
+				<td>{{productOrdered.quantity}}</td>
+				<td>{{productOrdered.comment}}</td>
+				<td *ngIf="productOrdered.orderedProductStatus">{{productOrdered.orderedProductStatus.description}}</td>
+				<td *ngIf="!productOrdered.orderedProductStatus">-</td>
+				<td><span
+					jhiTranslate="barfitterApp.productOrdered.orderedTime">Ordered
+						Time: </span>: {{productOrdered.orderedTime | localizedDate:'shortTime'}}
+					<div *ngIf="productOrdered.sendTime">
+						<hr>
+						<span jhiTranslate="barfitterApp.productOrdered.sendTime">Accepted
+							Time</span>: {{productOrdered.sendTime | localizedDate:'shortTime'}} - <span
+							[ngClass]="(sendingTime>30) ? 'badge badge-danger' : ''">[{{sendingTime}}']</span>
+					</div>
+					<div *ngIf="productOrdered.acceptedTime">
+						<hr>
+						<span jhiTranslate="barfitterApp.productOrdered.acceptedTime">Accepted
+							Time</span>: {{productOrdered.acceptedTime | localizedDate:'shortTime'}} - <span
+							[ngClass]="(acceptingTime>30) ? 'badge badge-danger' : ''">[{{acceptingTime}}']</span>
+					</div>
+					<div *ngIf="productOrdered.finishedTime">
+						<hr>
+						<span jhiTranslate="barfitterApp.productOrdered.finishedTime">Finished
+							Time</span>: {{productOrdered.finishedTime | localizedDate:'shortTime'}} - <span
+							[ngClass]="(finishingTime>30) ? 'badge badge-danger' : ''">[{{finishingTime}}']</span>
+					</div>
+					<div *ngIf="productOrdered.takenTime">
+						<hr>
+						<span jhiTranslate="barfitterApp.productOrdered.takenTime">Taken
+							Time</span>: {{productOrdered.takenTime | localizedDate:'shortTime'}} - <span
+							[ngClass]="(takingTime>30) ? 'badge badge-danger' : ''">[{{takingTime}}']</span>
+					</div></td>
+
+				<td class="text-right">
+					<div class="btn-group flex-btn-group-container">
+						<button type="submit"
+							[routerLink]="['product-ordered-fu', productOrdered.id ]"
+							class="btn btn-info btn-sm">
+							<fa-icon [icon]="'eye'"></fa-icon> <span
+								class="hidden-xs hidden-sm" jhiTranslate="entity.action.view"></span>
+						</button>
+						<button type="submit"
+							[routerLink]="['/', { outlets: { popup: 'product-ordered-fu/'+ productOrdered.id + '/edit'} }]"
+							class="btn btn-primary btn-sm">
+							<fa-icon [icon]="'pencil-alt'"></fa-icon> <span
+								class="hidden-xs hidden-sm" jhiTranslate="entity.action.edit"></span>
+						</button>
+						<button type="submit"
+							*ngIf="productOrdered.orderedProductStatus==null || productOrdered.orderedProductStatus.id==1 || productOrdered.orderedProductStatus.id==5 || productOrdered.orderedProductStatus.id==null"
+							[routerLink]="['/', { outlets: { popup: 'product-ordered-fu/'+ productOrdered.id + '/delete'} }]"
+									class="btn btn-danger btn-sm">
+							<fa-icon [icon]="'times'"></fa-icon> <span
+								class="hidden-xs hidden-sm" jhiTranslate="entity.action.delete"></span>
+						</button>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>

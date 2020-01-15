@@ -1,0 +1,49 @@
+{
+  "barfitterApp": {
+    "orderOpened": {
+      "home": {
+        "title": "Zamówienia otwarte",
+        "titleOnKitchen": "Zamówienia na kuchni",
+        "createLabel": "Dodaj zamówienie",
+        "createOrEditLabel": "Dodaj lub edytuj zamówienie",
+        "search": "Szukaj zamówienia"
+      },
+      "created": "Utworzono nowe zamówienie.",
+      "updated": "Zmieniono zamówienie.",
+      "deleted": "Usunięto zamówienie.",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć to zamówienie.?"
+      },
+      "detail": {
+        "title": "Zamówienia otwarte"
+      },
+      "total": "Suma",
+      "showAllOrders": "Pokaż wszystkie zamówienia",
+      "subtotal": "Podsuma",
+      "comment": "Komentarz",
+      "openingTime": "Godzina otwarcia",
+      "closingTime": "Godzina zamknięcia",
+      "orderId": "Zamówienie",
+      "payment": "Płatność",
+      "desk": "Stolik",
+      "barman": "Barman",
+      "choosePayment": "Wybierz płatność",
+      "change": "Reszta",
+      "changeDesk": "Zmień stolik",
+      "joinedPayment": "Płatność łączona",
+      "onlyReadyProducts": "Dodaj zamówienie - tylko produkty gotowe",
+      "fastOrder": "Szybkie zamówienie",
+      "noOrders": "Brak otwartych zamówień",
+      "noProductsForDeliver": "Brak produktów do wydania",
+      "cashupDone": "Kasa została już zamknięta.<br> Jeśli chcesz dodać jeszcze zamówienie,<br> po jego realizacji podlicz jeszcze raz kasę.",
+      "saveAndSendToKitchen": "Zapisz i wyślij na kuchnię",
+      "allowedQuantityExceeded": "Przekroczono dopuszczalną ilość.",
+      "restaurant": "Restauracja",
+      "joinedPaymentCreated": "Utworzono płatność łączoną.",
+      "ordersWithProductsProcessedAtKitchen": "Zamówienia z produktami na kuchni",
+      "noProductsFound": "Nie znaleziono produktów w tej kategorii.",
+      "splitOrder": "Podziel zamówienie",
+      "orderSplited": "Zamówienie podzielone"
+    }
+  }
+}

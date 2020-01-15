@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="orderOpened">
+            <h2><span jhiTranslate="barfitterApp.orderOpened.detail.title">Order Opened</span> {{orderOpened.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="barfitterApp.orderOpened.total">Total</span></dt>
+                <dd>
+                    <span>{{orderOpened.total}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.orderOpened.comment">Comment</span></dt>
+                <dd>
+                    <span>{{orderOpened.comment}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.orderOpened.openingTime">Opening Time</span></dt>
+                <dd>
+                    <span>{{orderOpened.openingTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.orderOpened.closingTime">Closing Time</span></dt>
+                <dd>
+                    <span>{{orderOpened.closingTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.orderOpened.orderId">Order Id</span></dt>
+                <dd>
+                    <span>{{orderOpened.orderId}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.orderOpened.payment">Payment</span></dt>
+                <dd>
+                    <div *ngIf="orderOpened.payment">
+                        <a [routerLink]="['/payment', orderOpened.payment?.id, 'view']">{{orderOpened.payment?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.orderOpened.desk">Desk</span></dt>
+                <dd>
+                    <div *ngIf="orderOpened.desk">
+                        <a [routerLink]="['/desk', orderOpened.desk?.id, 'view']">{{orderOpened.desk?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.orderOpened.barman">Barman</span></dt>
+                <dd>
+                    {{orderOpened.barman?.login}}
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.orderOpened.restaurant">Restaurant</span></dt>
+                <dd>
+                    <div *ngIf="orderOpened.restaurant">
+                        <a [routerLink]="['/restaurant', orderOpened.restaurant?.id, 'view']">{{orderOpened.restaurant?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/order-opened', orderOpened.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

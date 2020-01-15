@@ -1,0 +1,63 @@
+{
+    "name": "ProductOnStock",
+    "fields": [
+        {
+            "fieldName": "deliveryDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "quantity",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "purchPriceNet",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "purchPriceGross",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "purchVatValue",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "sellPriceNet",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "sellPriceGross",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "sellVatValue",
+            "fieldType": "BigDecimal"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "product",
+            "otherEntityName": "product",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "restaurant",
+            "otherEntityName": "restaurant",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180730071307",
+    "entityTableName": "product_on_stock",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

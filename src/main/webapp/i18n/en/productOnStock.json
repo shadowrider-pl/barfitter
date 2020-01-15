@@ -1,0 +1,31 @@
+{
+  "barfitterApp": {
+    "productOnStock": {
+      "home": {
+        "title": "Product On Stocks",
+        "createLabel": "Create a new Product On Stock",
+        "createOrEditLabel": "Create or edit a Product On Stock",
+        "search": "Search for Product On Stock"
+      },
+      "created": "A new Product On Stock is created with identifier {{ param }}",
+      "updated": "A Product is updated",
+      "deleted": "A Product is deleted",
+      "delete": {
+        "question": "Are you sure you want to delete Product On Stock {{ id }}?"
+      },
+      "detail": {
+        "title": "Product On Stock"
+      },
+      "deliveryDate": "Delivery Date",
+      "quantity": "Quantity",
+      "purchPriceNet": "Purch Price Net",
+      "purchPriceGross": "Purch Price Gross",
+      "purchVatValue": "Purch Vat Value",
+      "sellPriceNet": "Sell Price Net",
+      "sellPriceGross": "Sell Price Gross",
+      "sellVatValue": "Sell Vat Value",
+      "product": "Product",
+      "restaurant": "Restaurant"
+    }
+  }
+}

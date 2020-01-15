@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: barfitter-svc
+  namespace: barfitter
+spec:
+  selector:
+    app: barfitter
+  ports:
+    - protocol: TCP
+      port: 8080
+      nodePort: 31704
+  type: NodePort
+  # type: LoadBalancer

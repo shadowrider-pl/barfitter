@@ -1,0 +1,31 @@
+{
+  "barfitterApp": {
+    "productOnStock": {
+      "home": {
+        "title": "ProductOnStocks",
+        "createLabel": "Créer un nouveau Product On Stock",
+        "createOrEditLabel": "Créer ou éditer un Product On Stock",
+        "notFound": "Aucun Product On Stock trouvé"
+      },
+      "created": "Un nouveau Product On Stock a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Product On Stock avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Product On Stock avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Product On Stock {{ id }} ?"
+      },
+      "detail": {
+        "title": "Product On Stock"
+      },
+      "deliveryDate": "Delivery Date",
+      "quantity": "Quantity",
+      "purchPriceNet": "Purch Price Net",
+      "purchPriceGross": "Purch Price Gross",
+      "purchVatValue": "Purch Vat Value",
+      "sellPriceNet": "Sell Price Net",
+      "sellPriceGross": "Sell Price Gross",
+      "sellVatValue": "Sell Vat Value",
+      "product": "Product",
+      "restaurant": "Restaurant"
+    }
+  }
+}

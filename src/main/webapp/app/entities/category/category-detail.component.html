@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="category">
+            <h2><span jhiTranslate="barfitterApp.category.detail.title">Category</span> {{category.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="barfitterApp.category.name">Name</span></dt>
+                <dd>
+                    <span>{{category.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.category.parentId">Parent Id</span></dt>
+                <dd>
+                    <span>{{category.parentId}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.category.active">Active</span></dt>
+                <dd>
+                    <span>{{category.active}}</span>
+                </dd>
+                <dt><span jhiTranslate="barfitterApp.category.restaurant">Restaurant</span></dt>
+                <dd>
+                    <div *ngIf="category.restaurant">
+                        <a [routerLink]="['/restaurant', category.restaurant?.id, 'view']">{{category.restaurant?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/category', category.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

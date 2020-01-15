@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity OrderClosed.
+    -->
+    <changeSet id="20180730071314-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="cashup_day_id"
+                                 baseTableName="order_closed"
+                                 constraintName="fk_order_closed_cashup_day_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cashup"/>
+
+        <addForeignKeyConstraint baseColumnNames="desk_id"
+                                 baseTableName="order_closed"
+                                 constraintName="fk_order_closed_desk_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="desk"/>
+
+        <addForeignKeyConstraint baseColumnNames="payment_id"
+                                 baseTableName="order_closed"
+                                 constraintName="fk_order_closed_payment_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="payment"/>
+
+        <addForeignKeyConstraint baseColumnNames="barman_id"
+                                 baseTableName="order_closed"
+                                 constraintName="fk_order_closed_barman_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="restaurant_id"
+                                 baseTableName="order_closed"
+                                 constraintName="fk_order_closed_restaurant_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="restaurant"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,113 @@
+<button type="submit" (click)="scrollUp()" class="btn btn-info"
+	id="upButton">
+	<fa-icon [icon]="'arrow-up'" [fixedWidth]="true"></fa-icon>
+</button>
+<button type="submit" (click)="scrollDown()" class="btn btn-info"
+	id="downButton">
+	<fa-icon [icon]="'arrow-down'" [fixedWidth]="true"></fa-icon>
+</button>
+<div [ngSwitch]="isAuthenticated()" *jhiHasAnyAuthority="'ROLE_BARMAN'">
+	<div *ngIf="orderOpened== undefined || !orderOpened.desk">
+		<div class="text-center" *ngIf="deskSpinner">
+			<fa-icon [icon]="'sync'" [fixedWidth]="true" [spin]="true"></fa-icon> <br> <br>
+			<br> <br>
+		</div>
+		<jhi-alert-error></jhi-alert-error>
+		<jhi-alert></jhi-alert>
+		<div class="row" *ngIf="desksWithStatus != undefined">
+			<div *ngIf="!showChooseDeskButtonX"
+				class="col-sm-6 col-md-4 col-lg-2 py-2">
+				<div [routerLink]="['../fast-order']"
+					class="card card-body h-100 d-flex justify-content-center align-items-center text-white bg-info">
+					<h5 class="card-title text-center d-flex">
+						<span jhiTranslate="home.fastOrder"></span>
+					</h5>
+				</div>
+			</div>
+			<div
+				*ngFor="let desk of desksWithStatus | orderBy : 'description'"
+				class="col-sm-6 col-md-4 col-lg-2 py-2">
+				<div *ngIf="desk.status==0"
+					[routerLink]="desk.hasSubDesk ? [] : ['../new-order', desk.id]"
+					class="card card-body h-100 d-flex justify-content-center align-items-center text-white bg-success"
+					(click)="findSubDesks({id:desk.id, description:desk.description}); showChooseDeskButton(desk.parentId);">
+					<h5 class="card-title text-center d-flex">{{desk.description}}</h5>
+				</div>
+				<div *ngIf="desk.status==1"
+					[routerLink]="desk.hasSubDesk ? [] : ['../orders-in-room', desk.id]"
+					class="card card-body h-100 d-flex justify-content-center align-items-center text-white bg-warning"
+					(click)="findSubDesks({id:desk.id, description:desk.description}); showChooseDeskButton(desk.parentId);">
+					<h5 class="card-title text-center d-flex">{{desk.description}}</h5>
+				</div>
+				<div *ngIf="desk.status==4"
+					[routerLink]="desk.hasSubDesk ? [] : ['../orders-in-room', desk.id]"
+					class="card card-body h-100 d-flex justify-content-center align-items-center text-white bg-danger"
+					(click)="findSubDesks({id:desk.id, description:desk.description}); showChooseDeskButton(desk.parentId);">
+					<h5 class="card-title text-center d-flex">{{desk.description}}</h5>
+				</div>
+				<div *ngIf="desk.status==5"
+					[routerLink]="desk.hasSubDesk ? [] : ['../orders-in-room', desk.id]"
+					class="card card-body h-100 d-flex justify-content-center align-items-center text-white bg-dark"
+					(click)="findSubDesks({id:desk.id, description:desk.description}); showChooseDeskButton(desk.parentId);">
+					<h5 class="card-title text-center d-flex">{{desk.description}}</h5>
+				</div>
+			</div>
+		</div>
+		<div class="btn-group">
+		<div *ngIf="!showChooseDeskButtonX">
+			<button type="button" (click)="getDesks()" class="btn btn-outline-secondary">
+				<fa-icon [icon]="'sync'" [fixedWidth]="true"></fa-icon> <span
+					jhiTranslate="barfitterApp.productOrdered.refresh">Refresh</span>
+			</button></div>
+			<div *ngIf="showChooseDeskButtonX">
+				<button class="pull-left btn btn-outline-secondary" type="button"
+					title="Reset" (click)="resetDesk()">
+					<fa-icon [icon]="'times'" [fixedWidth]="true"></fa-icon>&nbsp; <span
+						jhiTranslate="entity.action.reset">Reset</span>
+				</button>
+			</div>
+			<br> <br>
+		</div>
+	</div>
+	<hr>
+
+
+	<!-- ----------------------------------------------------------------- -->
+	<button [routerLink]="['../all-orders' ]"
+		*jhiHasAnyAuthority="'ROLE_BARMAN'"
+		class="btn-block btn-primary btn-lg" type="button" title="Orders">
+		<fa-icon [icon]="'list'" [fixedWidth]="true"></fa-icon> <span jhiTranslate="home.orders"></span>
+	</button>
+	<button [routerLink]="['../products-processed-at-kitchen' ]"
+		*jhiHasAnyAuthority="'ROLE_BARMAN'"
+		class="btn-block btn-success btn-lg" type="button"
+		title="Products at kitchen">
+		<fa-icon [icon]="'flag-checkered'" [fixedWidth]="true"></fa-icon> <span
+			jhiTranslate="home.productsReady"></span>
+	</button>
+	<button [routerLink]="['/', { outlets: { popup: ['new-day'] } }]"
+		*jhiHasAnyAuthority="'ROLE_BARMAN'"
+		class="btn-block btn-success btn-lg" type="button" title="Orders">
+		<fa-icon [icon]="'calendar-alt'" [fixedWidth]="true"></fa-icon> <span jhiTranslate="home.newDay"></span>
+	</button>
+	<button [routerLink]="['../todays-orders' ]"
+		*jhiHasAnyAuthority="'ROLE_BARMAN'"
+		class="btn-block btn-warning btn-lg" type="button"
+		title="Today's Orders">
+		<fa-icon [icon]="'tasks'" [fixedWidth]="true"></fa-icon> <span jhiTranslate="home.todaysSale"></span>
+	</button>
+	<button [routerLink]="['/', { outlets: { popup: ['bar-cashup'] } }]"
+		*jhiHasAnyAuthority="'ROLE_BARMAN'"
+		class="btn-block btn-primary btn-lg" type="button" title="Cashup">
+		<fa-icon [icon]="'briefcase'" [fixedWidth]="true"></fa-icon> <span jhiTranslate="home.cashup"></span>
+	</button>
+	<br>
+
+	<div [ngSwitch]="isAuthenticated()">
+		<div class="alert alert-success" *ngSwitchCase="true">
+			<span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
+				[translateValues]="{username: account.login}"> You are logged in as user "{{account.login}}". </span>
+		</div>
+	</div>
+</div>
+

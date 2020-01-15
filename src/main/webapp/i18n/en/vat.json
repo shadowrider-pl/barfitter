@@ -1,0 +1,26 @@
+{
+  "barfitterApp": {
+    "vat": {
+      "home": {
+        "title": "Vat rates",
+        "createLabel": "Create a new Vat rate",
+        "createOrEditLabel": "Create or edit a Vat",
+        "search": "Search for Vat"
+      },
+      "created": "A new Vat is created with identifier {{ param }}",
+      "updated": "A Vat is updated with identifier {{ param }}",
+      "deleted": "A Vat is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Vat {{ id }}?"
+      },
+      "detail": {
+        "title": "Vat"
+      },
+      "description": "Description",
+      "rate": "Rate",
+      "note": "Provide rate as decimal. For example, for 23% rate, input 0.23.",
+      "active": "Active",
+      "restaurant": "Restaurant"
+    }
+  }
+}
